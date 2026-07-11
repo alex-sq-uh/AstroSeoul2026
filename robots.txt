@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alex-sq-uh.github.io/AstroSeoul2026/sitemap.xml
