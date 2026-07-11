@@ -9,6 +9,12 @@
 <meta name="googlebot" content="noindex,nofollow">
 <meta name="theme-color" content="#0f1d44">
 
+<!-- App instalable / offline -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AstroSeúl">
+
 <!-- Favicon: planeta de la familia + tejado de palacio coreano (símbolo del viaje), SVG inline -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='30' r='15' fill='%23f5c84b'/%3E%3Cpath d='M32 20 L48 33 Q49 34.5 46.5 34.6 C40 31.5 36 31 32 31 C28 31 24 31.5 17.5 34.6 Q15 34.5 16 33 Z' fill='%231a2b5e'/%3E%3Crect x='24' y='34' width='2.4' height='6' fill='%231a2b5e'/%3E%3Crect x='37.6' y='34' width='2.4' height='6' fill='%231a2b5e'/%3E%3Cellipse cx='32' cy='34' rx='27' ry='9' fill='none' stroke='%237aa1ff' stroke-width='3' transform='rotate(-22 32 34)'/%3E%3C/svg%3E">
 
@@ -295,6 +301,43 @@
   .checklist li::before{content:"✓";position:absolute;left:0;top:.25rem;color:var(--success);font-weight:800}
   .todo li::before{content:"○";color:var(--warning)}
 
+  /* ----- chuleta de idioma ----- */
+  .phrase{display:flex;align-items:flex-start;gap:.7rem;padding:.6rem 0;border-bottom:1px solid var(--border)}
+  .phrase:last-child{border-bottom:none}
+  .phrase .es{flex:0 0 40%;font-weight:700;color:var(--text);font-size:.9rem}
+  .phrase .fo{flex:1;min-width:0}
+  .phrase .fo .nat{font-weight:800;color:var(--primary);font-size:.98rem}
+  .phrase .fo .rom{font-size:.82rem;color:var(--text-muted);font-style:italic;margin-top:1px}
+  .langtab{display:flex;gap:.4rem;margin:.2rem 0 1rem}
+  .langtab button{flex:1;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:.55rem;
+    font:inherit;font-weight:800;color:var(--text-muted);cursor:pointer;font-size:.9rem}
+  .langtab button.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+  .langgrp{display:none}.langgrp.on{display:block}
+
+  /* ----- conversor de moneda ----- */
+  .conv{display:grid;grid-template-columns:1fr;gap:.6rem;margin:.4rem 0 .2rem}
+  .conv .field{display:flex;align-items:center;gap:.6rem;background:var(--surface2);border:1.5px solid var(--border);border-radius:12px;padding:.5rem .7rem}
+  .conv .field .flag{font-size:1.5rem;flex:0 0 auto}
+  .conv .field .lbl{flex:0 0 auto;font-weight:800;color:var(--primary);width:52px}
+  .conv .field input{flex:1;min-width:0;border:none;background:none;font:inherit;font-size:1.25rem;font-weight:800;color:var(--text);text-align:right;outline:none;-moz-appearance:textfield}
+  .conv .field input::-webkit-outer-spin-button,.conv .field input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .conv .field .cur{flex:0 0 auto;font-weight:700;color:var(--text-muted);font-size:.82rem;width:34px}
+  .rate-note{font-size:.78rem;color:var(--text-muted);text-align:center;margin:.5rem 0 0}
+  .rate-note b{color:var(--primary)}
+  table.cheat{width:100%;border-collapse:collapse;margin:.4rem 0 0;font-size:.88rem}
+  table.cheat th,table.cheat td{padding:.45rem .4rem;text-align:right;border-bottom:1px solid var(--border)}
+  table.cheat th{color:var(--text-muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.03em;font-weight:800}
+  table.cheat td:first-child,table.cheat th:first-child{text-align:left;font-weight:800;color:var(--primary)}
+  table.cheat tr:last-child td{border-bottom:none}
+
+  /* ----- clima ----- */
+  .clima{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:.2rem}
+  .clima .cc{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:.8rem}
+  .clima .cc .city{font-weight:800;color:var(--primary);font-size:.95rem}
+  .clima .cc .big{font-size:1.5rem;font-weight:800;margin:.2rem 0}
+  .clima .cc .d{font-size:.8rem;color:var(--text-muted);line-height:1.4}
+  @media(max-width:420px){.clima{grid-template-columns:1fr}}
+
   footer{max-width:760px;margin:0 auto;padding:1.5rem 1rem 2.5rem;text-align:center;color:var(--text-muted);font-size:.78rem;line-height:1.5}
   footer .planet{width:30px;height:30px;opacity:.9;margin-bottom:.3rem}
 
@@ -357,6 +400,9 @@
     <div class="sep"></div>
     <button data-page="alojamiento"><span class="ic">🏠</span>Alojamiento</button>
     <button data-page="transporte"><span class="ic">🚇</span>Transporte</button>
+    <button data-page="maleta"><span class="ic">🧳</span>Maleta y clima</button>
+    <button data-page="idioma"><span class="ic">💬</span>Idioma</button>
+    <button data-page="moneda"><span class="ic">💱</span>Moneda</button>
     <button data-page="apps"><span class="ic">📱</span>Apps útiles</button>
     <button data-page="reservas"><span class="ic">🎟️</span>Reservas y vuelos</button>
     <button data-page="telefonos"><span class="ic">📞</span>Teléfonos</button>
@@ -370,6 +416,9 @@
     <button class="tab" data-page="agenda"><span class="ic">🗓️</span>Agenda</button>
     <button class="tab" data-page="alojamiento"><span class="ic">🏠</span>Alojamiento</button>
     <button class="tab" data-page="transporte"><span class="ic">🚇</span>Transporte</button>
+    <button class="tab" data-page="maleta"><span class="ic">🧳</span>Maleta</button>
+    <button class="tab" data-page="idioma"><span class="ic">💬</span>Idioma</button>
+    <button class="tab" data-page="moneda"><span class="ic">💱</span>Moneda</button>
     <button class="tab" data-page="apps"><span class="ic">📱</span>Apps</button>
     <button class="tab" data-page="reservas"><span class="ic">🎟️</span>Reservas</button>
     <button class="tab" data-page="telefonos"><span class="ic">📞</span>Teléfonos</button>
@@ -774,6 +823,177 @@
     </div>
   </section>
 
+  <!-- ============ MALETA / CLIMA ============ -->
+  <section class="page" id="page-maleta">
+    <h2 class="sec">🧳 Maleta, clima y documentos</h2>
+
+    <!-- Clima -->
+    <div class="card">
+      <h3 style="margin:0 0 .5rem;color:var(--primary);font-size:1.05rem">🌦️ Clima en septiembre</h3>
+      <div class="clima">
+        <div class="cc">
+          <div class="city">🏜️ Abu Dhabi</div>
+          <div class="big">38–40 ºC ☀️</div>
+          <div class="d">Calor intenso y húmedo, sol garantizado. De noche no baja de ~29 ºC. Interiores con aire acondicionado fuerte (llevad algo ligero de manga larga). Casi nunca llueve.</div>
+        </div>
+        <div class="cc">
+          <div class="city">🍁 Seúl</div>
+          <div class="big">26 º / 17 º ⛅</div>
+          <div class="d">Principio de otoño, agradable. Días templados y noches frescas. Puede caer alguna lluvia (cola de tifón); una chaqueta fina y un chubasquero plegable vienen bien.</div>
+        </div>
+      </div>
+      <p class="rate-note">Valores típicos de la época (no es una predicción). Mirad el tiempo real unos días antes con vuestra app del móvil.</p>
+    </div>
+
+    <!-- Documentos -->
+    <div class="card">
+      <h3 style="margin:0 0 .4rem;color:var(--primary);font-size:1.05rem">🛂 Documentos y entrada</h3>
+      <ul class="checklist">
+        <li><b>Pasaporte</b> con validez mínima de 6 meses tras el viaje.</li>
+        <li><b>EAU:</b> españoles entran <b>sin visado</b> (turismo, sellan a la llegada).</li>
+        <li><b>Corea:</b> comprobad el <b>K-ETA</b>. Hubo exención temporal para España; para 2026 confirmad en la web oficial <i>k-eta.go.kr</i> por si vuelve a ser obligatorio (se tramita online días antes).</li>
+        <li>Llevad <b>copia</b> (foto/PDF) de vuelos, hotel y Airbnb, y el <b>seguro de viaje</b>.</li>
+        <li>Tarjeta bancaria sin comisiones + algo de efectivo (KRW y AED) para el primer día.</li>
+      </ul>
+    </div>
+
+    <!-- Enchufes -->
+    <div class="card">
+      <h3 style="margin:0 0 .4rem;color:var(--primary);font-size:1.05rem">🔌 Enchufes</h3>
+      <div class="row">
+        <span class="ic">🇰🇷</span>
+        <div class="t"><b>Corea — tipo C/F · 220V</b><span>¡El mismo enchufe que en España! No necesitáis adaptador para Seúl.</span></div>
+      </div>
+      <div class="row">
+        <span class="ic">🇦🇪</span>
+        <div class="t"><b>EAU — tipo G · 220V</b><span>Enchufe británico de 3 clavijas planas. Para Abu Dhabi <b>sí</b> necesitáis adaptador (llevad 1–2).</span></div>
+      </div>
+    </div>
+
+    <!-- Qué meter -->
+    <div class="card">
+      <h3 style="margin:0 0 .4rem;color:var(--primary);font-size:1.05rem">✅ Qué meter en la maleta</h3>
+      <ul class="checklist">
+        <li>Ropa ligera y transpirable (Abu Dhabi aprieta).</li>
+        <li><b>Para la mezquita:</b> ropa que cubra brazos y piernas; mujeres, un <b>pañuelo</b> para la cabeza.</li>
+        <li>Chaqueta fina + chubasquero plegable (Seúl fresco de noche).</li>
+        <li>Calzado <b>muy</b> cómodo: Seúl se anda muchísimo y hay cuestas (Bukchon).</li>
+        <li>Gafas de sol, gorra y protección solar alta.</li>
+        <li>Adaptador de enchufe (para EAU), cargador y <b>power bank</b>.</li>
+        <li>Medicación personal + botiquín básico.</li>
+        <li>Botella de agua reutilizable.</li>
+      </ul>
+    </div>
+
+    <!-- Mapas guardados -->
+    <div class="card">
+      <div class="pill blue">Google Maps · listas de Maggie</div>
+      <h3 style="margin:.2rem 0 .3rem;color:var(--primary);font-size:1.05rem">🗺️ Mapas con los sitios guardados</h3>
+      <div class="row">
+        <span class="ic">🏜️</span>
+        <div class="t"><b>Abu Dhabi</b><span>Lista de lugares que ha preparado Maggie.</span></div>
+        <a class="btn" href="https://maps.app.goo.gl/kzkDEKeJT3VbtLQd7" target="_blank" rel="noopener">Abrir</a>
+      </div>
+      <div class="row">
+        <span class="ic">🇰🇷</span>
+        <div class="t"><b>Seúl</b><span>Pendiente — cuando Maggie tenga la lista, me pasáis el enlace y lo pongo aquí.</span></div>
+        <span class="btn btn-ghost" style="opacity:.6;cursor:default">Pendiente</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ IDIOMA ============ -->
+  <section class="page" id="page-idioma">
+    <h2 class="sec">💬 Chuleta de idioma</h2>
+    <div class="notice">
+      Cuatro frases y una sonrisa abren muchas puertas. En <b>Abu Dhabi</b> casi todo el mundo habla
+      inglés; en <b>Seúl</b> menos, así que el coreano básico (y <b>Papago</b>) ayudan de verdad.
+      La línea en cursiva es <b>cómo se pronuncia</b>.
+    </div>
+
+    <div class="langtab" id="langtab">
+      <button class="on" data-l="ko">🇰🇷 Coreano</button>
+      <button data-l="ar">🇦🇪 Árabe</button>
+    </div>
+
+    <!-- Coreano -->
+    <div class="langgrp on" id="lg-ko">
+      <div class="card">
+        <div class="phrase"><div class="es">Hola</div><div class="fo"><div class="nat">안녕하세요</div><div class="rom">annyeong-haseyo</div></div></div>
+        <div class="phrase"><div class="es">Gracias</div><div class="fo"><div class="nat">감사합니다</div><div class="rom">gamsa-hamnida</div></div></div>
+        <div class="phrase"><div class="es">Sí / No</div><div class="fo"><div class="nat">네 / 아니요</div><div class="rom">ne / aniyo</div></div></div>
+        <div class="phrase"><div class="es">Perdón / disculpe</div><div class="fo"><div class="nat">실례합니다</div><div class="rom">sillye-hamnida</div></div></div>
+        <div class="phrase"><div class="es">Lo siento</div><div class="fo"><div class="nat">죄송합니다</div><div class="rom">joesong-hamnida</div></div></div>
+        <div class="phrase"><div class="es">¿Cuánto es?</div><div class="fo"><div class="nat">얼마예요?</div><div class="rom">eolma-yeyo?</div></div></div>
+        <div class="phrase"><div class="es">La cuenta, por favor</div><div class="fo"><div class="nat">계산서 주세요</div><div class="rom">gyesanseo juseyo</div></div></div>
+        <div class="phrase"><div class="es">Está buenísimo</div><div class="fo"><div class="nat">맛있어요</div><div class="rom">mas-isseoyo</div></div></div>
+        <div class="phrase"><div class="es">Sin picante, por favor</div><div class="fo"><div class="nat">안 맵게 해주세요</div><div class="rom">an maepge haejuseyo</div></div></div>
+        <div class="phrase"><div class="es">Agua</div><div class="fo"><div class="nat">물</div><div class="rom">mul</div></div></div>
+        <div class="phrase"><div class="es">¿Dónde está el baño?</div><div class="fo"><div class="nat">화장실 어디예요?</div><div class="rom">hwajangsil eodi-yeyo?</div></div></div>
+        <div class="phrase"><div class="es">Una cerveza, por favor</div><div class="fo"><div class="nat">맥주 하나 주세요</div><div class="rom">maekju hana juseyo</div></div></div>
+        <div class="phrase"><div class="es">¡Ayuda!</div><div class="fo"><div class="nat">도와주세요</div><div class="rom">dowa-juseyo</div></div></div>
+        <div class="phrase"><div class="es">Adiós (al que se queda)</div><div class="fo"><div class="nat">안녕히 계세요</div><div class="rom">annyeonghi gyeseyo</div></div></div>
+      </div>
+      <p class="muted" style="font-size:.8rem;text-align:center">Los números y menús salen fáciles con la cámara de <b>Papago</b>.</p>
+    </div>
+
+    <!-- Árabe -->
+    <div class="langgrp" id="lg-ar">
+      <div class="card">
+        <div class="phrase"><div class="es">Hola (paz)</div><div class="fo"><div class="nat">السلام عليكم</div><div class="rom">as-salamu alaykum</div></div></div>
+        <div class="phrase"><div class="es">Hola (informal)</div><div class="fo"><div class="nat">مرحبا</div><div class="rom">marhaban</div></div></div>
+        <div class="phrase"><div class="es">Gracias</div><div class="fo"><div class="nat">شكرا</div><div class="rom">shukran</div></div></div>
+        <div class="phrase"><div class="es">Sí / No</div><div class="fo"><div class="nat">نعم / لا</div><div class="rom">na'am / la</div></div></div>
+        <div class="phrase"><div class="es">Por favor</div><div class="fo"><div class="nat">من فضلك</div><div class="rom">min fadlak</div></div></div>
+        <div class="phrase"><div class="es">Perdón / lo siento</div><div class="fo"><div class="nat">آسف</div><div class="rom">aasif</div></div></div>
+        <div class="phrase"><div class="es">¿Cuánto es?</div><div class="fo"><div class="nat">بكم هذا؟</div><div class="rom">bikam hadha?</div></div></div>
+        <div class="phrase"><div class="es">Está buenísimo</div><div class="fo"><div class="nat">لذيذ</div><div class="rom">ladhidh</div></div></div>
+        <div class="phrase"><div class="es">Agua</div><div class="fo"><div class="nat">ماء</div><div class="rom">maa'</div></div></div>
+        <div class="phrase"><div class="es">¿Dónde está el baño?</div><div class="fo"><div class="nat">أين الحمام؟</div><div class="rom">ayna al-hammam?</div></div></div>
+        <div class="phrase"><div class="es">No pasa nada / vale</div><div class="fo"><div class="nat">ماشي</div><div class="rom">mashi</div></div></div>
+        <div class="phrase"><div class="es">Adiós</div><div class="fo"><div class="nat">مع السلامة</div><div class="rom">ma'a as-salama</div></div></div>
+      </div>
+      <p class="muted" style="font-size:.8rem;text-align:center">En Abu Dhabi el <b>inglés</b> es lengua franca: con inglés os apañáis en casi todo.</p>
+    </div>
+  </section>
+
+  <!-- ============ MONEDA ============ -->
+  <section class="page" id="page-moneda">
+    <h2 class="sec">💱 Conversor de moneda</h2>
+    <div class="notice">
+      Escribe una cantidad en cualquier casilla y se convierten las otras dos al instante.
+      Euro (€), <b>won</b> coreano (₩) y <b>dírham</b> de los Emiratos (AED).
+    </div>
+
+    <div class="card">
+      <div class="conv">
+        <div class="field"><span class="flag">🇪🇺</span><span class="lbl">EUR</span><input id="cEUR" type="number" inputmode="decimal" placeholder="0" value="10"><span class="cur">€</span></div>
+        <div class="field"><span class="flag">🇰🇷</span><span class="lbl">KRW</span><input id="cKRW" type="number" inputmode="decimal" placeholder="0"><span class="cur">₩</span></div>
+        <div class="field"><span class="flag">🇦🇪</span><span class="lbl">AED</span><input id="cAED" type="number" inputmode="decimal" placeholder="0"><span class="cur">د.إ</span></div>
+      </div>
+      <p class="rate-note" id="rateNote">Cargando cambio…</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 .3rem;color:var(--primary);font-size:1rem">🇰🇷 Chuleta rápida · euros → won</h3>
+      <table class="cheat" id="cheatKRW"><thead><tr><th>Euros</th><th>Won (₩)</th></tr></thead><tbody></tbody></table>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 .3rem;color:var(--primary);font-size:1rem">🇦🇪 Chuleta rápida · euros → dírhams</h3>
+      <table class="cheat" id="cheatAED"><thead><tr><th>Euros</th><th>Dírhams (AED)</th></tr></thead><tbody></tbody></table>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 .3rem;color:var(--primary);font-size:1rem">🧠 Truco mental</h3>
+      <p class="muted" style="margin:0;font-size:.9rem;line-height:1.5">
+        <b>Won:</b> un precio en ₩, quítale <b>3 ceros y divide entre ~1,5</b> para tener los euros
+        (10.000 ₩ ≈ 6,7 €). <b>Dírhams:</b> divide entre <b>~4</b> (100 AED ≈ 25 €). Un café ronda los
+        5.000 ₩ (~3,3 €); un metro en Seúl, ~1.400 ₩.
+      </p>
+    </div>
+  </section>
+
 </div>
 
 <!-- modal de info de cada sitio (historia / curiosidades) -->
@@ -834,81 +1054,86 @@ var DIAS = [
   { id:"vie18", d:[2026,9,18], dow:"Viernes", dnum:"18", code:"BCN", loc:"Barcelona ✈️", titulo:"Salida hacia Abu Dhabi",
     resumen:"Hoy no dormís en cama: dormís a 11.000 metros. Maletas, El Prat y a cruzar medio planeta rumbo al desierto. Que empiece el lío. 🧳✈️", items:[
     { per:"tar", t:"20:00", name:"Al aeropuerto de Barcelona (BCN)", place:"El Prat · Terminal 1 · llegar con ~2 h de margen para el vuelo largo", maps:"Aeropuerto Josep Tarradellas Barcelona-El Prat Terminal 1", ico:"🧳" },
-    { per:"noc", t:"22:30", name:"Vuelo Barcelona → Abu Dhabi", place:"Etihad EY114 · BCN T1 22:30 → AUH 07:05 (+1) · Boeing 787-9", maps:"Aeropuerto Josep Tarradellas Barcelona-El Prat Terminal 1", ico:"✈️", key:true, info:"Vuelo nocturno directo con Etihad (EY114), unas 6 h 35 min. Abu Dhabi va +2 h respecto a la España peninsular (en septiembre España está en horario de verano). Salís a las 22:30 y aterrizáis a las 07:05 del sábado, hora local.\n\nConsejo: cenad ligero y dormid en el avión para aprovechar el sábado, que trae piscina, Louvre y mezquita. Referencia de la reserva: 7J2XJV." }
+    { per:"noc", t:"20:30", end:"22:30", name:"Facturar, cena rápida y puerta", place:"Cena ligera en el aeropuerto antes de embarcar", ico:"🍽️" },
+    { per:"noc", t:"22:30", end:"07:05", name:"Vuelo Barcelona → Abu Dhabi", place:"Etihad EY114 · BCN T1 22:30 → AUH 07:05 (+1) · Boeing 787-9", maps:"Aeropuerto Josep Tarradellas Barcelona-El Prat Terminal 1", ico:"✈️", key:true, info:"Vuelo nocturno directo con Etihad (EY114), unas 6 h 35 min. Abu Dhabi va +2 h respecto a la España peninsular (en septiembre España está en horario de verano). Salís a las 22:30 y aterrizáis a las 07:05 del sábado, hora local.\n\nEl avión: Boeing 787-9 Dreamliner. Fuselaje de fibra de carbono, ventanas un 30% más grandes que se oscurecen con un botón (sin persiana), y una cabina presurizada a menor altitud y con más humedad que aviones antiguos: se nota en menos jet lag y garganta menos seca. Suele llevar unos 290 pasajeros.\n\nConsejo: cenad ligero y dormid en el avión para aprovechar el sábado, que trae piscina, Louvre y mezquita. Referencia de la reserva: 7J2XJV." }
   ]},
   { id:"sab19", d:[2026,9,19], dow:"Sábado", dnum:"19", code:"ABU", loc:"Abu Dhabi", titulo:"Llegada, Louvre y Mezquita",
     resumen:"Aterrizáis de madrugada en el desierto más lujoso del mundo. Plan de campeones: piscina para resucitar, un Louvre bajo su cúpula-colador de luz y una mezquita de mármol que deja sin palabras (y sin datos en el móvil de tanta foto). 🕌☀️", items:[
-    { per:"man", t:"07:05", name:"Llegada a Abu Dhabi (AUH)", place:"Etihad EY114 · Terminal A · taxi/Careem al hotel", maps:"Zayed International Airport Abu Dhabi", ico:"🛬", key:true, info:"Abu Dhabi es la capital de los Emiratos Árabes Unidos y el mayor de los siete emiratos. Moderna, tranquila y con muchísimo dinero del petróleo invertido en cultura (isla de Saadiyat) y arquitectura. En septiembre hace calor fuerte (35–40 ºC) y humedad: ropa ligera, agua y aprovechar los interiores con aire acondicionado.\n\nLlegáis muy temprano (07:05): id directos al hotel a dejar maletas (o piscina) aunque la habitación no esté lista." },
-    { per:"man", name:"Check-in en el hotel", place:"Hotel por confirmar · dejar maletas", ico:"🏨", info:"Si la habitación no está lista a la llegada, casi todos los hoteles guardan las maletas para que podáis empezar el día (piscina incluida)." },
-    { per:"man", name:"Piscina del hotel", place:"Un baño y descanso tras el vuelo", ico:"🏊", info:"Buen plan para recuperar del vuelo nocturno antes de salir a hacer turismo con el calor del mediodía." },
-    { per:"med", name:"Almuerzo", place:"En el hotel o cerca", ico:"🍴" },
-    { per:"tar", t:"14:30", name:"Louvre Abu Dhabi", place:"Isla de Saadiyat · sáb 10:00–20:30 · cierra lunes", maps:"Louvre Abu Dhabi, Saadiyat Island", ico:"🖼️", key:true, tag:"book", info:"El primer Louvre fuera de Francia (2017), fruto de un acuerdo de 30 años con Francia por el que Abu Dhabi puede usar el nombre y recibe préstamos de museos franceses. Lo diseñó Jean Nouvel: una enorme cúpula plateada de 180 m de diámetro, hecha de capas geométricas superpuestas, que filtra la luz como la sombra de una palmera (la llaman “lluvia de luz”).\n\nEs un museo “universal”: mezcla arte de todas las civilizaciones en orden cronológico, de la prehistoria al arte contemporáneo, con obras de Da Vinci, Van Gogh, Monet… Cierra los lunes; el sábado abre de 10:00 a 20:30. Mejor sacar la entrada con hora online." },
-    { per:"tar", name:"Sombra y paseo por Saadiyat", place:"Barrio cultural de Saadiyat", maps:"Saadiyat Cultural District, Abu Dhabi", ico:"🏛️", info:"La isla de Saadiyat es el gran distrito cultural: además del Louvre están naciendo el Guggenheim Abu Dhabi y el Museo Zayed. Playas de arena blanca y hoteles de lujo." },
-    { per:"noc", t:"18:30", name:"Mezquita Sheikh Zayed", place:"Gran Mezquita · sáb 09:00–21:00 · vestimenta estricta", maps:"Sheikh Zayed Grand Mosque, Abu Dhabi", ico:"🕌", key:true, tag:"book", info:"La Gran Mezquita Sheikh Zayed es el gran símbolo de Abu Dhabi y una de las mayores del mundo: caben unas 40.000 personas. Toda de mármol blanco, con 82 cúpulas, columnas con incrustaciones de nácar y flores de piedras semipreciosas, la mayor alfombra tejida a mano del mundo (dentro de la sala de oración) y lámparas con cristales de Swarovski.\n\nLleva el nombre del jeque Zayed, padre fundador de los Emiratos, que está enterrado al lado. Es especialmente bonita al atardecer, cuando el mármol pasa del blanco al dorado y luego se ilumina.\n\nVestimenta OBLIGATORIA: ropa larga y holgada que cubra brazos y piernas; las mujeres, además, pañuelo en la cabeza. Nada transparente ni ajustado o te deniegan la entrada. Los sábados abre de 9:00 a 21:00 (última entrada 20:30)." },
-    { per:"noc", name:"Cena en Abu Dhabi", place:"Por elegir (cerca de la mezquita o del hotel)", ico:"🍽️" }
+    { per:"man", t:"07:05", name:"Llegada a Abu Dhabi (AUH)", place:"Etihad EY114 · Terminal A · taxi/Careem al hotel", maps:"Zayed International Airport Abu Dhabi", ico:"🛬", key:true, info:"Abu Dhabi es la capital de los Emiratos Árabes Unidos y el mayor de los siete emiratos. Moderna, tranquila y con muchísimo dinero del petróleo invertido en cultura (isla de Saadiyat) y arquitectura. En septiembre hace calor fuerte (35–40 ºC) y humedad: ropa ligera, agua y aprovechar los interiores con aire acondicionado.\n\nEl aeropuerto Zayed (AUH) estrenó en 2023 su Terminal A, una de las mayores del mundo, con una cubierta ondulada sostenida por enormes arcos y luz natural. Llegáis muy temprano (07:05): id directos al hotel a dejar maletas (o piscina) aunque la habitación no esté lista." },
+    { per:"man", t:"08:30", name:"Check-in / dejar maletas en el hotel", place:"Hotel por confirmar · guardan equipaje si la habitación no está lista", ico:"🏨", info:"Si la habitación no está lista a la llegada, casi todos los hoteles guardan las maletas para que podáis empezar el día (piscina incluida)." },
+    { per:"man", t:"09:30", end:"12:30", name:"Piscina y descanso", place:"Recuperar del vuelo nocturno antes del calor del mediodía", ico:"🏊", info:"Buen plan para recuperar del vuelo nocturno. A media mañana ya aprieta el sol; la piscina y la sombra son el mejor plan hasta la hora de comer." },
+    { per:"med", t:"12:30", end:"13:45", name:"Almuerzo", place:"En el hotel o cerca", ico:"🍴" },
+    { per:"med", t:"13:45", end:"14:15", name:"Tiempo libre (evitar el calor)", place:"Siesta o rato de sombra antes de salir al museo", ico:"⏳" },
+    { per:"tar", t:"14:30", end:"17:00", name:"Louvre Abu Dhabi", place:"Isla de Saadiyat · sáb 10:00–20:30 · cierra lunes", maps:"Louvre Abu Dhabi, Saadiyat Island", ico:"🖼️", key:true, tag:"book", info:"El primer Louvre fuera de Francia (2017), fruto de un acuerdo de 30 años con Francia por el que Abu Dhabi puede usar el nombre y recibe préstamos de museos franceses.\n\nArquitectura: lo firma Jean Nouvel (francés, Premio Pritzker 2008, el “Nobel” de la arquitectura). Su idea es una “ciudad-museo” de 55 edificios blancos bajo una única cúpula plateada de 180 m de diámetro y 7.500 toneladas, formada por ocho capas de estrellas geométricas superpuestas. La luz que se cuela entre ellas crea la famosa “lluvia de luz”, inspirada en la sombra de las palmeras de un oasis. La cúpula parece flotar (se apoya solo en cuatro pilares ocultos).\n\nEs un museo “universal”: mezcla arte de todas las civilizaciones en orden cronológico, de la prehistoria al arte contemporáneo, con obras de Da Vinci, Van Gogh, Monet… Cierra los lunes; el sábado abre de 10:00 a 20:30. Mejor sacar la entrada con hora online." },
+    { per:"tar", t:"17:00", end:"17:45", name:"Paseo por Saadiyat", place:"Barrio cultural de Saadiyat · sombra y agua", maps:"Saadiyat Cultural District, Abu Dhabi", ico:"🏛️", info:"La isla de Saadiyat es el gran distrito cultural: además del Louvre están en marcha el Guggenheim Abu Dhabi (de Frank Gehry, Pritzker 1989), el Museo Nacional Zayed (de Norman Foster, Pritzker 1999) y el teamLab. Playas de arena blanca y hoteles de lujo." },
+    { per:"noc", t:"18:30", end:"20:00", name:"Mezquita Sheikh Zayed", place:"Gran Mezquita · sáb 09:00–21:00 · vestimenta estricta", maps:"Sheikh Zayed Grand Mosque, Abu Dhabi", ico:"🕌", key:true, tag:"book", info:"La Gran Mezquita Sheikh Zayed es el gran símbolo de Abu Dhabi y una de las mayores del mundo: caben unas 40.000 personas. Toda de mármol blanco de Macedonia, con 82 cúpulas, 1.000 columnas con incrustaciones de nácar y flores de piedras semipreciosas, la mayor alfombra tejida a mano del mundo (5.700 m² en la sala de oración) y lámparas con cristales de Swarovski.\n\nSe construyó entre 1996 y 2007 mezclando estilos mogol, otomano y árabe. Lleva el nombre del jeque Zayed, padre fundador de los Emiratos, que está enterrado al lado. Es especialmente bonita al atardecer, cuando el mármol pasa del blanco al dorado y luego se ilumina con un sistema que imita las fases de la luna.\n\nVestimenta OBLIGATORIA: ropa larga y holgada que cubra brazos y piernas; las mujeres, además, pañuelo en la cabeza. Nada transparente ni ajustado o te deniegan la entrada. Los sábados abre de 9:00 a 21:00 (última entrada 20:30)." },
+    { per:"noc", t:"20:30", name:"Cena en Abu Dhabi", place:"Por elegir (cerca de la mezquita o del hotel)", ico:"🍽️" }
   ]},
   { id:"dom20", d:[2026,9,20], dow:"Domingo", dnum:"20", code:"ABU", loc:"Abu Dhabi → Seúl", titulo:"Corniche y vuelo a Seúl",
     resumen:"Última mañana emiratí: paseo por la Corniche antes de que el sol pegue como un secador. Por la noche, avión gigante rumbo a Corea. Despedíos de los dátiles, que llegan los kimchis. 🌊✈️", items:[
-    { per:"man", name:"Paseo por la Corniche", place:"Paseo marítimo de Abu Dhabi", maps:"Corniche Beach, Abu Dhabi", ico:"🌊", key:true, info:"El paseo marítimo de Abu Dhabi: unos 8 km de palmeras, carril bici, playa de bandera azul y vistas al skyline y a la isla de Lulu. Es el sitio para pasear, correr o alquilar bici. Temprano se está mejor por el calor. Enfrente queda el Emirates Palace, el hotel-palacio más famoso de la ciudad." },
-    { per:"man", name:"Qasr Al Watan (opcional)", place:"Palacio presidencial visitable", maps:"Qasr Al Watan, Abu Dhabi", ico:"🏰", info:"El “Palacio de la Nación”, un palacio presidencial en funciones abierto al público desde 2019. Espectacular por dentro: cúpula gigante, una biblioteca preciosa y salas de estado. Si os cuadra de tiempo antes del check-out, merece la pena; si no, se puede dejar." },
-    { per:"med", name:"Almuerzo y recoger maletas", place:"Check-out del hotel", ico:"🧳" },
-    { per:"tar", name:"Mezquita / última visita (si no dio tiempo)", place:"Comodín por si quedó algo pendiente del sábado", maps:"Sheikh Zayed Grand Mosque, Abu Dhabi", ico:"🕌", info:"Hueco por si el sábado se hizo corto: la mezquita, un mercado (souk) o el Emirates Palace para un té. Domingo la mezquita abre 9:00–22:00." },
+    { per:"man", t:"08:00", end:"09:30", name:"Paseo por la Corniche", place:"Paseo marítimo de Abu Dhabi · mejor temprano", maps:"Corniche Beach, Abu Dhabi", ico:"🌊", key:true, info:"El paseo marítimo de Abu Dhabi: unos 8 km de palmeras, carril bici, playa de bandera azul y vistas al skyline y a la isla de Lulu. Es el sitio para pasear, correr o alquilar bici. Temprano se está mejor por el calor. Enfrente queda el Emirates Palace, el hotel-palacio más famoso de la ciudad." },
+    { per:"man", t:"10:00", end:"12:00", name:"Qasr Al Watan (opcional)", place:"Palacio presidencial visitable · 10:00–19:00", maps:"Qasr Al Watan, Abu Dhabi", ico:"🏰", info:"El “Palacio de la Nación”, un palacio presidencial en funciones abierto al público desde 2019. Espectacular por dentro: una cúpula central de 37 m forrada de mosaicos geométricos y pan de oro, una biblioteca preciosa con miles de volúmenes y salas de estado donde se reciben jefes de Estado. Arquitectura contemporánea de inspiración árabe, toda en piedra caliza blanca. Si os cuadra antes del check-out, merece la pena; si no, se puede dejar." },
+    { per:"med", t:"12:00", end:"13:30", name:"Check-out y almuerzo", place:"Recoger maletas del hotel (guardan equipaje) y comer", ico:"🧳" },
+    { per:"tar", t:"13:30", end:"18:00", name:"Tiempo libre / comodín", place:"Piscina, un souk, el Emirates Palace para un té, o algo que quedara pendiente", maps:"Emirates Palace Mandarin Oriental, Abu Dhabi", ico:"⏳", info:"Tarde tranquila antes del vuelo largo: piscina del hotel, un mercado (souk), un té en el Emirates Palace, o la mezquita si el sábado se hizo corto (domingo abre 9:00–22:00). Con el calor, mejor planes con aire acondicionado." },
     { per:"tar", t:"18:30", name:"Al aeropuerto (AUH)", place:"Etihad EY822 · Terminal A · llegar ~3 h antes del vuelo largo", maps:"Zayed International Airport Abu Dhabi", ico:"🚕" },
-    { per:"noc", t:"21:10", name:"Vuelo Abu Dhabi → Seúl", place:"Etihad EY822 · AUH 21:10 → ICN T1 10:50 (+1) · Airbus A350-1000", maps:"Zayed International Airport Abu Dhabi", ico:"✈️", key:true, info:"Vuelo directo de noche hacia Seúl (EY822), unas 8 h 40 min. Corea va +5 h respecto a Abu Dhabi (+7 h respecto a España). Salís el domingo a las 21:10 y aterrizáis en Incheon el lunes a las 10:50, hora local. Ajustad relojes y dormid lo que podáis." }
+    { per:"noc", t:"21:10", end:"10:50", name:"Vuelo Abu Dhabi → Seúl", place:"Etihad EY822 · AUH 21:10 → ICN T1 10:50 (+1) · Airbus A350-1000", maps:"Zayed International Airport Abu Dhabi", ico:"✈️", key:true, info:"Vuelo directo de noche hacia Seúl (EY822), unas 8 h 40 min. Corea va +5 h respecto a Abu Dhabi (+7 h respecto a España). Salís el domingo a las 21:10 y aterrizáis en Incheon el lunes a las 10:50, hora local.\n\nEl avión: Airbus A350-1000, el mayor de la familia A350 y el buque insignia de Etihad para largo radio. Alas y fuselaje de fibra de carbono, dos motores Rolls-Royce Trent XWB (de los más silenciosos del mundo), iluminación ambiental que cambia de color para ayudar con el jet lag y aire renovado cada 2-3 min. Unos 360 pasajeros. Ajustad relojes y dormid lo que podáis." }
   ]},
   { id:"lun21", d:[2026,9,21], dow:"Lunes", dnum:"21", code:"SEU", loc:"Seúl", titulo:"Llegada a Seúl · DDP y Euljiro",
     resumen:"¡Anyeong, Seúl! Aterrizáis, dejáis las maletas en Changsin-dong y os estrenáis con la nave espacial de DDP y los callejones retro de Euljiro. Primer bocado coreano: que no sea el último del día. 🛸🍜", items:[
-    { per:"man", t:"10:50", name:"Llegada a Seúl (Incheon, ICN)", place:"Etihad EY822 · Terminal 1 · AREX o bus al centro · rumbo al Airbnb", maps:"Incheon International Airport", ico:"🛬", key:true, info:"Seúl es una megaciudad de unos 10 millones de personas (25 en su área metropolitana), donde conviven palacios de la dinastía Joseon con rascacielos, K-pop y una de las mejores redes de metro del mundo. Desde el aeropuerto de Incheon, el tren AREX o un bus limusina os dejan en el centro." },
-    { per:"med", name:"Check-in en el Airbnb (LUNA HAUS)", place:"Changsin-dong · a partir de las 15:00 · metro Dongmyo", maps:"404-4 Changsin-dong, Jongno-gu, Seoul", ico:"🔑", info:"Vuestra base: un piso de 76 m² en Changsin-dong, a 2 minutos del metro Dongmyo, en el distrito histórico de Jongno y muy cerca de DDP y del mercado de Dongdaemun. Auto check-in con código de teclado." },
-    { per:"med", name:"Comer algo cerca de casa", place:"Primer bocado coreano en el barrio", ico:"🍜" },
-    { per:"tar", t:"15:00", name:"DDP · Dongdaemun Design Plaza", place:"281 Eulji-ro · 10:00–21:00", maps:"Dongdaemun Design Plaza, Seoul", ico:"🛸", key:true, info:"El edificio más futurista de Seúl: una nave plateada de curvas sin una sola esquina recta, obra de la arquitecta Zaha Hadid (2014). Es el mayor edificio de estructura neofuturista del mundo. Dentro hay exposiciones de diseño, tiendas y cafés; fuera, un mar de LEDs (los “LED Roses”) que de noche es muy fotogénico.\n\nSe levantó sobre el antiguo estadio de Dongdaemun; en las obras aparecieron restos de la muralla y una puerta de agua de la época Joseon, que se conservan integrados. Está a un paso de vuestro barrio." },
-    { per:"tar", name:"Mercado de Dongdaemun", place:"Compras y ambiente junto a DDP", maps:"Dongdaemun Market, Seoul", ico:"🛍️", info:"Enorme zona comercial famosa por la moda y por abrir hasta muy tarde (algunos centros, de madrugada). Buen sitio para picar en los puestos de comida callejera." },
-    { per:"noc", name:"Euljiro (을지로) de noche", place:"Callejones retro, imprentas, bares escondidos", maps:"Euljiro, Jung-gu, Seoul", ico:"🌆", key:true, info:"Euljiro es un antiguo barrio de talleres, ferreterías e imprentas que se ha puesto de moda: entre persianas metálicas y almacenes se esconden bares y cafés modernísimos (lo llaman “Hip-jiro”). El plan es callejear de noche, cenar en algún sitio con encanto retro y buscar los bares ocultos en pisos altos.\n\nIdea de Claudia: cena con foto estilosa por aquí. Muchos sitios son pequeños y familiares: en Chuseok (24–27) confirmad que abren." }
+    { per:"man", t:"10:50", name:"Llegada a Seúl (Incheon, ICN)", place:"Etihad EY822 · Terminal 1 · trámites y equipaje", maps:"Incheon International Airport", ico:"🛬", key:true, info:"Seúl es una megaciudad de unos 10 millones de personas (25 en su área metropolitana), donde conviven palacios de la dinastía Joseon con rascacielos, K-pop y una de las mejores redes de metro del mundo. Incheon (ICN) es de los mejores aeropuertos del mundo; contad ~40 min entre desembarcar, inmigración y recoger maletas." },
+    { per:"man", t:"11:45", end:"13:00", name:"Traslado al centro (AREX)", place:"Tren AREX o bus limusina hasta cerca del Airbnb", maps:"Incheon Airport Railroad AREX", ico:"🚆", info:"El AREX exprés llega a la estación de Seúl en ~45 min; el AREX normal (todo estaciones) o el bus limusina también valen. Comprad una tarjeta T-money en el propio aeropuerto para el resto del viaje." },
+    { per:"med", t:"13:15", end:"14:30", name:"Dejar maletas y comer cerca de casa", place:"Primer bocado coreano en el barrio (Changsin/Dongmyo)", ico:"🍜", info:"Aunque el check-in formal es a las 15:00, con el auto check-in de teclado podéis dejar maletas antes o guardarlas. Buen momento para el primer plato coreano del viaje." },
+    { per:"med", t:"15:00", name:"Check-in en el Airbnb (LUNA HAUS)", place:"Changsin-dong · desde las 15:00 · metro Dongmyo", maps:"404-4 Changsin-dong, Jongno-gu, Seoul", ico:"🔑", info:"Vuestra base: un piso de 76 m² en Changsin-dong, a 2 minutos del metro Dongmyo, en el distrito histórico de Jongno y muy cerca de DDP y del mercado de Dongdaemun. Auto check-in con código de teclado." },
+    { per:"tar", t:"16:00", end:"18:00", name:"DDP · Dongdaemun Design Plaza", place:"281 Eulji-ro · 10:00–21:00", maps:"Dongdaemun Design Plaza, Seoul", ico:"🛸", key:true, info:"El edificio más futurista de Seúl: una nave plateada de curvas sin una sola esquina recta.\n\nArquitectura: es obra de Zaha Hadid (británico-iraquí, 2014), la primera mujer que ganó el Premio Pritzker (2004) y reina del “deconstructivismo” de líneas fluidas. Su fachada son 45.000 paneles de aluminio, todos de forma distinta, curvados uno a uno; por dentro no hay apenas ángulos rectos. Es el mayor edificio de estructura neofuturista del mundo. De noche se ilumina y fuera hay un mar de LEDs (los “LED Roses”) muy fotogénico.\n\nSe levantó sobre el antiguo estadio de Dongdaemun; en las obras aparecieron restos de la muralla y una puerta de agua de la época Joseon, que se conservan integrados. Está a un paso de vuestro barrio." },
+    { per:"tar", t:"18:00", end:"19:30", name:"Mercado de Dongdaemun", place:"Compras y ambiente junto a DDP", maps:"Dongdaemun Market, Seoul", ico:"🛍️", info:"Enorme zona comercial famosa por la moda y por abrir hasta muy tarde (algunos centros, de madrugada). Buen sitio para picar en los puestos de comida callejera." },
+    { per:"noc", t:"20:00", name:"Euljiro (을지로) de noche", place:"Callejones retro, imprentas, bares escondidos", maps:"Euljiro, Jung-gu, Seoul", ico:"🌆", key:true, info:"Euljiro es un antiguo barrio de talleres, ferreterías e imprentas que se ha puesto de moda: entre persianas metálicas y almacenes se esconden bares y cafés modernísimos (lo llaman “Hip-jiro”). El plan es callejear de noche, cenar en algún sitio con encanto retro y buscar los bares ocultos en pisos altos.\n\nIdea de Claudia: cena con foto estilosa por aquí. Muchos sitios son pequeños y familiares: en Chuseok (24–27) confirmad que abren." }
   ]},
   { id:"mar22", d:[2026,9,22], dow:"Martes", dnum:"22", code:"SEU", loc:"Seúl", titulo:"Leeum, Hannam y galerías",
     resumen:"Día de arte fino y barrio pijo: el Leeum (con nada menos que tres arquitectos estrella) y Hannam-dong, donde viven ídolos del K-pop y actores. Fingid que vosotros también, que nadie lo va a comprobar. 🎨🕶️", items:[
-    { per:"man", t:"10:00", name:"Leeum Museum of Art", place:"Yongsan · mar–dom 10:00–18:00 · con reserva", maps:"Leeum Museum of Art, Yongsan-gu, Seoul", ico:"🖼️", key:true, tag:"book", info:"El mejor museo de arte privado de Seúl, de la familia Samsung (Lee). Reúne dos mundos: arte tradicional coreano (cerámica celadón, pintura, budismo) y arte moderno y contemporáneo internacional (Rothko, Giacometti, Hirst, Louise Bourgeois…). Tres edificios firmados por tres arquitectos estrella: Mario Botta, Jean Nouvel y Rem Koolhaas.\n\nFunciona con reserva online (hasta 14 días antes, máx. 4 personas). Cierra los lunes y en festivo de Chuseok: por eso lo hacéis hoy, martes 22, a salvo del festivo." },
-    { per:"med", name:"Hannam-dong (한남동)", place:"Barrio chic: cafés, tiendas de diseño, galerías", maps:"Hannam-dong, Yongsan-gu, Seoul", ico:"🛍️", key:true, info:"Uno de los barrios más elegantes y caros de Seúl, junto a Itaewon, donde viven ídolos del K-pop y actores. Está lleno de concept stores, cafés de diseño, boutiques y galerías de arte. Ideal para comer bien y curiosear tiendas bonitas." },
-    { per:"med", name:"Almuerzo en Hannam", place:"Elegir sitio en el barrio", ico:"🍽️" },
-    { per:"tar", name:"Lehmann Maupin", place:"213 Itaewon-ro · mar–sáb 11:00–19:00", maps:"Lehmann Maupin, Hannam-dong, Seoul", ico:"🎨", info:"Sede en Seúl de la galería internacional Lehmann Maupin (de Nueva York), en pleno Hannam-dong. Programa de arte contemporáneo de primer nivel. Abre de martes a sábado, 11:00–19:00; la entrada es gratuita." },
-    { per:"tar", name:"Más galerías por Hannam/Itaewon", place:"Paseo de arte por la zona", maps:"Itaewon, Yongsan-gu, Seoul", ico:"🖌️", info:"La zona concentra varias galerías potentes (Thaddaeus Ropac, PKM, etc.) y tiendas de diseño. Buen plan para encadenar arte andando." },
-    { per:"noc", name:"Cena por Itaewon / Hannam", place:"Zona con mucha variedad internacional", maps:"Itaewon, Seoul", ico:"🍜" }
+    { per:"man", t:"10:00", end:"12:30", name:"Leeum Museum of Art", place:"Yongsan · mar–dom 10:00–18:00 · con reserva", maps:"Leeum Museum of Art, Yongsan-gu, Seoul", ico:"🖼️", key:true, tag:"book", info:"El mejor museo de arte privado de Seúl, de la familia Samsung (Lee). Reúne dos mundos: arte tradicional coreano (cerámica celadón, pintura, budismo) y arte moderno y contemporáneo internacional (Rothko, Giacometti, Hirst, Louise Bourgeois…).\n\nArquitectura: son tres edificios de tres arquitectos de primerísima fila. El Museo 1 (arte antiguo), de Mario Botta (suizo), en ladrillo terracota con una rampa cónica invertida como una torre. El Museo 2 (arte contemporáneo), de Jean Nouvel (francés, Pritzker 2008), en acero corten oxidado y cajas de cristal. Y el centro educativo de Rem Koolhaas (holandés, Pritzker 2000), en hormigón negro y vidrio “flotante”. Tres estilos opuestos que conviven en la misma colina.\n\nFunciona con reserva online (hasta 14 días antes, máx. 4 personas). Cierra los lunes y en festivo de Chuseok: por eso lo hacéis hoy, martes 22, a salvo del festivo." },
+    { per:"med", t:"12:30", end:"13:00", name:"Hannam-dong (한남동)", place:"Barrio chic: cafés, tiendas de diseño, galerías", maps:"Hannam-dong, Yongsan-gu, Seoul", ico:"🛍️", key:true, info:"Uno de los barrios más elegantes y caros de Seúl, junto a Itaewon, donde viven ídolos del K-pop y actores. Está lleno de concept stores, cafés de diseño, boutiques y galerías de arte. Aquí también está el flagship de Amorepacific… y su sede (de David Chipperfield, Pritzker 2023) queda cerca, en Yongsan. Ideal para comer bien y curiosear tiendas bonitas." },
+    { per:"med", t:"13:00", end:"14:15", name:"Almuerzo en Hannam", place:"Elegir sitio en el barrio", ico:"🍽️" },
+    { per:"tar", t:"14:30", end:"15:15", name:"Lehmann Maupin", place:"213 Itaewon-ro · mar–sáb 11:00–19:00 · gratis", maps:"Lehmann Maupin, Hannam-dong, Seoul", ico:"🎨", info:"Sede en Seúl de la galería internacional Lehmann Maupin (de Nueva York), en pleno Hannam-dong. Programa de arte contemporáneo de primer nivel. Abre de martes a sábado, 11:00–19:00; la entrada es gratuita." },
+    { per:"tar", t:"15:15", end:"17:30", name:"Más galerías por Hannam/Itaewon", place:"Paseo de arte por la zona", maps:"Itaewon, Yongsan-gu, Seoul", ico:"🖌️", info:"La zona concentra varias galerías potentes (Thaddaeus Ropac, PKM, etc.) y tiendas de diseño. Buen plan para encadenar arte andando." },
+    { per:"tar", t:"17:30", end:"19:30", name:"Tiempo libre por Itaewon", place:"Café, tiendas o volver a descansar antes de cenar", ico:"⏳" },
+    { per:"noc", t:"20:00", name:"Cena por Itaewon / Hannam", place:"Zona con mucha variedad internacional", maps:"Itaewon, Seoul", ico:"🍜" }
   ]},
   { id:"mie23", d:[2026,9,23], dow:"Miércoles", dnum:"23", code:"SEU", loc:"Seúl", titulo:"Bukchon, palacio y galerías de Samcheong",
     resumen:"Maratón cultural nivel experto: hanoks de Bukchon a primera hora, palacio real, tres museos seguidos y, de premio final, barbacoa coreana a la brasa. Los pies van a sufrir; el estómago, ni una queja. 👑🥩", items:[
-    { per:"man", t:"09:30", end:"11:00", name:"Bukchon Hanok Village", place:"Barrio de casas tradicionales · ir temprano", maps:"Bukchon Hanok Village, Seoul", ico:"🏘️", key:true, info:"Un barrio de unas 900 casas tradicionales (hanok) de tejados curvos entre los palacios Gyeongbokgung y Changdeokgung, donde vivía la nobleza en la época Joseon. Hoy es zona residencial y museo al aire libre a la vez: sus callejones en cuesta ofrecen las postales clásicas de tejados con la ciudad moderna al fondo.\n\nIr temprano (a las 9:30) evita las masas y el calor. Ojo: vive gente, hay carteles que piden silencio y en algunas calles hay horario de visita. Zapato cómodo por las cuestas." },
-    { per:"man", name:"Gyeongbokgung", place:"Gran palacio real · 09:00–18:00 · cierra martes", maps:"Gyeongbokgung Palace, Seoul", ico:"👑", key:true, info:"El palacio principal de la dinastía Joseon, fundado en 1395. Fue arrasado por los japoneses en el s. XVI y de nuevo desmantelado en la ocupación del s. XX; hoy está en gran parte reconstruido. Enorme, con el pabellón Gyeonghoeru sobre un estanque y el trono en Geunjeongjeon.\n\nNo os perdáis el cambio de guardia (varias veces al día en la puerta Gwanghwamun). Entrada 3.000 ₩, pero GRATIS si vais con hanbok alquilado. Cierra los martes (hoy es miércoles, perfecto). En Chuseok suele abrir gratis." },
-    { per:"med", t:"11:15", end:"13:30", name:"MMCA Seúl", place:"Museo de Arte Moderno y Contemporáneo · 30 Samcheong-ro", maps:"MMCA Seoul, Samcheong-ro, Seoul", ico:"🏛️", key:true, info:"La sede de Seúl del Museo Nacional de Arte Moderno y Contemporáneo, junto al palacio, en el barrio de galerías de Samcheong. Arquitectura de líneas limpias con patios; buena colección coreana e internacional y grandes exposiciones temporales.\n\nAbre 10:00–18:00 (miércoles y sábados hasta las 21:00, con “noche” gratuita 18:00–21:00). Última entrada, 1 h antes de cerrar." },
-    { per:"med", name:"Almuerzo en Samcheong-dong", place:"Cafés y restaurantes junto al palacio", maps:"Samcheong-dong, Jongno-gu, Seoul", ico:"🍲", info:"Samcheong-dong es la calle bonita que sube desde el palacio: hanoks reconvertidos en cafés, restaurantes y tiendecitas, con las galerías de arte al lado." },
-    { per:"tar", t:"14:30", end:"15:30", name:"Kukje Gallery", place:"54 Samcheong-ro · lun–sáb 10:00–18:00", maps:"Kukje Gallery, Samcheong-ro, Seoul", ico:"🎨", key:true, info:"Una de las galerías más importantes de Corea (desde 1982), que trae a Seúl a grandes nombres internacionales (Anish Kapoor, Louise Bourgeois, Jenny Holzer…) y representa a artistas coreanos punteros. Varios edificios pequeños con arquitectura cuidada. Entrada gratuita, lun–sáb 10:00–18:00." },
-    { per:"tar", t:"16:00", end:"18:30", name:"Arario Museum in SPACE", place:"Yulgok-ro · mar–dom 10:00–19:00 · 15.000 ₩", maps:"Arario Museum in Space, Seoul", ico:"🖤", key:true, info:"Museo de arte contemporáneo dentro del edificio SPACE, un icono de la arquitectura moderna coreana (ladrillo rojo cubierto de hiedra, obra de Kim Swoo-geun, años 70). Alberga la colección privada de Arario, con arte contemporáneo internacional y coreano repartido por sus muchas plantas y rincones laberínticos.\n\nAbre de martes a domingo, 10:00–19:00 (cierra lunes). Entrada unos 15.000 ₩." },
-    { per:"noc", name:"Barbacoa coreana en Euljiro", place:"Cena de barbacoa · reservar sitio", maps:"Euljiro, Jung-gu, Seoul", ico:"🥩", key:true, tag:"book", info:"La clásica barbacoa coreana (gogi-gui): carne a la brasa en la mesa (panceta samgyeopsal, costilla galbi), con hojas de lechuga para envolver, ssamjang, kimchi y soju o cerveza. En los callejones de Euljiro hay sitios con muchísimo ambiente. Reservad si podéis; con Chuseok cerca, confirmad que abre." }
+    { per:"man", t:"09:00", end:"10:15", name:"Gyeongbokgung", place:"Gran palacio real · 09:00–18:00 · cierra martes", maps:"Gyeongbokgung Palace, Seoul", ico:"👑", key:true, info:"El palacio principal de la dinastía Joseon, fundado en 1395. Fue arrasado por los japoneses en el s. XVI y de nuevo desmantelado en la ocupación del s. XX; hoy está en gran parte reconstruido. Enorme, con el pabellón Gyeonghoeru sobre un estanque y el trono en Geunjeongjeon.\n\nEntrad al abrir (09:00) y al salir pillaréis el cambio de guardia de las 10:00 en la puerta Gwanghwamun. Entrada 3.000 ₩, pero GRATIS si vais con hanbok alquilado. Cierra los martes (hoy es miércoles, perfecto). En Chuseok suele abrir gratis." },
+    { per:"man", t:"10:20", end:"11:15", name:"Bukchon Hanok Village", place:"Barrio de casas tradicionales · subiendo desde el palacio", maps:"Bukchon Hanok Village, Seoul", ico:"🏘️", key:true, info:"Un barrio de unas 900 casas tradicionales (hanok) de tejados curvos entre los palacios Gyeongbokgung y Changdeokgung, donde vivía la nobleza en la época Joseon. Hoy es zona residencial y museo al aire libre a la vez: sus callejones en cuesta ofrecen las postales clásicas de tejados con la ciudad moderna al fondo.\n\nQueda a 5 min del palacio. Ojo: vive gente, hay carteles que piden silencio y en algunas calles hay horario de visita. Zapato cómodo por las cuestas." },
+    { per:"med", t:"11:30", end:"13:30", name:"MMCA Seúl", place:"Museo de Arte Moderno y Contemporáneo · 30 Samcheong-ro", maps:"MMCA Seoul, Samcheong-ro, Seoul", ico:"🏛️", key:true, info:"La sede de Seúl del Museo Nacional de Arte Moderno y Contemporáneo, junto al palacio, en el barrio de galerías de Samcheong. Lo diseñó el coreano Mihn Hyun-jun (2013): un conjunto de volúmenes bajos y patios que se integra con el palacio y los hanok del entorno sin taparlos, con mucha luz natural. Buena colección coreana e internacional y grandes exposiciones temporales.\n\nAbre 10:00–18:00 (miércoles y sábados hasta las 21:00, con “noche” gratuita 18:00–21:00). Última entrada, 1 h antes de cerrar." },
+    { per:"med", t:"13:30", end:"14:20", name:"Almuerzo en Samcheong-dong", place:"Cafés y restaurantes junto al palacio", maps:"Samcheong-dong, Jongno-gu, Seoul", ico:"🍲", info:"Samcheong-dong es la calle bonita que sube desde el palacio: hanoks reconvertidos en cafés, restaurantes y tiendecitas, con las galerías de arte al lado." },
+    { per:"tar", t:"14:30", end:"15:30", name:"Kukje Gallery", place:"54 Samcheong-ro · lun–sáb 10:00–18:00 · gratis", maps:"Kukje Gallery, Samcheong-ro, Seoul", ico:"🎨", key:true, info:"Una de las galerías más importantes de Corea (desde 1982), que trae a Seúl a grandes nombres internacionales (Anish Kapoor, Louise Bourgeois, Jenny Holzer…) y representa a artistas coreanos punteros. Su edificio K3, cubierto por una “malla” de acero inoxidable tejida, es obra del estudio SO-IL. Entrada gratuita, lun–sáb 10:00–18:00." },
+    { per:"tar", t:"16:00", end:"18:30", name:"Arario Museum in SPACE", place:"Yulgok-ro · mar–dom 10:00–19:00 · 15.000 ₩", maps:"Arario Museum in Space, Seoul", ico:"🖤", key:true, info:"Museo de arte contemporáneo dentro del edificio SPACE (Gonggan), una de las obras maestras de la arquitectura moderna coreana: ladrillo rojo cubierto de hiedra y un interior laberíntico de medios niveles, obra de Kim Swoo-geun (el arquitecto coreano más influyente del s. XX) en los años 70. Alberga la colección privada de Arario, con arte contemporáneo internacional y coreano repartido por sus muchas plantas y rincones.\n\nAbre de martes a domingo, 10:00–19:00 (cierra lunes). Entrada unos 15.000 ₩." },
+    { per:"noc", t:"20:00", name:"Barbacoa coreana en Euljiro", place:"Cena de barbacoa · reservar sitio", maps:"Euljiro, Jung-gu, Seoul", ico:"🥩", key:true, tag:"book", info:"La clásica barbacoa coreana (gogi-gui): carne a la brasa en la mesa (panceta samgyeopsal, costilla galbi), con hojas de lechuga para envolver, ssamjang, kimchi y soju o cerveza. En los callejones de Euljiro hay sitios con muchísimo ambiente. Reservad si podéis; con Chuseok cerca, confirmad que abre." }
   ]},
   { id:"jue24", d:[2026,9,24], dow:"Jueves", dnum:"24", code:"SEU", loc:"Seúl", titulo:"Seongsu-dong (víspera de Chuseok)",
     resumen:"El 'Brooklyn coreano': fábricas convertidas en cafés imposibles y pop-ups por cada esquina. Ojo, es víspera de Chuseok: si un sitio está cerrado, no es personal, es que Corea se va con la familia. 🏭☕", items:[
-    { per:"man", name:"Seongsu-dong (성수동)", place:"El “Brooklyn de Seúl”: fábricas convertidas en tiendas y cafés", maps:"Seongsu-dong, Seongdong-gu, Seoul", ico:"🏭", key:true, info:"Un antiguo barrio industrial de zapaterías y talleres reconvertido en la zona más de moda de Seúl: fábricas y almacenes de ladrillo transformados en cafés enormes, concept stores, showrooms de marcas y pop-ups que cambian cada semana. El “Brooklyn coreano”.\n\nOjo: hoy es víspera de Chuseok. Las cadenas y tiendas grandes suelen abrir, pero muchos cafés y tiendas independientes pueden cerrar antes o del todo. Comprobad en Naver/KakaoMap antes de ir." },
-    { per:"man", name:"Gallery Kuzo", place:"Galería / espacio en Seongsu", maps:"Gallery Kuzo, Seongsu-dong, Seoul", ico:"🎨", info:"Espacio de arte/diseño en Seongsu. Como muchos sitios pequeños del barrio, conviene confirmar horario en Naver antes de ir, más en víspera de Chuseok." },
-    { per:"med", name:"Calles industriales y pop-ups", place:"Callejear entre showrooms y tiendas efímeras", maps:"Seongsu-dong Cafe Street, Seoul", ico:"🛍️", info:"Lo mejor de Seongsu es perderse: cada marca monta aquí su pop-up y hay cafés de diseño espectaculares. Dejaos llevar por las calles con más ambiente." },
-    { per:"med", name:"Almuerzo en un café-fábrica", place:"Alguno de los cafés grandes del barrio", ico:"☕" },
-    { per:"tar", name:"Daelim Changgo / Daelim Museum", place:"Almacén reconvertido en espacio cultural", maps:"Daelim Changgo, Seongsu-dong, Seoul", ico:"🏬", key:true, info:"“Daelim Changgo” (Almacén Daelim) es un antiguo almacén de grano convertido en un enorme café-galería de estilo industrial, uno de los símbolos de Seongsu. La marca Daelim también tiene su museo de fotografía y diseño (Daelim Museum) en la ciudad. Espacio muy fotogénico para tomar algo entre exposiciones.\n\nConfirmad apertura por Chuseok." },
-    { per:"tar", name:"Tiendas y showrooms", place:"Marcas coreanas y concept stores", maps:"Seongsu-dong, Seoul", ico:"👟", info:"Seongsu nació de la industria del calzado; hoy conviven zapateros de siempre con flagship stores de moda y diseño coreano. Bueno para compras diferentes." },
-    { per:"noc", name:"Cena por Seongsu o vuelta a casa", place:"Según qué esté abierto (víspera de Chuseok)", ico:"🍽️" }
+    { per:"man", t:"11:00", end:"11:45", name:"Seongsu-dong (성수동)", place:"El “Brooklyn de Seúl”: fábricas convertidas en tiendas y cafés", maps:"Seongsu-dong, Seongdong-gu, Seoul", ico:"🏭", key:true, info:"Un antiguo barrio industrial de zapaterías y talleres reconvertido en la zona más de moda de Seúl: fábricas y almacenes de ladrillo transformados en cafés enormes, concept stores, showrooms de marcas y pop-ups que cambian cada semana. El “Brooklyn coreano”. Día tranquilo, sin prisa por madrugar.\n\nOjo: hoy es víspera de Chuseok. Las cadenas y tiendas grandes suelen abrir, pero muchos cafés y tiendas independientes pueden cerrar antes o del todo. Comprobad en Naver/KakaoMap antes de ir." },
+    { per:"man", t:"11:45", end:"12:30", name:"Gallery Kuzo", place:"Galería / espacio en Seongsu", maps:"Gallery Kuzo, Seongsu-dong, Seoul", ico:"🎨", info:"Espacio de arte/diseño en Seongsu. Como muchos sitios pequeños del barrio, conviene confirmar horario en Naver antes de ir, más en víspera de Chuseok." },
+    { per:"med", t:"12:30", end:"13:30", name:"Calles industriales y pop-ups", place:"Callejear entre showrooms y tiendas efímeras", maps:"Seongsu-dong Cafe Street, Seoul", ico:"🛍️", info:"Lo mejor de Seongsu es perderse: cada marca monta aquí su pop-up y hay cafés de diseño espectaculares. Dejaos llevar por las calles con más ambiente." },
+    { per:"med", t:"13:30", end:"14:45", name:"Almuerzo en un café-fábrica", place:"Alguno de los cafés grandes del barrio", ico:"☕" },
+    { per:"tar", t:"15:00", end:"16:30", name:"Daelim Changgo / Daelim Museum", place:"Almacén reconvertido en espacio cultural", maps:"Daelim Changgo, Seongsu-dong, Seoul", ico:"🏬", key:true, info:"“Daelim Changgo” (Almacén Daelim) es un antiguo almacén de grano convertido en un enorme café-galería de estilo industrial, uno de los símbolos de Seongsu. La marca Daelim también tiene su museo de fotografía y diseño (Daelim Museum) en la ciudad. Espacio muy fotogénico para tomar algo entre exposiciones.\n\nConfirmad apertura por Chuseok." },
+    { per:"tar", t:"16:30", end:"18:30", name:"Tiendas, showrooms y tiempo libre", place:"Marcas coreanas y concept stores · sin prisa", maps:"Seongsu-dong, Seoul", ico:"👟", info:"Seongsu nació de la industria del calzado; hoy conviven zapateros de siempre con flagship stores de moda y diseño coreano. Bueno para compras diferentes y para dejar rato libre entre café y café." },
+    { per:"noc", t:"19:30", name:"Cena por Seongsu o vuelta a casa", place:"Según qué esté abierto (víspera de Chuseok)", ico:"🍽️" }
   ]},
   { id:"vie25", d:[2026,9,25], dow:"Viernes", dnum:"25", code:"SEU", loc:"Seúl", titulo:"Manlidong, Yeonnam y Hongdae (día de Chuseok)",
     resumen:"Hoy Corea celebra Chuseok y media Seúl se va al pueblo: la ciudad se queda para vosotros. Espejos gigantes que reflejan el cielo, parques sobre vías de tren y la noche joven e imparable de Hongdae. 🪞🎤", items:[
-    { per:"man", name:"Yoonseul · Manlidong Reflecting Seoul", place:"Instalación-mirador de espejo · 33 Toegye-ro (Seoul Station)", maps:"Yoonseul Mallidong Reflects Seoul", ico:"🪞", key:true, info:"“Yoonseul” significa en coreano el brillo de las olas al reflejar la luz del sol o la luna. Es una instalación de arte público (de la arquitecta SoA) junto a Seoullo 7017 y la estación de Seúl: un gran círculo de 25 m con láminas de acero pulido tipo espejo y un espacio hundido bajo tierra donde sentarse. Refleja el cielo y la ciudad; muy fotogénico y gratuito.\n\nAl aire libre y accesible, buen plan para el día de Chuseok. Se llega paseando por el puente-parque Seoullo 7017 desde la estación de Seúl." },
-    { per:"man", name:"Seoullo 7017", place:"Antiguo paso elevado convertido en parque", maps:"Seoullo 7017, Seoul", ico:"🌉", info:"Un viaducto de los años 70 reconvertido en 2017 en un paseo elevado lleno de plantas (al estilo del High Line de Nueva York), que conecta la estación de Seúl con Malli-dong. Da buenas vistas y lleva directo al Yoonseul." },
-    { per:"med", name:"Comida por la zona", place:"Cadenas fiables (es día de Chuseok)", ico:"🍚", info:"Al ser el día grande de Chuseok, tirad de cadenas, food halls de grandes almacenes o convenience stores si los sitios pequeños cierran." },
-    { per:"tar", name:"Yeonnam-dong (연남동)", place:"Barrio joven y verde junto a Hongdae", maps:"Yeonnam-dong, Mapo-gu, Seoul", ico:"🌳", key:true, info:"Barrio tranquilo y de moda al lado de Hongdae, famoso por sus cafés con encanto, restaurantes (mucha cocina internacional) y tiendas pequeñas. Lo cruza el Gyeongui Line Forest Park." },
-    { per:"tar", name:"Gyeongui Line Forest Park", place:"Parque lineal sobre una antigua vía de tren", maps:"Gyeongui Line Forest Park, Yeonnam-dong, Seoul", ico:"🛤️", key:true, info:"Un parque alargado y verde construido sobre las vías del antiguo ferrocarril Gyeongui. Los seulitas lo llaman cariñosamente “Yeontral Park” (por Central Park). Ideal para pasear, sentarse en el césped y ver ambiente local; muy animado incluso en festivo." },
-    { per:"noc", name:"Hongdae (홍대)", place:"Zona universitaria: música en vivo, tiendas, calle", maps:"Hongdae, Mapo-gu, Seoul", ico:"🎤", key:true, info:"El barrio de la universidad de arte Hongik: el corazón joven, indie y noctámbulo de Seúl. Calles peatonales con actuaciones de música y baile (buskers), tiendas, karaokes, bares y comida callejera hasta tarde. Aguanta bien el ambiente incluso en Chuseok, cuando otros barrios se apagan." },
-    { per:"noc", name:"Cena y copas en Hongdae", place:"Comida callejera o restaurante + bares", ico:"🍢" }
+    { per:"man", t:"10:30", end:"11:15", name:"Yoonseul · Manlidong Reflecting Seoul", place:"Instalación-mirador de espejo · 33 Toegye-ro (Seoul Station)", maps:"Yoonseul Mallidong Reflects Seoul", ico:"🪞", key:true, info:"“Yoonseul” significa en coreano el brillo de las olas al reflejar la luz del sol o la luna. Es una instalación de arte público (de la arquitecta SoA) junto a Seoullo 7017 y la estación de Seúl: un gran círculo de 25 m con láminas de acero pulido tipo espejo y un espacio hundido bajo tierra donde sentarse. Refleja el cielo y la ciudad; muy fotogénico y gratuito.\n\nAl aire libre y accesible, buen plan para el día de Chuseok. Se llega paseando por el puente-parque Seoullo 7017 desde la estación de Seúl." },
+    { per:"man", t:"11:15", end:"12:00", name:"Seoullo 7017", place:"Antiguo paso elevado convertido en parque", maps:"Seoullo 7017, Seoul", ico:"🌉", info:"Un viaducto de los años 70 reconvertido en 2017 en un paseo elevado lleno de plantas (al estilo del High Line de Nueva York), obra del estudio holandés MVRDV. Conecta la estación de Seúl con Malli-dong, da buenas vistas y lleva directo al Yoonseul." },
+    { per:"med", t:"12:30", end:"13:45", name:"Comida por la zona", place:"Cadenas fiables (es día de Chuseok)", ico:"🍚", info:"Al ser el día grande de Chuseok, tirad de cadenas, food halls de grandes almacenes o convenience stores si los sitios pequeños cierran." },
+    { per:"tar", t:"14:30", end:"15:30", name:"Yeonnam-dong (연남동)", place:"Barrio joven y verde junto a Hongdae", maps:"Yeonnam-dong, Mapo-gu, Seoul", ico:"🌳", key:true, info:"Barrio tranquilo y de moda al lado de Hongdae, famoso por sus cafés con encanto, restaurantes (mucha cocina internacional) y tiendas pequeñas. Lo cruza el Gyeongui Line Forest Park." },
+    { per:"tar", t:"15:30", end:"16:30", name:"Gyeongui Line Forest Park", place:"Parque lineal sobre una antigua vía de tren", maps:"Gyeongui Line Forest Park, Yeonnam-dong, Seoul", ico:"🛤️", key:true, info:"Un parque alargado y verde construido sobre las vías del antiguo ferrocarril Gyeongui. Los seulitas lo llaman cariñosamente “Yeontral Park” (por Central Park). Ideal para pasear, sentarse en el césped y ver ambiente local; muy animado incluso en festivo." },
+    { per:"tar", t:"16:30", end:"18:30", name:"Tiempo libre por Yeonnam", place:"Cafés, tiendas y descanso antes de la noche de Hongdae", ico:"⏳" },
+    { per:"noc", t:"19:00", name:"Hongdae (홍대)", place:"Zona universitaria: música en vivo, tiendas, calle", maps:"Hongdae, Mapo-gu, Seoul", ico:"🎤", key:true, info:"El barrio de la universidad de arte Hongik: el corazón joven, indie y noctámbulo de Seúl. Calles peatonales con actuaciones de música y baile (buskers), tiendas, karaokes, bares y comida callejera hasta tarde. Aguanta bien el ambiente incluso en Chuseok, cuando otros barrios se apagan." },
+    { per:"noc", t:"20:30", name:"Cena y copas en Hongdae", place:"Comida callejera o restaurante + bares", ico:"🍢" }
   ]},
   { id:"sab26", d:[2026,9,26], dow:"Sábado", dnum:"26", code:"SEU", loc:"Seúl → Barcelona", titulo:"Últimas horas y vuelo de vuelta",
     resumen:"Últimas compras, último bibimbap y a Incheon. Esta noche volvéis a dormir en avión, con parada técnica en Abu Dhabi de madrugada. Corea, ha sido un placer. 🎁🛫", items:[
     { per:"man", t:"11:00", name:"Check-out del Airbnb", place:"Salir antes de las 11:00 · dejar maletas si hace falta", maps:"404-4 Changsin-dong, Jongno-gu, Seoul", ico:"🧳", info:"Salida antes de las 11:00. Muchos sitios guardan maletas o podéis usar consignas del metro/estaciones para las últimas horas libres." },
-    { per:"med", name:"Últimas compras y recuerdos", place:"Myeongdong, Insadong o cerca de casa (Dongdaemun)", maps:"Insadong, Jongno-gu, Seoul", ico:"🎁", info:"Insadong es la calle de la artesanía y los recuerdos tradicionales (papel hanji, té, cerámica, pinceles). Myeongdong, para cosmética y marcas. Dongdaemun lo tenéis al lado de casa." },
-    { per:"med", name:"Almuerzo de despedida", place:"Último coreano antes del aeropuerto", ico:"🍜" },
+    { per:"med", t:"11:30", end:"13:00", name:"Últimas compras y recuerdos", place:"Myeongdong, Insadong o cerca de casa (Dongdaemun)", maps:"Insadong, Jongno-gu, Seoul", ico:"🎁", info:"Insadong es la calle de la artesanía y los recuerdos tradicionales (papel hanji, té, cerámica, pinceles). Myeongdong, para cosmética y marcas. Dongdaemun lo tenéis al lado de casa." },
+    { per:"med", t:"13:00", end:"14:15", name:"Almuerzo de despedida", place:"Último coreano antes del aeropuerto", ico:"🍜" },
     { per:"tar", t:"15:00", name:"Al aeropuerto de Incheon (ICN)", place:"Etihad EY823 · Terminal 1 · AREX o bus con ~3 h de margen", maps:"Incheon International Airport Terminal 1", ico:"🚆", info:"Calculad llegar al aeropuerto unas 3 h antes del vuelo largo. Desde el centro, el AREX exprés tarda ~45–60 min. El domingo 27 aún es festivo de Chuseok: dejad margen por si hay más tráfico." },
     { per:"tar", t:"18:20", name:"Vuelo Seúl → Abu Dhabi", place:"Etihad EY823 · ICN T1 18:20 → AUH 23:05 · Airbus A350-1000", maps:"Incheon International Airport Terminal 1", ico:"✈️", key:true, info:"Primer tramo de la vuelta (EY823), unas 9 h 45 min. Salís de Incheon a las 18:20 y llegáis a Abu Dhabi a las 23:05 (hora local de AUH). Allí hay escala para enlazar con el vuelo a Barcelona de madrugada. Referencia: 7J2XJV." },
     { per:"noc", name:"Escala en Abu Dhabi (AUH)", place:"Terminal A · enlace de ~3 h con el vuelo a Barcelona", maps:"Zayed International Airport Abu Dhabi", ico:"🔄", info:"Escala nocturna en Abu Dhabi entre las 23:05 y las 02:30. Unas 3 h y media para estirar las piernas, cenar algo y coger el enlace EY111 a Barcelona. No salís del aeropuerto." }
@@ -1220,6 +1445,55 @@ function setupWelcome(){
   try{ localStorage.setItem("astroseoul_welcome", stamp); }catch(e){}
 }
 
+/* ====================== Chuleta de idioma ====================== */
+function setupLang(){
+  var tabs = document.getElementById("langtab");
+  if(!tabs) return;
+  tabs.addEventListener("click", function(e){
+    var b = e.target.closest("button"); if(!b) return;
+    var l = b.getAttribute("data-l");
+    tabs.querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", x===b); });
+    document.querySelectorAll(".langgrp").forEach(function(g){ g.classList.toggle("on", g.id==="lg-"+l); });
+  });
+}
+
+/* ====================== Conversor de moneda ====================== */
+var RATES = { KRW: 1470, AED: 4.02 };  // 1 EUR = … (aproximado, se actualiza si hay red)
+function fmt(n, dec){
+  if(!isFinite(n)) return "";
+  return n.toLocaleString("es-ES", { minimumFractionDigits: dec||0, maximumFractionDigits: dec||0 });
+}
+function renderCheats(){
+  var amounts = [1,5,10,20,50,100,200];
+  var kb = document.querySelector("#cheatKRW tbody"), ab = document.querySelector("#cheatAED tbody");
+  if(kb) kb.innerHTML = amounts.map(function(e){ return "<tr><td>"+fmt(e)+" €</td><td>"+fmt(e*RATES.KRW)+" ₩</td></tr>"; }).join("");
+  if(ab) ab.innerHTML = amounts.map(function(e){ return "<tr><td>"+fmt(e)+" €</td><td>"+fmt(e*RATES.AED,2)+" AED</td></tr>"; }).join("");
+}
+function setupConverter(){
+  var eur = document.getElementById("cEUR"), krw = document.getElementById("cKRW"), aed = document.getElementById("cAED");
+  if(!eur) return;
+  var busy = false;
+  function fromEUR(){ if(busy) return; busy=true; var v=parseFloat(eur.value)||0; krw.value=v?Math.round(v*RATES.KRW):""; aed.value=v?(v*RATES.AED).toFixed(2):""; busy=false; }
+  function fromKRW(){ if(busy) return; busy=true; var v=parseFloat(krw.value)||0; var e=v/RATES.KRW; eur.value=v?e.toFixed(2):""; aed.value=v?(e*RATES.AED).toFixed(2):""; busy=false; }
+  function fromAED(){ if(busy) return; busy=true; var v=parseFloat(aed.value)||0; var e=v/RATES.AED; eur.value=v?e.toFixed(2):""; krw.value=v?Math.round(e*RATES.KRW):""; busy=false; }
+  eur.addEventListener("input", fromEUR);
+  krw.addEventListener("input", fromKRW);
+  aed.addEventListener("input", fromAED);
+  var note = document.getElementById("rateNote");
+  function refresh(live){
+    fromEUR(); renderCheats();
+    if(note) note.innerHTML = "1 € ≈ <b>"+fmt(RATES.KRW)+" ₩</b> · <b>"+RATES.AED.toFixed(2)+" AED</b> — " +
+      (live ? "cambio actualizado hoy" : "cambio aproximado (sin conexión)");
+  }
+  refresh(false);
+  /* intenta actualizar el cambio si hay internet; si no, se queda el aproximado */
+  try{
+    fetch("https://open.er-api.com/v6/latest/EUR").then(function(r){ return r.json(); }).then(function(d){
+      if(d && d.rates && d.rates.KRW && d.rates.AED){ RATES.KRW = d.rates.KRW; RATES.AED = d.rates.AED; refresh(true); }
+    }).catch(function(){});
+  }catch(e){}
+}
+
 /* ====================== init ====================== */
 (function init(){
   var t = findToday();
@@ -1232,11 +1506,20 @@ function setupWelcome(){
   setupInfo();
   setupDrawer();
   setupWelcome();
+  setupLang();
+  setupConverter();
   bindGo(document);
   setInterval(function(){ tickAgenda(); }, 30000);
   /* refresca "Hoy" y el estado por si cambia el día con la app abierta */
   setInterval(function(){ renderHoy(); updateStatus(); }, 5*60000);
 })();
+
+/* ====================== Offline (service worker) ====================== */
+if("serviceWorker" in navigator){
+  window.addEventListener("load", function(){
+    navigator.serviceWorker.register("sw.js").catch(function(){});
+  });
+}
 </script>
 </body>
 </html>

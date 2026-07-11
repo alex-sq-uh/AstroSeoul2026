@@ -23,7 +23,8 @@ AstroSeoul2026/
 ```
 
 ## Navegación
-- **Barra de pestañas** (arriba): Hoy · Agenda · Alojamiento · Transporte · Apps · Reservas · Teléfonos.
+- **Barra de pestañas** (arriba): Hoy · Agenda · Alojamiento · Transporte · **Maleta** · **Idioma** ·
+  **Moneda** · Apps · Reservas · Teléfonos.
 - **Menú hamburguesa** (☰, junto a AstroSeúl, estilo suite AstroTools): abre un *drawer* lateral con
   **todas** las secciones, **incluida Chuseok** (que ya no ocupa sitio en la barra superior).
 - **Bienvenida diaria:** al abrir la app **la primera vez de cada día del viaje**, sale un modal con un
@@ -43,6 +44,29 @@ taxi/Careem en Abu Dhabi; sin coche de alquiler) · **Apps** (Naver Map, KakaoMa
 Subway Korea; Careem, Abu Dhabi Taxi, Louvre AD; con enlaces de descarga) · **Reservas** (✈️ vuelos
 Etihad confirmados, entradas con hora, comidas) · **Teléfonos** (emergencias de Corea y EAU, línea de
 turismo 1330, anfitrión, embajadas + WhatsApp).
+
+## Secciones nuevas (v3)
+- **Maleta y clima:** clima típico de septiembre por ciudad, documentos (pasaporte, K-ETA Corea por
+  confirmar, visado EAU no necesario), enchufes (Corea C/F = como España; EAU tipo G = adaptador),
+  checklist de equipaje y **mapas guardados** (lista de Abu Dhabi de Maggie; Seúl pendiente).
+- **Idioma:** chuleta ES→coreano y ES→árabe con romanización (pronunciación). Toggle entre idiomas.
+- **Moneda:** conversor interactivo EUR ↔ KRW ↔ AED (escribe en cualquier casilla) + chuletas de
+  importes. Rates base en el JS (`RATES`); si hay internet, se **actualizan solos** vía open.er-api.com
+  (con respaldo offline). Incluye "truco mental".
+- **Agenda:** ahora casi todos los items tienen **hora estimada** (según horarios de apertura) y hay
+  bloques de **"Tiempo libre"**. Items con datos de los **aviones** (B787-9 y A350-1000) y notas de
+  **arquitectura / Pritzker** (Nouvel en Louvre AD; Botta/Nouvel/Koolhaas en Leeum; Zaha Hadid en DDP;
+  Foster y Gehry en Saadiyat; Kim Swoo-geun en SPACE, etc.).
+- **⚠️ Conflicto resuelto (mié 23):** la hoja original ponía Bukchon 09:30–11:00 **y** MMCA 11:15–13:30,
+  sin hueco para Gyeongbokgung. Se reordenó a **Gyeongbokgung 09:00–10:15 → Bukchon 10:20–11:15 → MMCA
+  11:30–13:30**. Aun así la mañana va **muy justa** (3 visitas grandes): decidir si se acorta o se mueve algo.
+
+## Offline / instalable (PWA)
+`manifest.webmanifest` + `sw.js` (service worker) + `icon-192.png`/`icon-512.png` (generados con
+`.claude/gen-icons-seoul.ps1`). El SW cachea `index.html`, `og.jpg`, iconos y manifest en la primera
+visita **con conexión**; después la guía **funciona sin internet** (los enlaces externos —Maps, tiendas,
+API de cambio— sí necesitan red). Se puede **"Añadir a pantalla de inicio"** y abrir como app a pantalla
+completa. Al cambiar `index.html`, subir `CACHE` en `sw.js` (`astroseoul-vN`) para forzar actualización.
 
 ## Privacidad / buscadores
 La guía es **privada de facto**: `noindex,nofollow,noarchive` en el `<head>` y `robots.txt` con
