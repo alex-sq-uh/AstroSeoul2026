@@ -22,23 +22,41 @@ AstroSeoul2026/
 └── README.md       ← este archivo
 ```
 
-## Secciones (pestañas)
+## Navegación
+- **Barra de pestañas** (arriba): Hoy · Agenda · Alojamiento · Transporte · Apps · Reservas · Teléfonos.
+- **Menú hamburguesa** (☰, junto a AstroSeúl, estilo suite AstroTools): abre un *drawer* lateral con
+  **todas** las secciones, **incluida Chuseok** (que ya no ocupa sitio en la barra superior).
+- **Bienvenida diaria:** al abrir la app **la primera vez de cada día del viaje**, sale un modal con un
+  **resumen gracioso** del día (título, ciudad y un texto con humor). Se muestra una vez al día
+  (recordado en `localStorage` del propio dispositivo, clave `astroseoul_welcome`). Fuera de fechas no
+  aparece. Para previsualizar cualquier día: `showWelcome(idx)` por consola.
+
+## Secciones
 **Hoy** (estado del viaje: cuenta atrás / día N de 10 / terminado, + plan del día) ·
-**Agenda** (se abre por defecto en el día de hoy; selector de día V18→D27 con la ciudad de cada día;
-por momentos 🌅 Mañana / ☀️ Mediodía / 🌇 Tarde / 🌙 Noche; botón **Maps** y botón **ℹ️ Info** —modal
-con historia y curiosidades— por sitio; reloj en vivo que **atenúa lo ya pasado** y **resalta lo que
-está en marcha**) · **Chuseok** (aviso de la gran fiesta coreana que coincide con el viaje: qué abre
-y qué cierra) · **Alojamiento** (Airbnb LUNA HAUS en Seúl + hotel de Abu Dhabi *pendiente*) ·
-**Transporte** (metro/T-money/Kakao T en Seúl, taxi/Careem en Abu Dhabi; sin coche de alquiler) ·
-**Apps** (Naver Map, KakaoMap, Papago, Kakao T, Subway Korea; Careem, Abu Dhabi Taxi, Louvre AD;
-con enlaces de descarga) · **Reservas** (✈️ vuelos *por confirmar*, entradas con hora, comidas) ·
-**Teléfonos** (emergencias de Corea y EAU, línea de turismo 1330, anfitrión, embajadas + WhatsApp).
+**Agenda** (se abre por defecto en el día de hoy; selector de día V18→D27 con **código de 3 letras**
+por día —BCN / ABU / SEU—; por momentos 🌅 Mañana / ☀️ Mediodía / 🌇 Tarde / 🌙 Noche; botón **Maps** y
+botón **ℹ️ Info** —modal con historia y curiosidades— por sitio; reloj en vivo que **atenúa lo ya
+pasado** y **resalta lo que está en marcha**) · **Chuseok** (solo desde el menú ☰ o enlaces: aviso de
+la gran fiesta coreana que coincide con el viaje: qué abre y qué cierra) · **Alojamiento** (Airbnb LUNA
+HAUS en Seúl + hotel de Abu Dhabi *pendiente*) · **Transporte** (metro/T-money/Kakao T en Seúl,
+taxi/Careem en Abu Dhabi; sin coche de alquiler) · **Apps** (Naver Map, KakaoMap, Papago, Kakao T,
+Subway Korea; Careem, Abu Dhabi Taxi, Louvre AD; con enlaces de descarga) · **Reservas** (✈️ vuelos
+Etihad confirmados, entradas con hora, comidas) · **Teléfonos** (emergencias de Corea y EAU, línea de
+turismo 1330, anfitrión, embajadas + WhatsApp).
+
+## Privacidad / buscadores
+La guía es **privada de facto**: `noindex,nofollow,noarchive` en el `<head>` y `robots.txt` con
+`Disallow: /` (sin `sitemap.xml`). Los buscadores serios no la indexarán. **Aviso:** GitHub Pages en
+plan gratuito **sirve el repo en abierto**, así que cualquiera con la URL exacta puede verla; lo que
+conseguimos es que **no salga en Google** ni se comparta el enlace por descuido. Para privacidad total
+haría falta Pages de pago (repo privado) u otro hosting con contraseña.
 
 ## Datos editables (al principio del `<script>` de `index.html`)
-- **`DIAS`** — array de días. Cada día: `id`, `d:[año,mes,día]`, `dow`, `dnum`, `loc` (ciudad),
-  `titulo`, `items[]`. Cada item: `per` (`man|med|tar|noc`), `t`/`end` (hora, opcional), `name`,
-  `place`, `maps` (texto → enlace `?q=`), `info` (texto del modal ℹ️; párrafos separados por `\n\n`),
-  `tel`, `wa`, `url`, `ico`, `key` (Top), `tag` (`book` = Reserva).
+- **`DIAS`** — array de días. Cada día: `id`, `d:[año,mes,día]`, `dow`, `dnum`, `code` (3 letras del
+  selector: BCN/ABU/SEU), `loc` (ciudad), `titulo`, `resumen` (texto gracioso de la bienvenida diaria),
+  `items[]`. Cada item: `per` (`man|med|tar|noc`), `t`/`end` (hora, opcional), `name`, `place`,
+  `maps` (texto → enlace `?q=`), `info` (texto del modal ℹ️; párrafos separados por `\n\n`), `tel`,
+  `wa`, `url`, `ico`, `key` (Top), `tag` (`book` = Reserva).
 - **`PERIODOS`** — etiquetas e iconos de los momentos del día.
 - **`GRUPO_WHATSAPP`** — vacío. Pon el número internacional sin signos (ej. `"34611223344"`) y
   aparece el botón directo al chat del grupo.
@@ -62,9 +80,13 @@ con enlaces de descarga) · **Reservas** (✈️ vuelos *por confirmar*, entrada
   personas (vais 3) · a 2 min del metro **Dongmyo** · entrada lun 21 sep (después de 15:00), salida
   sáb 26 sep (antes de 11:00) · auto check-in con teclado · anfitrión Cannes.
 - **Alojamiento Abu Dhabi:** **PENDIENTE** (noches del 19 y 20). Falta nombre y dirección.
-- **Vuelos (PENDIENTE confirmar compañía/nº):** ida vie 18 BCN→AUH salida ~22:30; AUH→ICN dom 20
-  salida ~21:30 (llega lun 21); vuelta ICN→BCN sáb 26 salida ~18:30 (llega dom 27). Horas tomadas
-  del calendario del viaje ("Salimos"), a confirmar con las tarjetas de embarque.
+- **Vuelos (Etihad, ref. 7J2XJV — confirmados):**
+  - EY114 · vie 18 · BCN T1 22:30 → AUH TA 07:05 (+1) · B787-9 · 6 h 35.
+  - EY822 · dom 20 · AUH TA 21:10 → ICN T1 10:50 (+1) · A350-1000 · 8 h 40.
+  - EY823 · sáb 26 · ICN T1 18:20 → AUH TA 23:05 · A350-1000 · 9 h 45.
+  - EY111 · dom 27 · AUH TA 02:30 → BCN T1 07:35 · B787-9 · 7 h 05.
+  - Ida con **stopover de 2 días en Abu Dhabi**; vuelta con **escala nocturna en AUH** (~3 h 30).
+  - Nota horaria: EAU va **+2 h** sobre España peninsular (verano) y Corea **+7 h**.
 - **Sin coche de alquiler.**
 - **Chuseok 2026:** día grande **vie 25**, festivo **jue 24–dom 27**. Coincide con Seúl → aviso en
   la pestaña. Palacios y grandes museos abren (a menudo gratis); tiendas/cafés pequeños y galerías
@@ -105,6 +127,7 @@ github.com/new (nombre exacto = `AstroSeoul2026`, sin README) y activar Pages (m
 
 ## Pendiente (según lleguen datos)
 - Hotel de Abu Dhabi (nombre, dirección, Maps, check-in/out).
-- Vuelos: compañía, números y horas exactas (ida, AUH→ICN, vuelta) + traslados.
-- Reservas concretas (restaurantes de barbacoa/Euljiro, entradas con hora).
+- Traslados aeropuerto↔hotel/Airbnb (AUH e ICN).
+- Reservas concretas (restaurantes de barbacoa/Euljiro, entradas con hora de Louvre AD / Leeum).
 - Confirmar horarios de galerías pequeñas de Seongsu por Chuseok.
+- ~~Vuelos~~ ✅ hechos (Etihad 7J2XJV).

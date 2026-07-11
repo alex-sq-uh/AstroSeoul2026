@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Abu Dhabi & Seúl 2026 · Guía del viaje de Laura, Maggie y Alex</title>
 <meta name="description" content="Guía del viaje a Abu Dhabi y Seúl (18–27 sep 2026): agenda día a día, alojamiento, transporte, apps útiles, aviso de Chuseok y teléfonos. Con enlaces a Google Maps e info de cada sitio.">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="googlebot" content="noindex,nofollow">
 <meta name="theme-color" content="#0f1d44">
 
 <!-- Favicon: planeta de la familia + tejado de palacio coreano (símbolo del viaje), SVG inline -->
@@ -88,6 +89,33 @@
   .topbar{position:sticky;top:0;z-index:100;background:var(--topbar-gradient);color:#fff;
     box-shadow:0 3px 14px rgba(15,29,68,.28)}
   .topbar-in{max-width:760px;margin:0 auto;padding:.7rem 1rem .55rem;display:flex;align-items:center;gap:.7rem}
+  /* botón hamburguesa */
+  .menu-btn{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.24);border-radius:9px;
+    width:40px;height:38px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+    cursor:pointer;padding:0;flex-shrink:0;transition:background .15s}
+  .menu-btn span{display:block;width:18px;height:2px;background:#fff;border-radius:2px}
+  .menu-btn:hover{background:rgba(255,255,255,.22)}
+  /* menú lateral (drawer) */
+  .drawer-back{position:fixed;inset:0;background:rgba(8,15,40,.5);z-index:200;opacity:0;pointer-events:none;transition:opacity .2s}
+  .drawer-back.open{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;left:0;height:100%;width:280px;max-width:82vw;background:var(--surface);z-index:201;
+    box-shadow:2px 0 24px rgba(15,29,68,.28);transform:translateX(-102%);transition:transform .22s ease;display:flex;flex-direction:column}
+  .drawer.open{transform:none}
+  .drawer .dh{background:var(--topbar-gradient);color:#fff;padding:1rem 1.1rem;display:flex;align-items:center;gap:.6rem}
+  .drawer .dh .dlogo{width:34px;height:34px;flex-shrink:0}
+  .drawer .dh b{font-size:1.1rem;font-weight:800}
+  .drawer .dh b .accent{color:var(--accent)}
+  .drawer .dh .dx{margin-left:auto;width:32px;height:32px;border-radius:8px;border:1px solid rgba(255,255,255,.3);
+    background:rgba(255,255,255,.12);color:#fff;font-size:1.3rem;line-height:1;cursor:pointer}
+  .drawer .dx:hover{background:rgba(255,255,255,.22)}
+  .drawer nav{padding:.6rem;overflow-y:auto}
+  .drawer nav button{display:flex;align-items:center;gap:.7rem;width:100%;text-align:left;background:none;border:none;
+    font:inherit;font-weight:700;font-size:.98rem;color:var(--text);padding:.7rem .7rem;border-radius:10px;cursor:pointer}
+  .drawer nav button .ic{width:24px;text-align:center;font-size:1.1rem}
+  .drawer nav button:hover{background:var(--surface2)}
+  .drawer nav button.active{background:#eef4fc;color:var(--primary)}
+  .drawer nav .sep{height:1px;background:var(--border);margin:.35rem .5rem}
+  .drawer .df{margin-top:auto;padding:.9rem 1.1rem;border-top:1px solid var(--border);font-size:.76rem;color:var(--text-muted);line-height:1.4}
   .logo{width:42px;height:42px;flex-shrink:0;filter:drop-shadow(0 1px 2px rgba(0,0,0,.3))}
   .brand{display:flex;flex-direction:column;line-height:1.05;min-width:0}
   .brand .name{font-weight:800;font-size:1.3rem;letter-spacing:.01em}
@@ -220,6 +248,23 @@
   .infobox .ibody p{margin:0 0 .75rem}
   .infobox .ibody p:last-child{margin:0}
 
+  /* ----- modal de bienvenida diaria (resumen gracioso) ----- */
+  .wmodal{display:none;position:fixed;inset:0;z-index:10002;background:rgba(8,15,40,.62);padding:1rem}
+  .wmodal.show{display:flex;align-items:center;justify-content:center}
+  .wbox{background:var(--surface);border-radius:20px;max-width:440px;width:100%;box-shadow:var(--shadow-lg);overflow:hidden;animation:pop .22s ease}
+  .wbox .wtop{background:var(--topbar-gradient);color:#fff;padding:1.35rem 1.3rem 1.15rem;position:relative;overflow:hidden}
+  .wbox .wtop::after{content:"";position:absolute;inset:0;background:radial-gradient(220px 130px at 88% 0%,rgba(205,46,58,.32),transparent 70%);pointer-events:none}
+  .wbox .weyebrow{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+  .wbox .wemoji{font-size:2.4rem;line-height:1;margin:.35rem 0 .3rem}
+  .wbox .wtitle{font-size:1.5rem;font-weight:800;line-height:1.1;letter-spacing:-.01em}
+  .wbox .wloc{margin-top:.35rem;font-size:.86rem;font-weight:700;color:rgba(255,255,255,.85)}
+  .wbox .wbody{padding:1.15rem 1.3rem 1.35rem}
+  .wbox .wsummary{font-size:1.02rem;line-height:1.55;color:var(--text);font-weight:600;margin:0 0 1rem}
+  .wbox .wbtns{display:flex;gap:.5rem;flex-wrap:wrap}
+  .wbox .wbtns .btn{flex:1;justify-content:center}
+  .wbox .wclose{display:block;width:100%;margin-top:.55rem;background:none;border:none;color:var(--text-muted);font:inherit;font-weight:700;font-size:.84rem;cursor:pointer;padding:.35rem}
+  .wbox .wclose:hover{color:var(--text)}
+
   /* ----- filas (alojamiento / transporte / teléfonos / reservas) ----- */
   .row{display:flex;align-items:flex-start;gap:.8rem;padding:.75rem 0;border-bottom:1px solid var(--border)}
   .row:last-child{border-bottom:none}
@@ -266,6 +311,7 @@
 <!-- ============ Cabecera ============ -->
 <header class="topbar">
   <div class="topbar-in">
+    <button class="menu-btn" id="menuBtn" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
     <svg class="logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <defs>
         <linearGradient id="orbit" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7aa1ff"/><stop offset="100%" stop-color="#f5c84b"/></linearGradient>
@@ -292,11 +338,36 @@
   </div>
 </header>
 
+<!-- Menú lateral (drawer) — contiene TODAS las secciones, incl. Chuseok -->
+<div class="drawer-back" id="drawerBack"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="dh">
+    <svg class="dlogo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="32" cy="30" r="14" fill="#f5c84b"/>
+      <path d="M32 20.5 L45.5 32 Q46.6 33.3 44.3 33.6 C39 30.9 35.5 30.4 32 30.4 C28.5 30.4 25 30.9 19.7 33.6 Q17.4 33.3 18.5 32 Z" fill="#1a2b5e"/>
+      <ellipse cx="32" cy="32" rx="25" ry="8" fill="none" stroke="#7aa1ff" stroke-width="2.6" transform="rotate(-22 32 32)"/>
+    </svg>
+    <b>Astro<span class="accent">Seúl</span></b>
+    <button class="dx" id="drawerClose" aria-label="Cerrar">×</button>
+  </div>
+  <nav id="drawerNav">
+    <button data-page="hoy"><span class="ic">📍</span>Hoy</button>
+    <button data-page="agenda"><span class="ic">🗓️</span>Agenda</button>
+    <button data-page="chuseok"><span class="ic">🎑</span>Chuseok</button>
+    <div class="sep"></div>
+    <button data-page="alojamiento"><span class="ic">🏠</span>Alojamiento</button>
+    <button data-page="transporte"><span class="ic">🚇</span>Transporte</button>
+    <button data-page="apps"><span class="ic">📱</span>Apps útiles</button>
+    <button data-page="reservas"><span class="ic">🎟️</span>Reservas y vuelos</button>
+    <button data-page="telefonos"><span class="ic">📞</span>Teléfonos</button>
+  </nav>
+  <div class="df">Laura · Maggie · Alex<br>18–27 sep 2026 · Abu Dhabi &amp; Seúl</div>
+</aside>
+
 <nav class="tabs" aria-label="Secciones">
   <div class="tabs-in" id="tabs">
     <button class="tab active" data-page="hoy"><span class="ic">📍</span>Hoy</button>
     <button class="tab" data-page="agenda"><span class="ic">🗓️</span>Agenda</button>
-    <button class="tab" data-page="chuseok"><span class="ic">🎑</span>Chuseok</button>
     <button class="tab" data-page="alojamiento"><span class="ic">🏠</span>Alojamiento</button>
     <button class="tab" data-page="transporte"><span class="ic">🚇</span>Transporte</button>
     <button class="tab" data-page="apps"><span class="ic">📱</span>Apps</button>
@@ -314,13 +385,6 @@
       <h1>Abu Dhabi &amp; Seúl<span class="accent">.</span></h1>
       <div class="when">18 → 27 de septiembre · 2 días en Abu Dhabi + 6 en Seúl</div>
       <div class="status" id="status"><span class="dotlive"></span><span id="statusTxt">Cargando…</span></div>
-    </div>
-
-    <div class="quick">
-      <a href="#" data-go="agenda"><span class="qic">🗓️</span> Agenda del viaje</a>
-      <a href="#" data-go="chuseok"><span class="qic">🎑</span> Aviso: Chuseok</a>
-      <a href="#" data-go="alojamiento"><span class="qic">🏠</span> El apartamento</a>
-      <a href="#" data-go="apps"><span class="qic">📱</span> Apps útiles</a>
     </div>
 
     <div class="card" style="margin-top:1rem">
@@ -581,23 +645,28 @@
 
     <!-- Vuelos -->
     <div class="card">
-      <div class="pill red">Vuelos · por confirmar</div>
+      <div class="pill blue">Etihad Airways · ref. 7J2XJV</div>
       <h3 style="margin:.2rem 0 .5rem;color:var(--primary);font-size:1.12rem">✈️ Nuestros vuelos</h3>
       <div class="row">
         <span class="ic">🛫</span>
-        <div class="t"><b>Ida · Viernes 18 sep</b><span>Barcelona (BCN) → Abu Dhabi (AUH). Salida sobre las <b>22:30</b>. Compañía y nº de vuelo por confirmar.</span></div>
+        <div class="t"><b>Ida · Vie 18 sep · EY114</b><span>Barcelona (BCN, T1) <b>22:30</b> → Abu Dhabi (AUH, TA) <b>07:05</b> (+1) · Boeing 787-9 · 6 h 35 min</span></div>
+      </div>
+      <div class="row">
+        <span class="ic">🛫</span>
+        <div class="t"><b>A Seúl · Dom 20 sep · EY822</b><span>Abu Dhabi (AUH, TA) <b>21:10</b> → Seúl-Incheon (ICN, T1) <b>10:50</b> (+1) · Airbus A350-1000 · 8 h 40 min</span></div>
       </div>
       <div class="row">
         <span class="ic">🛬</span>
-        <div class="t"><b>Abu Dhabi → Seúl · Domingo 20 sep</b><span>Salida sobre las <b>21:30</b> (AUH → ICN). Llegada a Seúl el lunes 21. Por confirmar.</span></div>
+        <div class="t"><b>Vuelta 1 · Sáb 26 sep · EY823</b><span>Seúl-Incheon (ICN, T1) <b>18:20</b> → Abu Dhabi (AUH, TA) <b>23:05</b> · Airbus A350-1000 · 9 h 45 min</span></div>
       </div>
       <div class="row">
         <span class="ic">🛬</span>
-        <div class="t"><b>Vuelta · Sábado 26 sep</b><span>Seúl (ICN) → Barcelona. Salida sobre las <b>18:30</b>. Llegada a casa el domingo 27. Por confirmar.</span></div>
+        <div class="t"><b>Vuelta 2 · Dom 27 sep · EY111</b><span>Abu Dhabi (AUH, TA) <b>02:30</b> → Barcelona (BCN, T1) <b>07:35</b> · Boeing 787-9 · 7 h 05 min</span></div>
       </div>
       <p class="muted" style="margin:.55rem 0 0;font-size:.82rem;line-height:1.45">
-        En cuanto tengáis las tarjetas de embarque, me pasáis compañía, números de vuelo y horas exactas
-        y lo dejo fino (y lo enlazo desde la agenda).
+        La ida hace <b>parada de 2 días en Abu Dhabi</b> (stopover). La vuelta tiene <b>escala nocturna
+        en Abu Dhabi</b> (~3 h 30). Todas las horas son locales. Descargad la <b>app de Etihad</b> para
+        el estado del vuelo en tiempo real.
       </p>
     </div>
 
@@ -715,6 +784,25 @@
   </div>
 </div>
 
+<!-- modal de bienvenida diaria (resumen gracioso del día, 1 vez al día) -->
+<div class="wmodal" id="welcomeModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="wbox">
+    <div class="wtop">
+      <div class="weyebrow" id="wEyebrow">Buenos días</div>
+      <div class="wemoji" id="wEmoji">🌏</div>
+      <div class="wtitle" id="wTitle"></div>
+      <div class="wloc" id="wLoc"></div>
+    </div>
+    <div class="wbody">
+      <p class="wsummary" id="wSummary"></p>
+      <div class="wbtns">
+        <button class="btn" id="wGoAgenda">🗓️ Ver el plan de hoy</button>
+      </div>
+      <button class="wclose" id="wClose">Cerrar</button>
+    </div>
+  </div>
+</div>
+
 <footer>
   <svg class="planet" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <circle cx="32" cy="30" r="14" fill="#f5c84b"/>
@@ -743,12 +831,14 @@ var PER_ORDER = ["man","med","tar","noc"];
    tel (teléfono), wa (whatsapp), url, ico (emoji), key (true=imprescindible),
    tag ("book"), info (texto largo del modal ℹ️; párrafos separados por "\n\n"). */
 var DIAS = [
-  { id:"vie18", d:[2026,9,18], dow:"Viernes", dnum:"18", loc:"Barcelona ✈️", titulo:"Salida hacia Abu Dhabi", items:[
-    { per:"tar", name:"Preparar maletas y al aeropuerto", place:"Barcelona · aeropuerto de El Prat (BCN)", maps:"Aeropuerto Josep Tarradellas Barcelona-El Prat", ico:"🧳" },
-    { per:"noc", t:"22:30", name:"Vuelo Barcelona → Abu Dhabi", place:"Salida sobre las 22:30 (BCN → AUH). Compañía por confirmar", maps:"Aeropuerto Josep Tarradellas Barcelona-El Prat", ico:"✈️", key:true, info:"Vuelo nocturno hacia el Golfo. Abu Dhabi va +3 h respecto a la España peninsular (en septiembre, con horario de verano en España, la diferencia es de +3 h). El vuelo directo BCN–AUH ronda las 6h30–7h; llegaréis a Abu Dhabi la mañana del sábado.\n\nConsejo: dormid en el avión para aprovechar el sábado, que trae piscina, Louvre y mezquita." }
+  { id:"vie18", d:[2026,9,18], dow:"Viernes", dnum:"18", code:"BCN", loc:"Barcelona ✈️", titulo:"Salida hacia Abu Dhabi",
+    resumen:"Hoy no dormís en cama: dormís a 11.000 metros. Maletas, El Prat y a cruzar medio planeta rumbo al desierto. Que empiece el lío. 🧳✈️", items:[
+    { per:"tar", t:"20:00", name:"Al aeropuerto de Barcelona (BCN)", place:"El Prat · Terminal 1 · llegar con ~2 h de margen para el vuelo largo", maps:"Aeropuerto Josep Tarradellas Barcelona-El Prat Terminal 1", ico:"🧳" },
+    { per:"noc", t:"22:30", name:"Vuelo Barcelona → Abu Dhabi", place:"Etihad EY114 · BCN T1 22:30 → AUH 07:05 (+1) · Boeing 787-9", maps:"Aeropuerto Josep Tarradellas Barcelona-El Prat Terminal 1", ico:"✈️", key:true, info:"Vuelo nocturno directo con Etihad (EY114), unas 6 h 35 min. Abu Dhabi va +2 h respecto a la España peninsular (en septiembre España está en horario de verano). Salís a las 22:30 y aterrizáis a las 07:05 del sábado, hora local.\n\nConsejo: cenad ligero y dormid en el avión para aprovechar el sábado, que trae piscina, Louvre y mezquita. Referencia de la reserva: 7J2XJV." }
   ]},
-  { id:"sab19", d:[2026,9,19], dow:"Sábado", dnum:"19", loc:"Abu Dhabi", titulo:"Llegada, Louvre y Mezquita", items:[
-    { per:"man", name:"Llegada a Abu Dhabi (AUH)", place:"Aterrizaje por la mañana · taxi/Careem al hotel", maps:"Zayed International Airport Abu Dhabi", ico:"🛬", key:true, info:"Abu Dhabi es la capital de los Emiratos Árabes Unidos y el mayor de los siete emiratos. Moderna, tranquila y con muchísimo dinero del petróleo invertido en cultura (isla de Saadiyat) y arquitectura. En septiembre hace calor fuerte (35–40 ºC) y humedad: ropa ligera, agua y aprovechar los interiores con aire acondicionado." },
+  { id:"sab19", d:[2026,9,19], dow:"Sábado", dnum:"19", code:"ABU", loc:"Abu Dhabi", titulo:"Llegada, Louvre y Mezquita",
+    resumen:"Aterrizáis de madrugada en el desierto más lujoso del mundo. Plan de campeones: piscina para resucitar, un Louvre bajo su cúpula-colador de luz y una mezquita de mármol que deja sin palabras (y sin datos en el móvil de tanta foto). 🕌☀️", items:[
+    { per:"man", t:"07:05", name:"Llegada a Abu Dhabi (AUH)", place:"Etihad EY114 · Terminal A · taxi/Careem al hotel", maps:"Zayed International Airport Abu Dhabi", ico:"🛬", key:true, info:"Abu Dhabi es la capital de los Emiratos Árabes Unidos y el mayor de los siete emiratos. Moderna, tranquila y con muchísimo dinero del petróleo invertido en cultura (isla de Saadiyat) y arquitectura. En septiembre hace calor fuerte (35–40 ºC) y humedad: ropa ligera, agua y aprovechar los interiores con aire acondicionado.\n\nLlegáis muy temprano (07:05): id directos al hotel a dejar maletas (o piscina) aunque la habitación no esté lista." },
     { per:"man", name:"Check-in en el hotel", place:"Hotel por confirmar · dejar maletas", ico:"🏨", info:"Si la habitación no está lista a la llegada, casi todos los hoteles guardan las maletas para que podáis empezar el día (piscina incluida)." },
     { per:"man", name:"Piscina del hotel", place:"Un baño y descanso tras el vuelo", ico:"🏊", info:"Buen plan para recuperar del vuelo nocturno antes de salir a hacer turismo con el calor del mediodía." },
     { per:"med", name:"Almuerzo", place:"En el hotel o cerca", ico:"🍴" },
@@ -757,23 +847,26 @@ var DIAS = [
     { per:"noc", t:"18:30", name:"Mezquita Sheikh Zayed", place:"Gran Mezquita · sáb 09:00–21:00 · vestimenta estricta", maps:"Sheikh Zayed Grand Mosque, Abu Dhabi", ico:"🕌", key:true, tag:"book", info:"La Gran Mezquita Sheikh Zayed es el gran símbolo de Abu Dhabi y una de las mayores del mundo: caben unas 40.000 personas. Toda de mármol blanco, con 82 cúpulas, columnas con incrustaciones de nácar y flores de piedras semipreciosas, la mayor alfombra tejida a mano del mundo (dentro de la sala de oración) y lámparas con cristales de Swarovski.\n\nLleva el nombre del jeque Zayed, padre fundador de los Emiratos, que está enterrado al lado. Es especialmente bonita al atardecer, cuando el mármol pasa del blanco al dorado y luego se ilumina.\n\nVestimenta OBLIGATORIA: ropa larga y holgada que cubra brazos y piernas; las mujeres, además, pañuelo en la cabeza. Nada transparente ni ajustado o te deniegan la entrada. Los sábados abre de 9:00 a 21:00 (última entrada 20:30)." },
     { per:"noc", name:"Cena en Abu Dhabi", place:"Por elegir (cerca de la mezquita o del hotel)", ico:"🍽️" }
   ]},
-  { id:"dom20", d:[2026,9,20], dow:"Domingo", dnum:"20", loc:"Abu Dhabi → Seúl", titulo:"Corniche y vuelo a Seúl", items:[
+  { id:"dom20", d:[2026,9,20], dow:"Domingo", dnum:"20", code:"ABU", loc:"Abu Dhabi → Seúl", titulo:"Corniche y vuelo a Seúl",
+    resumen:"Última mañana emiratí: paseo por la Corniche antes de que el sol pegue como un secador. Por la noche, avión gigante rumbo a Corea. Despedíos de los dátiles, que llegan los kimchis. 🌊✈️", items:[
     { per:"man", name:"Paseo por la Corniche", place:"Paseo marítimo de Abu Dhabi", maps:"Corniche Beach, Abu Dhabi", ico:"🌊", key:true, info:"El paseo marítimo de Abu Dhabi: unos 8 km de palmeras, carril bici, playa de bandera azul y vistas al skyline y a la isla de Lulu. Es el sitio para pasear, correr o alquilar bici. Temprano se está mejor por el calor. Enfrente queda el Emirates Palace, el hotel-palacio más famoso de la ciudad." },
     { per:"man", name:"Qasr Al Watan (opcional)", place:"Palacio presidencial visitable", maps:"Qasr Al Watan, Abu Dhabi", ico:"🏰", info:"El “Palacio de la Nación”, un palacio presidencial en funciones abierto al público desde 2019. Espectacular por dentro: cúpula gigante, una biblioteca preciosa y salas de estado. Si os cuadra de tiempo antes del check-out, merece la pena; si no, se puede dejar." },
     { per:"med", name:"Almuerzo y recoger maletas", place:"Check-out del hotel", ico:"🧳" },
     { per:"tar", name:"Mezquita / última visita (si no dio tiempo)", place:"Comodín por si quedó algo pendiente del sábado", maps:"Sheikh Zayed Grand Mosque, Abu Dhabi", ico:"🕌", info:"Hueco por si el sábado se hizo corto: la mezquita, un mercado (souk) o el Emirates Palace para un té. Domingo la mezquita abre 9:00–22:00." },
-    { per:"tar", name:"Al aeropuerto (AUH)", place:"Traslado con margen para el vuelo largo", maps:"Zayed International Airport Abu Dhabi", ico:"🚕" },
-    { per:"noc", t:"21:30", name:"Vuelo Abu Dhabi → Seúl", place:"Salida sobre las 21:30 (AUH → ICN). Llega el lunes 21", maps:"Zayed International Airport Abu Dhabi", ico:"✈️", key:true, info:"Vuelo de noche hacia Seúl (unas 8–9 h). Corea va +5 h respecto a Abu Dhabi. Salís el domingo por la noche y aterrizáis en Incheon el lunes (probablemente por la mañana/mediodía). Ajustad relojes y dormid lo que podáis." }
+    { per:"tar", t:"18:30", name:"Al aeropuerto (AUH)", place:"Etihad EY822 · Terminal A · llegar ~3 h antes del vuelo largo", maps:"Zayed International Airport Abu Dhabi", ico:"🚕" },
+    { per:"noc", t:"21:10", name:"Vuelo Abu Dhabi → Seúl", place:"Etihad EY822 · AUH 21:10 → ICN T1 10:50 (+1) · Airbus A350-1000", maps:"Zayed International Airport Abu Dhabi", ico:"✈️", key:true, info:"Vuelo directo de noche hacia Seúl (EY822), unas 8 h 40 min. Corea va +5 h respecto a Abu Dhabi (+7 h respecto a España). Salís el domingo a las 21:10 y aterrizáis en Incheon el lunes a las 10:50, hora local. Ajustad relojes y dormid lo que podáis." }
   ]},
-  { id:"lun21", d:[2026,9,21], dow:"Lunes", dnum:"21", loc:"Seúl", titulo:"Llegada a Seúl · DDP y Euljiro", items:[
-    { per:"man", name:"Llegada a Seúl (Incheon, ICN)", place:"AREX o bus al centro · rumbo al Airbnb", maps:"Incheon International Airport", ico:"🛬", key:true, info:"Seúl es una megaciudad de unos 10 millones de personas (25 en su área metropolitana), donde conviven palacios de la dinastía Joseon con rascacielos, K-pop y una de las mejores redes de metro del mundo. Desde el aeropuerto de Incheon, el tren AREX o un bus limusina os dejan en el centro." },
+  { id:"lun21", d:[2026,9,21], dow:"Lunes", dnum:"21", code:"SEU", loc:"Seúl", titulo:"Llegada a Seúl · DDP y Euljiro",
+    resumen:"¡Anyeong, Seúl! Aterrizáis, dejáis las maletas en Changsin-dong y os estrenáis con la nave espacial de DDP y los callejones retro de Euljiro. Primer bocado coreano: que no sea el último del día. 🛸🍜", items:[
+    { per:"man", t:"10:50", name:"Llegada a Seúl (Incheon, ICN)", place:"Etihad EY822 · Terminal 1 · AREX o bus al centro · rumbo al Airbnb", maps:"Incheon International Airport", ico:"🛬", key:true, info:"Seúl es una megaciudad de unos 10 millones de personas (25 en su área metropolitana), donde conviven palacios de la dinastía Joseon con rascacielos, K-pop y una de las mejores redes de metro del mundo. Desde el aeropuerto de Incheon, el tren AREX o un bus limusina os dejan en el centro." },
     { per:"med", name:"Check-in en el Airbnb (LUNA HAUS)", place:"Changsin-dong · a partir de las 15:00 · metro Dongmyo", maps:"404-4 Changsin-dong, Jongno-gu, Seoul", ico:"🔑", info:"Vuestra base: un piso de 76 m² en Changsin-dong, a 2 minutos del metro Dongmyo, en el distrito histórico de Jongno y muy cerca de DDP y del mercado de Dongdaemun. Auto check-in con código de teclado." },
     { per:"med", name:"Comer algo cerca de casa", place:"Primer bocado coreano en el barrio", ico:"🍜" },
     { per:"tar", t:"15:00", name:"DDP · Dongdaemun Design Plaza", place:"281 Eulji-ro · 10:00–21:00", maps:"Dongdaemun Design Plaza, Seoul", ico:"🛸", key:true, info:"El edificio más futurista de Seúl: una nave plateada de curvas sin una sola esquina recta, obra de la arquitecta Zaha Hadid (2014). Es el mayor edificio de estructura neofuturista del mundo. Dentro hay exposiciones de diseño, tiendas y cafés; fuera, un mar de LEDs (los “LED Roses”) que de noche es muy fotogénico.\n\nSe levantó sobre el antiguo estadio de Dongdaemun; en las obras aparecieron restos de la muralla y una puerta de agua de la época Joseon, que se conservan integrados. Está a un paso de vuestro barrio." },
     { per:"tar", name:"Mercado de Dongdaemun", place:"Compras y ambiente junto a DDP", maps:"Dongdaemun Market, Seoul", ico:"🛍️", info:"Enorme zona comercial famosa por la moda y por abrir hasta muy tarde (algunos centros, de madrugada). Buen sitio para picar en los puestos de comida callejera." },
     { per:"noc", name:"Euljiro (을지로) de noche", place:"Callejones retro, imprentas, bares escondidos", maps:"Euljiro, Jung-gu, Seoul", ico:"🌆", key:true, info:"Euljiro es un antiguo barrio de talleres, ferreterías e imprentas que se ha puesto de moda: entre persianas metálicas y almacenes se esconden bares y cafés modernísimos (lo llaman “Hip-jiro”). El plan es callejear de noche, cenar en algún sitio con encanto retro y buscar los bares ocultos en pisos altos.\n\nIdea de Claudia: cena con foto estilosa por aquí. Muchos sitios son pequeños y familiares: en Chuseok (24–27) confirmad que abren." }
   ]},
-  { id:"mar22", d:[2026,9,22], dow:"Martes", dnum:"22", loc:"Seúl", titulo:"Leeum, Hannam y galerías", items:[
+  { id:"mar22", d:[2026,9,22], dow:"Martes", dnum:"22", code:"SEU", loc:"Seúl", titulo:"Leeum, Hannam y galerías",
+    resumen:"Día de arte fino y barrio pijo: el Leeum (con nada menos que tres arquitectos estrella) y Hannam-dong, donde viven ídolos del K-pop y actores. Fingid que vosotros también, que nadie lo va a comprobar. 🎨🕶️", items:[
     { per:"man", t:"10:00", name:"Leeum Museum of Art", place:"Yongsan · mar–dom 10:00–18:00 · con reserva", maps:"Leeum Museum of Art, Yongsan-gu, Seoul", ico:"🖼️", key:true, tag:"book", info:"El mejor museo de arte privado de Seúl, de la familia Samsung (Lee). Reúne dos mundos: arte tradicional coreano (cerámica celadón, pintura, budismo) y arte moderno y contemporáneo internacional (Rothko, Giacometti, Hirst, Louise Bourgeois…). Tres edificios firmados por tres arquitectos estrella: Mario Botta, Jean Nouvel y Rem Koolhaas.\n\nFunciona con reserva online (hasta 14 días antes, máx. 4 personas). Cierra los lunes y en festivo de Chuseok: por eso lo hacéis hoy, martes 22, a salvo del festivo." },
     { per:"med", name:"Hannam-dong (한남동)", place:"Barrio chic: cafés, tiendas de diseño, galerías", maps:"Hannam-dong, Yongsan-gu, Seoul", ico:"🛍️", key:true, info:"Uno de los barrios más elegantes y caros de Seúl, junto a Itaewon, donde viven ídolos del K-pop y actores. Está lleno de concept stores, cafés de diseño, boutiques y galerías de arte. Ideal para comer bien y curiosear tiendas bonitas." },
     { per:"med", name:"Almuerzo en Hannam", place:"Elegir sitio en el barrio", ico:"🍽️" },
@@ -781,7 +874,8 @@ var DIAS = [
     { per:"tar", name:"Más galerías por Hannam/Itaewon", place:"Paseo de arte por la zona", maps:"Itaewon, Yongsan-gu, Seoul", ico:"🖌️", info:"La zona concentra varias galerías potentes (Thaddaeus Ropac, PKM, etc.) y tiendas de diseño. Buen plan para encadenar arte andando." },
     { per:"noc", name:"Cena por Itaewon / Hannam", place:"Zona con mucha variedad internacional", maps:"Itaewon, Seoul", ico:"🍜" }
   ]},
-  { id:"mie23", d:[2026,9,23], dow:"Miércoles", dnum:"23", loc:"Seúl", titulo:"Bukchon, palacio y galerías de Samcheong", items:[
+  { id:"mie23", d:[2026,9,23], dow:"Miércoles", dnum:"23", code:"SEU", loc:"Seúl", titulo:"Bukchon, palacio y galerías de Samcheong",
+    resumen:"Maratón cultural nivel experto: hanoks de Bukchon a primera hora, palacio real, tres museos seguidos y, de premio final, barbacoa coreana a la brasa. Los pies van a sufrir; el estómago, ni una queja. 👑🥩", items:[
     { per:"man", t:"09:30", end:"11:00", name:"Bukchon Hanok Village", place:"Barrio de casas tradicionales · ir temprano", maps:"Bukchon Hanok Village, Seoul", ico:"🏘️", key:true, info:"Un barrio de unas 900 casas tradicionales (hanok) de tejados curvos entre los palacios Gyeongbokgung y Changdeokgung, donde vivía la nobleza en la época Joseon. Hoy es zona residencial y museo al aire libre a la vez: sus callejones en cuesta ofrecen las postales clásicas de tejados con la ciudad moderna al fondo.\n\nIr temprano (a las 9:30) evita las masas y el calor. Ojo: vive gente, hay carteles que piden silencio y en algunas calles hay horario de visita. Zapato cómodo por las cuestas." },
     { per:"man", name:"Gyeongbokgung", place:"Gran palacio real · 09:00–18:00 · cierra martes", maps:"Gyeongbokgung Palace, Seoul", ico:"👑", key:true, info:"El palacio principal de la dinastía Joseon, fundado en 1395. Fue arrasado por los japoneses en el s. XVI y de nuevo desmantelado en la ocupación del s. XX; hoy está en gran parte reconstruido. Enorme, con el pabellón Gyeonghoeru sobre un estanque y el trono en Geunjeongjeon.\n\nNo os perdáis el cambio de guardia (varias veces al día en la puerta Gwanghwamun). Entrada 3.000 ₩, pero GRATIS si vais con hanbok alquilado. Cierra los martes (hoy es miércoles, perfecto). En Chuseok suele abrir gratis." },
     { per:"med", t:"11:15", end:"13:30", name:"MMCA Seúl", place:"Museo de Arte Moderno y Contemporáneo · 30 Samcheong-ro", maps:"MMCA Seoul, Samcheong-ro, Seoul", ico:"🏛️", key:true, info:"La sede de Seúl del Museo Nacional de Arte Moderno y Contemporáneo, junto al palacio, en el barrio de galerías de Samcheong. Arquitectura de líneas limpias con patios; buena colección coreana e internacional y grandes exposiciones temporales.\n\nAbre 10:00–18:00 (miércoles y sábados hasta las 21:00, con “noche” gratuita 18:00–21:00). Última entrada, 1 h antes de cerrar." },
@@ -790,7 +884,8 @@ var DIAS = [
     { per:"tar", t:"16:00", end:"18:30", name:"Arario Museum in SPACE", place:"Yulgok-ro · mar–dom 10:00–19:00 · 15.000 ₩", maps:"Arario Museum in Space, Seoul", ico:"🖤", key:true, info:"Museo de arte contemporáneo dentro del edificio SPACE, un icono de la arquitectura moderna coreana (ladrillo rojo cubierto de hiedra, obra de Kim Swoo-geun, años 70). Alberga la colección privada de Arario, con arte contemporáneo internacional y coreano repartido por sus muchas plantas y rincones laberínticos.\n\nAbre de martes a domingo, 10:00–19:00 (cierra lunes). Entrada unos 15.000 ₩." },
     { per:"noc", name:"Barbacoa coreana en Euljiro", place:"Cena de barbacoa · reservar sitio", maps:"Euljiro, Jung-gu, Seoul", ico:"🥩", key:true, tag:"book", info:"La clásica barbacoa coreana (gogi-gui): carne a la brasa en la mesa (panceta samgyeopsal, costilla galbi), con hojas de lechuga para envolver, ssamjang, kimchi y soju o cerveza. En los callejones de Euljiro hay sitios con muchísimo ambiente. Reservad si podéis; con Chuseok cerca, confirmad que abre." }
   ]},
-  { id:"jue24", d:[2026,9,24], dow:"Jueves", dnum:"24", loc:"Seúl", titulo:"Seongsu-dong (víspera de Chuseok)", items:[
+  { id:"jue24", d:[2026,9,24], dow:"Jueves", dnum:"24", code:"SEU", loc:"Seúl", titulo:"Seongsu-dong (víspera de Chuseok)",
+    resumen:"El 'Brooklyn coreano': fábricas convertidas en cafés imposibles y pop-ups por cada esquina. Ojo, es víspera de Chuseok: si un sitio está cerrado, no es personal, es que Corea se va con la familia. 🏭☕", items:[
     { per:"man", name:"Seongsu-dong (성수동)", place:"El “Brooklyn de Seúl”: fábricas convertidas en tiendas y cafés", maps:"Seongsu-dong, Seongdong-gu, Seoul", ico:"🏭", key:true, info:"Un antiguo barrio industrial de zapaterías y talleres reconvertido en la zona más de moda de Seúl: fábricas y almacenes de ladrillo transformados en cafés enormes, concept stores, showrooms de marcas y pop-ups que cambian cada semana. El “Brooklyn coreano”.\n\nOjo: hoy es víspera de Chuseok. Las cadenas y tiendas grandes suelen abrir, pero muchos cafés y tiendas independientes pueden cerrar antes o del todo. Comprobad en Naver/KakaoMap antes de ir." },
     { per:"man", name:"Gallery Kuzo", place:"Galería / espacio en Seongsu", maps:"Gallery Kuzo, Seongsu-dong, Seoul", ico:"🎨", info:"Espacio de arte/diseño en Seongsu. Como muchos sitios pequeños del barrio, conviene confirmar horario en Naver antes de ir, más en víspera de Chuseok." },
     { per:"med", name:"Calles industriales y pop-ups", place:"Callejear entre showrooms y tiendas efímeras", maps:"Seongsu-dong Cafe Street, Seoul", ico:"🛍️", info:"Lo mejor de Seongsu es perderse: cada marca monta aquí su pop-up y hay cafés de diseño espectaculares. Dejaos llevar por las calles con más ambiente." },
@@ -799,7 +894,8 @@ var DIAS = [
     { per:"tar", name:"Tiendas y showrooms", place:"Marcas coreanas y concept stores", maps:"Seongsu-dong, Seoul", ico:"👟", info:"Seongsu nació de la industria del calzado; hoy conviven zapateros de siempre con flagship stores de moda y diseño coreano. Bueno para compras diferentes." },
     { per:"noc", name:"Cena por Seongsu o vuelta a casa", place:"Según qué esté abierto (víspera de Chuseok)", ico:"🍽️" }
   ]},
-  { id:"vie25", d:[2026,9,25], dow:"Viernes", dnum:"25", loc:"Seúl", titulo:"Manlidong, Yeonnam y Hongdae (día de Chuseok)", items:[
+  { id:"vie25", d:[2026,9,25], dow:"Viernes", dnum:"25", code:"SEU", loc:"Seúl", titulo:"Manlidong, Yeonnam y Hongdae (día de Chuseok)",
+    resumen:"Hoy Corea celebra Chuseok y media Seúl se va al pueblo: la ciudad se queda para vosotros. Espejos gigantes que reflejan el cielo, parques sobre vías de tren y la noche joven e imparable de Hongdae. 🪞🎤", items:[
     { per:"man", name:"Yoonseul · Manlidong Reflecting Seoul", place:"Instalación-mirador de espejo · 33 Toegye-ro (Seoul Station)", maps:"Yoonseul Mallidong Reflects Seoul", ico:"🪞", key:true, info:"“Yoonseul” significa en coreano el brillo de las olas al reflejar la luz del sol o la luna. Es una instalación de arte público (de la arquitecta SoA) junto a Seoullo 7017 y la estación de Seúl: un gran círculo de 25 m con láminas de acero pulido tipo espejo y un espacio hundido bajo tierra donde sentarse. Refleja el cielo y la ciudad; muy fotogénico y gratuito.\n\nAl aire libre y accesible, buen plan para el día de Chuseok. Se llega paseando por el puente-parque Seoullo 7017 desde la estación de Seúl." },
     { per:"man", name:"Seoullo 7017", place:"Antiguo paso elevado convertido en parque", maps:"Seoullo 7017, Seoul", ico:"🌉", info:"Un viaducto de los años 70 reconvertido en 2017 en un paseo elevado lleno de plantas (al estilo del High Line de Nueva York), que conecta la estación de Seúl con Malli-dong. Da buenas vistas y lleva directo al Yoonseul." },
     { per:"med", name:"Comida por la zona", place:"Cadenas fiables (es día de Chuseok)", ico:"🍚", info:"Al ser el día grande de Chuseok, tirad de cadenas, food halls de grandes almacenes o convenience stores si los sitios pequeños cierran." },
@@ -808,15 +904,19 @@ var DIAS = [
     { per:"noc", name:"Hongdae (홍대)", place:"Zona universitaria: música en vivo, tiendas, calle", maps:"Hongdae, Mapo-gu, Seoul", ico:"🎤", key:true, info:"El barrio de la universidad de arte Hongik: el corazón joven, indie y noctámbulo de Seúl. Calles peatonales con actuaciones de música y baile (buskers), tiendas, karaokes, bares y comida callejera hasta tarde. Aguanta bien el ambiente incluso en Chuseok, cuando otros barrios se apagan." },
     { per:"noc", name:"Cena y copas en Hongdae", place:"Comida callejera o restaurante + bares", ico:"🍢" }
   ]},
-  { id:"sab26", d:[2026,9,26], dow:"Sábado", dnum:"26", loc:"Seúl → Barcelona", titulo:"Últimas horas y vuelo de vuelta", items:[
+  { id:"sab26", d:[2026,9,26], dow:"Sábado", dnum:"26", code:"SEU", loc:"Seúl → Barcelona", titulo:"Últimas horas y vuelo de vuelta",
+    resumen:"Últimas compras, último bibimbap y a Incheon. Esta noche volvéis a dormir en avión, con parada técnica en Abu Dhabi de madrugada. Corea, ha sido un placer. 🎁🛫", items:[
     { per:"man", t:"11:00", name:"Check-out del Airbnb", place:"Salir antes de las 11:00 · dejar maletas si hace falta", maps:"404-4 Changsin-dong, Jongno-gu, Seoul", ico:"🧳", info:"Salida antes de las 11:00. Muchos sitios guardan maletas o podéis usar consignas del metro/estaciones para las últimas horas libres." },
     { per:"med", name:"Últimas compras y recuerdos", place:"Myeongdong, Insadong o cerca de casa (Dongdaemun)", maps:"Insadong, Jongno-gu, Seoul", ico:"🎁", info:"Insadong es la calle de la artesanía y los recuerdos tradicionales (papel hanji, té, cerámica, pinceles). Myeongdong, para cosmética y marcas. Dongdaemun lo tenéis al lado de casa." },
     { per:"med", name:"Almuerzo de despedida", place:"Último coreano antes del aeropuerto", ico:"🍜" },
-    { per:"tar", t:"15:00", name:"Al aeropuerto de Incheon (ICN)", place:"AREX o bus con margen · vuelo largo", maps:"Incheon International Airport", ico:"🚆", info:"Calculad llegar al aeropuerto unas 3 h antes del vuelo largo. Desde el centro, el AREX exprés tarda ~45–60 min. Con Chuseok recién pasado (domingo 27 aún es festivo), dejad margen por si hay más tráfico." },
-    { per:"tar", t:"18:30", name:"Vuelo Seúl → Barcelona", place:"Salida sobre las 18:30 (ICN → BCN). Por confirmar", maps:"Incheon International Airport", ico:"✈️", key:true, info:"Vuelo de vuelta a casa (por confirmar compañía, escala y hora exacta). Con el cambio horario y la escala, la llegada a Barcelona será previsiblemente el domingo 27. ¡Hasta la próxima!" }
+    { per:"tar", t:"15:00", name:"Al aeropuerto de Incheon (ICN)", place:"Etihad EY823 · Terminal 1 · AREX o bus con ~3 h de margen", maps:"Incheon International Airport Terminal 1", ico:"🚆", info:"Calculad llegar al aeropuerto unas 3 h antes del vuelo largo. Desde el centro, el AREX exprés tarda ~45–60 min. El domingo 27 aún es festivo de Chuseok: dejad margen por si hay más tráfico." },
+    { per:"tar", t:"18:20", name:"Vuelo Seúl → Abu Dhabi", place:"Etihad EY823 · ICN T1 18:20 → AUH 23:05 · Airbus A350-1000", maps:"Incheon International Airport Terminal 1", ico:"✈️", key:true, info:"Primer tramo de la vuelta (EY823), unas 9 h 45 min. Salís de Incheon a las 18:20 y llegáis a Abu Dhabi a las 23:05 (hora local de AUH). Allí hay escala para enlazar con el vuelo a Barcelona de madrugada. Referencia: 7J2XJV." },
+    { per:"noc", name:"Escala en Abu Dhabi (AUH)", place:"Terminal A · enlace de ~3 h con el vuelo a Barcelona", maps:"Zayed International Airport Abu Dhabi", ico:"🔄", info:"Escala nocturna en Abu Dhabi entre las 23:05 y las 02:30. Unas 3 h y media para estirar las piernas, cenar algo y coger el enlace EY111 a Barcelona. No salís del aeropuerto." }
   ]},
-  { id:"dom27", d:[2026,9,27], dow:"Domingo", dnum:"27", loc:"Barcelona", titulo:"Llegada a casa", items:[
-    { per:"man", name:"Llegada a Barcelona", place:"Fin del viaje · a casa a descansar", maps:"Aeropuerto Josep Tarradellas Barcelona-El Prat", ico:"🏡", info:"Llegada a Barcelona (hora exacta por confirmar según el vuelo). Fin de diez días entre el desierto y Corea. 수고했어요! (¡buen trabajo!)." }
+  { id:"dom27", d:[2026,9,27], dow:"Domingo", dnum:"27", code:"BCN", loc:"Abu Dhabi → Barcelona", titulo:"Vuelo de madrugada y llegada a casa",
+    resumen:"De vuelta a casa con jet lag de campeonato, 3.000 fotos sin ordenar y un mono de kimchi que no se va con nada. 수고했어요 — ¡buen viaje, equipo! 🏡❤️", items:[
+    { per:"man", t:"02:30", name:"Vuelo Abu Dhabi → Barcelona", place:"Etihad EY111 · AUH 02:30 → BCN T1 07:35 · Boeing 787-9", maps:"Zayed International Airport Abu Dhabi", ico:"✈️", key:true, info:"Segundo tramo de la vuelta (EY111), unas 7 h 05 min. Salís de Abu Dhabi de madrugada (02:30) y aterrizáis en Barcelona a las 07:35, hora local. Toca dormir en el avión otra vez." },
+    { per:"man", t:"07:35", name:"Llegada a Barcelona (BCN)", place:"Terminal 1 · fin del viaje · a casa a descansar", maps:"Aeropuerto Josep Tarradellas Barcelona-El Prat Terminal 1", ico:"🏡", info:"Llegada a Barcelona a las 07:35. Fin de diez días entre el desierto y Corea. 수고했어요! (¡buen trabajo!)." }
   ]}
 ];
 
@@ -898,11 +998,11 @@ function renderDaySelector(){
   var tk = todayKey();
   document.getElementById("daysel").innerHTML = DIAS.map(function(day, i){
     var isToday = dayKey(new Date(day.d[0], day.d[1]-1, day.d[2])) === tk;
-    var city = day.loc ? day.loc.replace(" → ","→").split(" ")[0] : "";
+    var code = day.code || "";
     return '<button data-i="'+i+'" class="'+(i===selDay?'on ':'')+(isToday?'today':'')+'">'+
       '<span class="dw">'+esc(day.dow.slice(0,3))+'</span>'+
       '<span class="dn">'+esc(day.dnum)+'</span>'+
-      (city?'<span class="dc">'+esc(city)+'</span>':'')+'</button>';
+      (code?'<span class="dc">'+esc(code)+'</span>':'')+'</button>';
   }).join("");
 }
 
@@ -1022,12 +1122,38 @@ function setupWhatsApp(){
 function showPage(p){
   document.querySelectorAll(".page").forEach(function(s){ s.classList.toggle("active", s.id==="page-"+p); });
   document.querySelectorAll(".tab").forEach(function(t){ t.classList.toggle("active", t.dataset.page===p); });
+  document.querySelectorAll("#drawerNav button").forEach(function(t){ t.classList.toggle("active", t.dataset.page===p); });
   window.scrollTo({top:0,behavior:"auto"});
 }
 document.getElementById("tabs").addEventListener("click", function(e){
   var b = e.target.closest(".tab"); if(!b) return;
   showPage(b.dataset.page);
 });
+
+/* ====================== Menú lateral (drawer) ====================== */
+function openDrawer(){
+  document.getElementById("drawer").classList.add("open");
+  document.getElementById("drawerBack").classList.add("open");
+  document.getElementById("drawer").setAttribute("aria-hidden","false");
+  document.getElementById("menuBtn").setAttribute("aria-expanded","true");
+}
+function closeDrawer(){
+  document.getElementById("drawer").classList.remove("open");
+  document.getElementById("drawerBack").classList.remove("open");
+  document.getElementById("drawer").setAttribute("aria-hidden","true");
+  document.getElementById("menuBtn").setAttribute("aria-expanded","false");
+}
+function setupDrawer(){
+  document.getElementById("menuBtn").addEventListener("click", openDrawer);
+  document.getElementById("drawerClose").addEventListener("click", closeDrawer);
+  document.getElementById("drawerBack").addEventListener("click", closeDrawer);
+  document.getElementById("drawerNav").addEventListener("click", function(e){
+    var b = e.target.closest("button"); if(!b) return;
+    showPage(b.dataset.page);
+    closeDrawer();
+  });
+  document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeDrawer(); });
+}
 function bindGo(scope){
   (scope||document).querySelectorAll("[data-go]").forEach(function(a){
     if(a._bound) return; a._bound = true;
@@ -1057,6 +1183,43 @@ function setupInfo(){
   document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeInfo(); });
 }
 
+/* ====================== Bienvenida diaria (resumen gracioso) ====================== */
+function fillWelcome(idx){
+  var day = DIAS[idx]; if(!day) return false;
+  var emo = "🌏";
+  for(var i=0;i<day.items.length;i++){ if(day.items[i].key && day.items[i].ico){ emo = day.items[i].ico; break; } }
+  document.getElementById("wEyebrow").textContent = "Día " + (idx+1) + " de " + DIAS.length + " · " + day.dow + " " + day.dnum;
+  document.getElementById("wEmoji").textContent = emo;
+  document.getElementById("wTitle").textContent = day.titulo;
+  document.getElementById("wLoc").textContent = "📍 " + day.loc;
+  document.getElementById("wSummary").textContent = day.resumen || "";
+  return true;
+}
+function showWelcome(idx){
+  if(!fillWelcome(idx)) return;
+  var m = document.getElementById("welcomeModal");
+  m.classList.add("show"); m.setAttribute("aria-hidden","false");
+}
+function closeWelcome(){
+  var m = document.getElementById("welcomeModal");
+  m.classList.remove("show"); m.setAttribute("aria-hidden","true");
+}
+function setupWelcome(){
+  document.getElementById("wClose").addEventListener("click", closeWelcome);
+  document.getElementById("wGoAgenda").addEventListener("click", function(){ closeWelcome(); showPage("hoy"); });
+  document.getElementById("welcomeModal").addEventListener("click", function(e){
+    if(e.target === document.getElementById("welcomeModal")) closeWelcome();
+  });
+  /* Solo en días del viaje y una vez al día (recordado en el propio dispositivo) */
+  var idx = findToday();
+  if(idx < 0) return;
+  var stamp = dayKey(new Date()), seen = null;
+  try{ seen = localStorage.getItem("astroseoul_welcome"); }catch(e){}
+  if(seen === stamp) return;
+  showWelcome(idx);
+  try{ localStorage.setItem("astroseoul_welcome", stamp); }catch(e){}
+}
+
 /* ====================== init ====================== */
 (function init(){
   var t = findToday();
@@ -1067,6 +1230,8 @@ function setupInfo(){
   setupSectionLinks();
   setupWhatsApp();
   setupInfo();
+  setupDrawer();
+  setupWelcome();
   bindGo(document);
   setInterval(function(){ tickAgenda(); }, 30000);
   /* refresca "Hoy" y el estado por si cambia el día con la app abierta */
