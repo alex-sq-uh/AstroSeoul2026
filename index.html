@@ -592,16 +592,22 @@
 
     <!-- Abu Dhabi -->
     <div class="card">
-      <div class="pill red">Abu Dhabi · pendiente</div>
-      <h3 style="margin:.2rem 0 .1rem;color:var(--primary);font-size:1.12rem">🏨 Hotel en Abu Dhabi</h3>
+      <div class="pill">Abu Dhabi · hotel (Etihad)</div>
+      <h3 style="margin:.2rem 0 .1rem;color:var(--primary);font-size:1.15rem">Southern Sun Abu Dhabi</h3>
       <p class="muted" style="margin:.1rem 0 .2rem;font-size:.92rem;line-height:1.5">
-        Aún <b>por reservar / confirmar</b> (noches del <b>19 y 20 de septiembre</b>). En cuanto tengáis
-        el hotel, me pasáis nombre y dirección y lo pongo aquí con su Google Maps.
+        Hotel de 4★ en la zona de la <b>Corniche</b> (Al Markaziyah), con piscina. Es el hotel del
+        <b>stopover gratuito de Etihad</b>. Confirmado; los datos de la reserva llegarán por email.
       </p>
-      <ul class="checklist todo">
-        <li>Nombre del hotel — por confirmar.</li>
-        <li>Dirección y Google Maps — por confirmar.</li>
-        <li>Horas de check-in / check-out — por confirmar.</li>
+      <div class="links">
+        <a class="lk map" href="https://maps.google.com/?q=Southern%20Sun%20Abu%20Dhabi" target="_blank" rel="noopener">📍 Google Maps</a>
+      </div>
+      <dl class="kv" style="margin-top:.9rem">
+        <dt>Entrada</dt><dd>Sábado 19 sep (llegáis 07:05; dejáis maletas)</dd>
+        <dt>Salida</dt><dd>Domingo 20 sep (vuelo a Seúl 21:10)</dd>
+        <dt>Noches</dt><dd>1 (noche del 19 al 20)</dd>
+      </dl>
+      <ul class="checklist todo" style="margin-top:.6rem">
+        <li>Dirección exacta y nº de reserva — llegan por email (por confirmar).</li>
       </ul>
     </div>
   </section>
@@ -651,7 +657,7 @@
       </div>
       <div class="row">
         <span class="ic">🛫</span>
-        <div class="t"><b>Aeropuerto (AUH) → hotel</b><span>Taxi/Careem directo. Traslado por confirmar cuando esté el hotel.</span></div>
+        <div class="t"><b>Aeropuerto (AUH) → hotel</b><span>Taxi/Careem directo al Southern Sun Abu Dhabi (zona Corniche), ~30–40 min.</span></div>
       </div>
       <p class="muted" style="margin:.6rem 0 0;font-size:.8rem;line-height:1.45">
         Las distancias en Abu Dhabi son grandes y hace calor: contad con taxi entre puntos (Louvre,
@@ -1089,7 +1095,7 @@ var DIAS = [
   { id:"sab19", d:[2026,9,19], dow:"Sábado", dnum:"19", code:"ABU", loc:"Abu Dhabi", titulo:"Llegada, Louvre y Mezquita",
     resumen:"Aterrizáis de madrugada en el desierto más lujoso del mundo. Plan de campeones: piscina para resucitar, un Louvre bajo su cúpula-colador de luz y una mezquita de mármol que deja sin palabras (y sin datos en el móvil de tanta foto). 🕌☀️", items:[
     { per:"man", t:"07:05", name:"Llegada a Abu Dhabi (AUH)", place:"Etihad EY114 · Terminal A · taxi/Careem al hotel", maps:"Zayed International Airport Abu Dhabi", ico:"🛬", key:true, info:"Abu Dhabi es la capital de los Emiratos Árabes Unidos y el mayor de los siete emiratos. Moderna, tranquila y con muchísimo dinero del petróleo invertido en cultura (isla de Saadiyat) y arquitectura. En septiembre hace calor fuerte (35–40 ºC) y humedad: ropa ligera, agua y aprovechar los interiores con aire acondicionado.\n\nEl aeropuerto Zayed (AUH) estrenó en 2023 su Terminal A, una de las mayores del mundo, con una cubierta ondulada sostenida por enormes arcos y luz natural. Llegáis muy temprano (07:05): id directos al hotel a dejar maletas (o piscina) aunque la habitación no esté lista." },
-    { per:"man", t:"08:30", name:"Check-in / dejar maletas en el hotel", place:"Hotel por confirmar · guardan equipaje si la habitación no está lista", ico:"🏨", info:"Si la habitación no está lista a la llegada, casi todos los hoteles guardan las maletas para que podáis empezar el día (piscina incluida)." },
+    { per:"man", t:"08:30", name:"Check-in en el Southern Sun Abu Dhabi", place:"Zona de la Corniche · dejar maletas si la habitación no está lista", maps:"Southern Sun Abu Dhabi", ico:"🏨", info:"Nuestro hotel en Abu Dhabi (4★, zona de la Corniche), el del stopover gratuito de Etihad. Llegáis muy temprano (07:05): si la habitación aún no está lista, guardan el equipaje para que podáis empezar el día (la piscina, ideal tras el vuelo)." },
     { per:"man", t:"09:30", end:"12:30", name:"Piscina y descanso", place:"Recuperar del vuelo nocturno antes del calor del mediodía", ico:"🏊", info:"Buen plan para recuperar del vuelo nocturno. A media mañana ya aprieta el sol; la piscina y la sombra son el mejor plan hasta la hora de comer." },
     { per:"med", t:"12:30", end:"13:45", name:"Almuerzo", place:"En el hotel o cerca", ico:"🍴" },
     { per:"med", t:"13:45", end:"14:15", name:"Tiempo libre (evitar el calor)", place:"Siesta o rato de sombra antes de salir al museo", ico:"⏳" },
@@ -1192,7 +1198,7 @@ var CONTACTOS = {
     { ico:"🇪🇸", loc:"seul", name:"Embajada de España en Seúl", sub:"Emergencias consulares · +82 2-794-3581", ko:"주한 스페인 대사관 (용산구 한남동)", tel:"+82227943581", maps:"Embajada de España en Seúl" },
     { ico:"✈️", loc:"seul", name:"Aeropuerto de Incheon (ICN)", sub:"Seúl · Terminal 1 · llegada (lun 21) y salida (sáb 26)", ko:"인천국제공항 제1여객터미널", maps:"Incheon International Airport Terminal 1" },
     { ico:"🚉", loc:"seul", name:"Estación de Seúl (AREX)", sub:"Tren exprés al/desde el aeropuerto de Incheon", ko:"서울역", maps:"Seoul Station" },
-    { ico:"🏨", loc:"abu", name:"Hotel de Abu Dhabi", sub:"Por confirmar — lo añado con su Maps cuando esté reservado" },
+    { ico:"🏨", loc:"abu", name:"Southern Sun Abu Dhabi", sub:"Nuestro hotel · zona de la Corniche (Al Markaziyah)", maps:"Southern Sun Abu Dhabi" },
     { ico:"🇪🇸", loc:"abu", name:"Embajada de España en Abu Dhabi", sub:"Emergencias consulares · +971 2-626-9544", tel:"+97126269544", maps:"Embajada de España en Abu Dhabi" },
     { ico:"✈️", loc:"abu", name:"Aeropuerto Zayed (AUH)", sub:"Abu Dhabi · Terminal A", maps:"Zayed International Airport Abu Dhabi" }
   ],
