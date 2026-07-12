@@ -50,6 +50,9 @@ turismo 1330, anfitrión, embajadas + WhatsApp). Ahora es **"Teléfonos y direcc
 data-driven vía array `CONTACTOS` (emergencias / direcciones / contactos) que pinta filas homogéneas con
 botones-pastilla **📞 Llamar · 📍 Maps · 💬 WhatsApp** según los datos de cada entrada. Incluye alojamiento,
 embajadas (Seúl y Abu Dhabi), aeropuertos (ICN/AUH/BCN) y estación de Seúl, con su Google Maps.
+Cada entrada tiene `loc` (`seul`/`abu`/`both`) y un **conmutador de ciudad** (Seúl / Abu Dhabi, estilo
+Idioma) filtra las tres tarjetas; las que quedan vacías se ocultan. `defaultDirLoc()` abre en la ciudad
+del **día actual** de la agenda (por `code`), y antes del viaje en **Abu Dhabi** (primer destino).
 
 ## Secciones nuevas (v3)
 - **Maleta y clima:** clima típico de septiembre por ciudad, documentos (pasaporte, K-ETA Corea por

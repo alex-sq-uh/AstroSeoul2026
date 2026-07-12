@@ -798,7 +798,12 @@
     <h2 class="sec">📇 Teléfonos y direcciones</h2>
     <div class="notice">
       Todo a un toque: <b>📞 Llamar</b> marca el número y <b>📍 Maps</b> abre la dirección en Google Maps.
-      Aquí tenéis a mano el alojamiento, las embajadas y los sitios clave a los que os desplazáis.
+      Elegid la ciudad; se abre sola en la de <b>hoy</b> según la agenda.
+    </div>
+
+    <div class="langtab" id="loctab">
+      <button data-loc="seul">🇰🇷 Seúl</button>
+      <button data-loc="abu">🇦🇪 Abu Dhabi</button>
     </div>
 
     <div class="card">
@@ -1166,23 +1171,23 @@ var GRUPO_WHATSAPP = "";
    que tenga (tel, maps=consulta para Google Maps, wa=número WhatsApp). */
 var CONTACTOS = {
   emergencias: [
-    { ico:"🆘", name:"Emergencias · Corea", sub:"112 policía · 119 bomberos y ambulancia", tel:"119" },
-    { ico:"🧭", name:"Línea de turismo 1330 · Corea", sub:"Ayuda al turista 24 h en inglés/español (info, traducción)", tel:"1330" },
-    { ico:"🆘", name:"Emergencias · Emiratos (EAU)", sub:"999 policía · 998 ambulancia · 997 bomberos", tel:"999" }
+    { ico:"🆘", loc:"seul", name:"Emergencias · Corea", sub:"112 policía · 119 bomberos y ambulancia", tel:"119" },
+    { ico:"🧭", loc:"seul", name:"Línea de turismo 1330 · Corea", sub:"Ayuda al turista 24 h en inglés/español (info, traducción)", tel:"1330" },
+    { ico:"🆘", loc:"abu", name:"Emergencias · Emiratos (EAU)", sub:"999 policía · 998 ambulancia · 997 bomberos", tel:"999" }
   ],
   direcciones: [
-    { ico:"🏠", name:"Nuestro alojamiento · LUNA HAUS", sub:"404-4 Changsin-dong, Jongno-gu, Seúl · a 2 min del metro Dongmyo", tel:"+821063464090", maps:"404-4 Changsin-dong, Jongno-gu, Seoul" },
-    { ico:"🏨", name:"Hotel de Abu Dhabi", sub:"Por confirmar — lo añado con su Maps cuando esté reservado" },
-    { ico:"🇪🇸", name:"Embajada de España en Seúl", sub:"Emergencias consulares · +82 2-794-3581", tel:"+82227943581", maps:"Embajada de España en Seúl" },
-    { ico:"🇪🇸", name:"Embajada de España en Abu Dhabi", sub:"Emergencias consulares · +971 2-626-9544", tel:"+97126269544", maps:"Embajada de España en Abu Dhabi" },
-    { ico:"✈️", name:"Aeropuerto de Incheon (ICN)", sub:"Seúl · Terminal 1 · llegada (lun 21) y salida (sáb 26)", maps:"Incheon International Airport Terminal 1" },
-    { ico:"✈️", name:"Aeropuerto Zayed (AUH)", sub:"Abu Dhabi · Terminal A", maps:"Zayed International Airport Abu Dhabi" },
-    { ico:"✈️", name:"Aeropuerto de Barcelona (BCN)", sub:"El Prat · Terminal 1", maps:"Aeropuerto Josep Tarradellas Barcelona-El Prat Terminal 1" },
-    { ico:"🚉", name:"Estación de Seúl (AREX)", sub:"Tren exprés al/desde el aeropuerto de Incheon", maps:"Seoul Station" }
+    { ico:"🏠", loc:"seul", name:"Nuestro alojamiento · LUNA HAUS", sub:"404-4 Changsin-dong, Jongno-gu, Seúl · a 2 min del metro Dongmyo", tel:"+821063464090", maps:"404-4 Changsin-dong, Jongno-gu, Seoul" },
+    { ico:"🇪🇸", loc:"seul", name:"Embajada de España en Seúl", sub:"Emergencias consulares · +82 2-794-3581", tel:"+82227943581", maps:"Embajada de España en Seúl" },
+    { ico:"✈️", loc:"seul", name:"Aeropuerto de Incheon (ICN)", sub:"Seúl · Terminal 1 · llegada (lun 21) y salida (sáb 26)", maps:"Incheon International Airport Terminal 1" },
+    { ico:"🚉", loc:"seul", name:"Estación de Seúl (AREX)", sub:"Tren exprés al/desde el aeropuerto de Incheon", maps:"Seoul Station" },
+    { ico:"🏨", loc:"abu", name:"Hotel de Abu Dhabi", sub:"Por confirmar — lo añado con su Maps cuando esté reservado" },
+    { ico:"🇪🇸", loc:"abu", name:"Embajada de España en Abu Dhabi", sub:"Emergencias consulares · +971 2-626-9544", tel:"+97126269544", maps:"Embajada de España en Abu Dhabi" },
+    { ico:"✈️", loc:"abu", name:"Aeropuerto Zayed (AUH)", sub:"Abu Dhabi · Terminal A", maps:"Zayed International Airport Abu Dhabi" },
+    { ico:"✈️", loc:"both", name:"Aeropuerto de Barcelona (BCN)", sub:"El Prat · Terminal 1 · ida (vie 18) y vuelta (dom 27)", maps:"Aeropuerto Josep Tarradellas Barcelona-El Prat Terminal 1" }
   ],
   contactos: [
-    { ico:"🏠", name:"Anfitrión del Airbnb (Cannes)", sub:"Check-in y cualquier tema del piso", tel:"+821063464090" },
-    { ico:"🖼️", name:"Louvre Abu Dhabi", sub:"Info y entradas · +971 600 56 55 66", tel:"+971600565566", maps:"Louvre Abu Dhabi, Saadiyat Island" }
+    { ico:"🏠", loc:"seul", name:"Anfitrión del Airbnb (Cannes)", sub:"Check-in y cualquier tema del piso", tel:"+821063464090" },
+    { ico:"🖼️", loc:"abu", name:"Louvre Abu Dhabi", sub:"Info y entradas · +971 600 56 55 66", tel:"+971600565566", maps:"Louvre Abu Dhabi, Saadiyat Island" }
   ]
 };
 
@@ -1379,12 +1384,30 @@ function contactRow(c){
     '<div class="t"><b>'+esc(c.name)+'</b>'+(c.sub?'<span>'+esc(c.sub)+'</span>':'')+
     (acts.length?'<div class="acts">'+acts.join("")+'</div>':'')+'</div></div>';
 }
-function renderDirectorio(){
+function renderDirectorio(loc){
   var map = { dirEmergencias:CONTACTOS.emergencias, dirDirecciones:CONTACTOS.direcciones, dirContactos:CONTACTOS.contactos };
   Object.keys(map).forEach(function(id){
     var el = document.getElementById(id); if(!el) return;
-    el.innerHTML = map[id].map(contactRow).join("");
+    var rows = map[id].filter(function(c){ return !c.loc || c.loc==="both" || c.loc===loc; });
+    el.innerHTML = rows.map(contactRow).join("");
+    var card = el.closest(".card"); if(card) card.style.display = rows.length ? "" : "none";
   });
+}
+/* localización por defecto según el día de la agenda (o el primer destino antes del viaje) */
+function defaultDirLoc(){
+  var idx = findToday();
+  if(idx >= 0){ var c = DIAS[idx].code; if(c==="ABU") return "abu"; if(c==="SEU") return "seul"; }
+  var now = new Date(), first = new Date(2026,8,18,0,0,0);
+  return now < first ? "abu" : "seul";   // antes del viaje, Abu Dhabi (primer destino)
+}
+function setupDirectorio(){
+  var tabs = document.getElementById("loctab"); if(!tabs) return;
+  function apply(l){
+    tabs.querySelectorAll("button").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-loc")===l); });
+    renderDirectorio(l);
+  }
+  tabs.addEventListener("click", function(e){ var b=e.target.closest("button"); if(!b) return; apply(b.getAttribute("data-loc")); });
+  apply(defaultDirLoc());
 }
 
 /* ====================== WhatsApp ====================== */
@@ -1560,7 +1583,7 @@ function setupConverter(){
   renderHoy();
   updateStatus();
   setupSectionLinks();
-  renderDirectorio();
+  setupDirectorio();
   setupWhatsApp();
   setupInfo();
   setupDrawer();
