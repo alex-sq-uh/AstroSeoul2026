@@ -121,7 +121,22 @@
   .drawer nav button:hover{background:var(--surface2)}
   .drawer nav button.active{background:#eef4fc;color:var(--primary)}
   .drawer nav .sep{height:1px;background:var(--border);margin:.35rem .5rem}
+  .drawer nav .menu-lbl{font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);padding:.5rem .7rem .2rem}
   .drawer .df{margin-top:auto;padding:.9rem 1.1rem;border-top:1px solid var(--border);font-size:.76rem;color:var(--text-muted);line-height:1.4}
+
+  /* ----- hub "Guía" (índice de tarjetas) ----- */
+  .hubgrid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:.2rem}
+  .hubcard{display:flex;flex-direction:column;gap:.3rem;background:var(--surface);border:1.5px solid var(--border);
+    border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:1rem .95rem;cursor:pointer;text-align:left;font:inherit;
+    transition:transform .16s,border-color .16s,box-shadow .16s}
+  .hubcard:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:var(--shadow-lg)}
+  .hubcard .hi{font-size:1.7rem;line-height:1}
+  .hubcard .ht{font-weight:800;color:var(--primary);font-size:1rem}
+  .hubcard .hs{font-size:.8rem;color:var(--text-muted);line-height:1.35}
+  @media(max-width:420px){.hubgrid{grid-template-columns:1fr}}
+
+  /* ----- directorio (filas homogéneas con botones-pastilla) ----- */
+  .dir .row .acts{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
   .logo{width:42px;height:42px;flex-shrink:0;filter:drop-shadow(0 1px 2px rgba(0,0,0,.3))}
   .brand{display:flex;flex-direction:column;line-height:1.05;min-width:0}
   .brand .name{font-weight:800;font-size:1.3rem;letter-spacing:.01em}
@@ -394,18 +409,21 @@
     <button class="dx" id="drawerClose" aria-label="Cerrar">×</button>
   </div>
   <nav id="drawerNav">
+    <div class="menu-lbl">En el viaje</div>
     <button data-page="hoy"><span class="ic">📍</span>Hoy</button>
     <button data-page="agenda"><span class="ic">🗓️</span>Agenda</button>
-    <button data-page="chuseok"><span class="ic">🎑</span>Chuseok</button>
-    <div class="sep"></div>
-    <button data-page="alojamiento"><span class="ic">🏠</span>Alojamiento</button>
-    <button data-page="transporte"><span class="ic">🚇</span>Transporte</button>
-    <button data-page="maleta"><span class="ic">🧳</span>Maleta y clima</button>
-    <button data-page="idioma"><span class="ic">💬</span>Idioma</button>
     <button data-page="moneda"><span class="ic">💱</span>Moneda</button>
+    <button data-page="idioma"><span class="ic">💬</span>Idioma</button>
+    <button data-page="telefonos"><span class="ic">📇</span>Teléfonos y direcciones</button>
+    <div class="sep"></div>
+    <div class="menu-lbl">La guía</div>
+    <button data-page="guia"><span class="ic">📖</span>Guía (índice)</button>
+    <button data-page="chuseok"><span class="ic">🎑</span>Chuseok</button>
+    <button data-page="maleta"><span class="ic">🧳</span>Maleta y clima</button>
     <button data-page="apps"><span class="ic">📱</span>Apps útiles</button>
+    <button data-page="transporte"><span class="ic">🚇</span>Transporte</button>
+    <button data-page="alojamiento"><span class="ic">🏠</span>Alojamiento</button>
     <button data-page="reservas"><span class="ic">🎟️</span>Reservas y vuelos</button>
-    <button data-page="telefonos"><span class="ic">📞</span>Teléfonos</button>
   </nav>
   <div class="df">Laura · Maggie · Alex<br>18–27 sep 2026 · Abu Dhabi &amp; Seúl</div>
 </aside>
@@ -414,14 +432,10 @@
   <div class="tabs-in" id="tabs">
     <button class="tab active" data-page="hoy"><span class="ic">📍</span>Hoy</button>
     <button class="tab" data-page="agenda"><span class="ic">🗓️</span>Agenda</button>
-    <button class="tab" data-page="alojamiento"><span class="ic">🏠</span>Alojamiento</button>
-    <button class="tab" data-page="transporte"><span class="ic">🚇</span>Transporte</button>
-    <button class="tab" data-page="maleta"><span class="ic">🧳</span>Maleta</button>
-    <button class="tab" data-page="idioma"><span class="ic">💬</span>Idioma</button>
     <button class="tab" data-page="moneda"><span class="ic">💱</span>Moneda</button>
-    <button class="tab" data-page="apps"><span class="ic">📱</span>Apps</button>
-    <button class="tab" data-page="reservas"><span class="ic">🎟️</span>Reservas</button>
-    <button class="tab" data-page="telefonos"><span class="ic">📞</span>Teléfonos</button>
+    <button class="tab" data-page="idioma"><span class="ic">💬</span>Idioma</button>
+    <button class="tab" data-page="telefonos"><span class="ic">📇</span>Directorio</button>
+    <button class="tab" data-page="guia"><span class="ic">📖</span>Guía</button>
   </div>
 </nav>
 
@@ -520,6 +534,23 @@
       <div class="links">
         <a class="lk" href="https://english.visitseoul.net/" target="_blank" rel="noopener">🌐 VisitSeoul</a>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ GUÍA (hub / índice) ============ -->
+  <section class="page" id="page-guia">
+    <h2 class="sec">📖 La guía</h2>
+    <div class="notice">
+      Todo lo que conviene <b>leer antes</b> o consultar de vez en cuando. Toca una tarjeta para abrirla
+      (también las tienes sueltas en el menú ☰).
+    </div>
+    <div class="hubgrid">
+      <button class="hubcard" data-go="chuseok"><span class="hi">🎑</span><span class="ht">Chuseok</span><span class="hs">La gran fiesta coreana que coincide con el viaje: qué abre y qué cierra.</span></button>
+      <button class="hubcard" data-go="maleta"><span class="hi">🧳</span><span class="ht">Maleta y clima</span><span class="hs">Clima, documentos, enchufes, checklist y mapas guardados.</span></button>
+      <button class="hubcard" data-go="apps"><span class="hi">📱</span><span class="ht">Apps útiles</span><span class="hs">Naver, KakaoMap, Papago, Kakao T, Careem… con enlaces de descarga.</span></button>
+      <button class="hubcard" data-go="transporte"><span class="hi">🚇</span><span class="ht">Transporte</span><span class="hs">Cómo moverse: metro y T-money en Seúl, taxi/Careem en Abu Dhabi.</span></button>
+      <button class="hubcard" data-go="alojamiento"><span class="hi">🏠</span><span class="ht">Alojamiento</span><span class="hs">Airbnb LUNA HAUS en Seúl y hotel de Abu Dhabi.</span></button>
+      <button class="hubcard" data-go="reservas"><span class="hi">🎟️</span><span class="ht">Reservas y vuelos</span><span class="hs">Los vuelos de Etihad y las entradas con hora.</span></button>
     </div>
   </section>
 
@@ -762,51 +793,27 @@
     </div>
   </section>
 
-  <!-- ============ TELÉFONOS ============ -->
-  <section class="page" id="page-telefonos">
-    <h2 class="sec">📞 Teléfonos útiles</h2>
-
-    <div class="card">
-      <div class="pill">Corea del Sur</div>
-      <div class="row">
-        <span class="ic">🆘</span>
-        <div class="t"><b>Emergencias (112 / 119)</b><span>112 policía · 119 bomberos y ambulancia.</span></div>
-        <a class="btn btn-call" href="tel:119">Llamar 119</a>
-      </div>
-      <div class="row">
-        <span class="ic">🧭</span>
-        <div class="t"><b>Línea de turismo 1330</b><span>Ayuda al turista 24 h en inglés/español (info, traducción, quejas). Marcad 1330.</span></div>
-        <a class="btn btn-call" href="tel:1330">Llamar 1330</a>
-      </div>
-      <div class="row">
-        <span class="ic">🏠</span>
-        <div class="t"><b>Anfitrión del Airbnb (Cannes)</b><span>Para el check-in y cualquier tema del piso.</span></div>
-        <a class="btn btn-call" href="tel:+821063464090">Llamar</a>
-      </div>
-      <div class="row">
-        <span class="ic">🇪🇸</span>
-        <div class="t"><b>Embajada de España en Seúl</b><span>Para emergencias consulares. +82 2-794-3581.</span></div>
-        <a class="btn btn-call" href="tel:+82227943581">Llamar</a>
-      </div>
+  <!-- ============ DIRECTORIO (teléfonos y direcciones) ============ -->
+  <section class="page dir" id="page-telefonos">
+    <h2 class="sec">📇 Teléfonos y direcciones</h2>
+    <div class="notice">
+      Todo a un toque: <b>📞 Llamar</b> marca el número y <b>📍 Maps</b> abre la dirección en Google Maps.
+      Aquí tenéis a mano el alojamiento, las embajadas y los sitios clave a los que os desplazáis.
     </div>
 
     <div class="card">
-      <div class="pill red">Emiratos Árabes Unidos</div>
-      <div class="row">
-        <span class="ic">🆘</span>
-        <div class="t"><b>Emergencias (999 / 998)</b><span>999 policía · 998 ambulancia · 997 bomberos.</span></div>
-        <a class="btn btn-call" href="tel:999">Llamar 999</a>
-      </div>
-      <div class="row">
-        <span class="ic">🖼️</span>
-        <div class="t"><b>Louvre Abu Dhabi</b><span>Info y entradas · +971 600 56 55 66.</span></div>
-        <a class="btn btn-call" href="tel:+971600565566">Llamar</a>
-      </div>
-      <div class="row">
-        <span class="ic">🇪🇸</span>
-        <div class="t"><b>Embajada de España en Abu Dhabi</b><span>Emergencias consulares · +971 2-626-9544.</span></div>
-        <a class="btn btn-call" href="tel:+97126269544">Llamar</a>
-      </div>
+      <div class="pill red">🆘 Emergencias</div>
+      <div id="dirEmergencias"></div>
+    </div>
+
+    <div class="card">
+      <div class="pill blue">📍 Direcciones útiles</div>
+      <div id="dirDirecciones"></div>
+    </div>
+
+    <div class="card">
+      <div class="pill">☎️ Contactos del viaje</div>
+      <div id="dirContactos"></div>
     </div>
 
     <div class="card">
@@ -1154,6 +1161,31 @@ var DIAS = [
    (ej. "34611223344"). Déjalo vacío para ocultar el botón. */
 var GRUPO_WHATSAPP = "";
 
+/* Directorio: teléfonos y direcciones. Cada entrada muestra, de forma
+   homogénea, los botones 📞 Llamar / 📍 Maps / 💬 WhatsApp según los datos
+   que tenga (tel, maps=consulta para Google Maps, wa=número WhatsApp). */
+var CONTACTOS = {
+  emergencias: [
+    { ico:"🆘", name:"Emergencias · Corea", sub:"112 policía · 119 bomberos y ambulancia", tel:"119" },
+    { ico:"🧭", name:"Línea de turismo 1330 · Corea", sub:"Ayuda al turista 24 h en inglés/español (info, traducción)", tel:"1330" },
+    { ico:"🆘", name:"Emergencias · Emiratos (EAU)", sub:"999 policía · 998 ambulancia · 997 bomberos", tel:"999" }
+  ],
+  direcciones: [
+    { ico:"🏠", name:"Nuestro alojamiento · LUNA HAUS", sub:"404-4 Changsin-dong, Jongno-gu, Seúl · a 2 min del metro Dongmyo", tel:"+821063464090", maps:"404-4 Changsin-dong, Jongno-gu, Seoul" },
+    { ico:"🏨", name:"Hotel de Abu Dhabi", sub:"Por confirmar — lo añado con su Maps cuando esté reservado" },
+    { ico:"🇪🇸", name:"Embajada de España en Seúl", sub:"Emergencias consulares · +82 2-794-3581", tel:"+82227943581", maps:"Embajada de España en Seúl" },
+    { ico:"🇪🇸", name:"Embajada de España en Abu Dhabi", sub:"Emergencias consulares · +971 2-626-9544", tel:"+97126269544", maps:"Embajada de España en Abu Dhabi" },
+    { ico:"✈️", name:"Aeropuerto de Incheon (ICN)", sub:"Seúl · Terminal 1 · llegada (lun 21) y salida (sáb 26)", maps:"Incheon International Airport Terminal 1" },
+    { ico:"✈️", name:"Aeropuerto Zayed (AUH)", sub:"Abu Dhabi · Terminal A", maps:"Zayed International Airport Abu Dhabi" },
+    { ico:"✈️", name:"Aeropuerto de Barcelona (BCN)", sub:"El Prat · Terminal 1", maps:"Aeropuerto Josep Tarradellas Barcelona-El Prat Terminal 1" },
+    { ico:"🚉", name:"Estación de Seúl (AREX)", sub:"Tren exprés al/desde el aeropuerto de Incheon", maps:"Seoul Station" }
+  ],
+  contactos: [
+    { ico:"🏠", name:"Anfitrión del Airbnb (Cannes)", sub:"Check-in y cualquier tema del piso", tel:"+821063464090" },
+    { ico:"🖼️", name:"Louvre Abu Dhabi", sub:"Info y entradas · +971 600 56 55 66", tel:"+971600565566", maps:"Louvre Abu Dhabi, Saadiyat Island" }
+  ]
+};
+
 /* ====================== Utilidades ====================== */
 function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 function mapsUrl(q){ return "https://maps.google.com/?q=" + encodeURIComponent(q); }
@@ -1337,6 +1369,24 @@ function setupSectionLinks(){
   Object.keys(m).forEach(function(id){ var a=document.getElementById(id); if(a) a.href = mapsUrl(m[id]); });
 }
 
+/* ====================== Directorio (teléfonos y direcciones) ====================== */
+function contactRow(c){
+  var acts = [];
+  if(c.tel)  acts.push('<a class="lk call" href="tel:'+c.tel+'">📞 Llamar</a>');
+  if(c.maps) acts.push('<a class="lk map" href="'+mapsUrl(c.maps)+'" target="_blank" rel="noopener">📍 Maps</a>');
+  if(c.wa)   acts.push('<a class="lk wa" href="https://wa.me/'+c.wa+'" target="_blank" rel="noopener">💬 WhatsApp</a>');
+  return '<div class="row"><span class="ic">'+(c.ico||"•")+'</span>'+
+    '<div class="t"><b>'+esc(c.name)+'</b>'+(c.sub?'<span>'+esc(c.sub)+'</span>':'')+
+    (acts.length?'<div class="acts">'+acts.join("")+'</div>':'')+'</div></div>';
+}
+function renderDirectorio(){
+  var map = { dirEmergencias:CONTACTOS.emergencias, dirDirecciones:CONTACTOS.direcciones, dirContactos:CONTACTOS.contactos };
+  Object.keys(map).forEach(function(id){
+    var el = document.getElementById(id); if(!el) return;
+    el.innerHTML = map[id].map(contactRow).join("");
+  });
+}
+
 /* ====================== WhatsApp ====================== */
 function setupWhatsApp(){
   var txt = encodeURIComponent("Guía del viaje a Abu Dhabi y Seúl (18–27 sep): " + location.href);
@@ -1349,9 +1399,12 @@ function setupWhatsApp(){
 }
 
 /* ====================== Navegación por pestañas ====================== */
+var GUIA_SUB = ["chuseok","maleta","apps","transporte","alojamiento","reservas"];
 function showPage(p){
   document.querySelectorAll(".page").forEach(function(s){ s.classList.toggle("active", s.id==="page-"+p); });
-  document.querySelectorAll(".tab").forEach(function(t){ t.classList.toggle("active", t.dataset.page===p); });
+  /* en la barra superior, las sub-secciones de la Guía resaltan la pestaña "Guía" */
+  var topActive = GUIA_SUB.indexOf(p) > -1 ? "guia" : p;
+  document.querySelectorAll(".tab").forEach(function(t){ t.classList.toggle("active", t.dataset.page===topActive); });
   document.querySelectorAll("#drawerNav button").forEach(function(t){ t.classList.toggle("active", t.dataset.page===p); });
   window.scrollTo({top:0,behavior:"auto"});
 }
@@ -1507,6 +1560,7 @@ function setupConverter(){
   renderHoy();
   updateStatus();
   setupSectionLinks();
+  renderDirectorio();
   setupWhatsApp();
   setupInfo();
   setupDrawer();

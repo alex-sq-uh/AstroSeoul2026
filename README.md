@@ -22,11 +22,14 @@ AstroSeoul2026/
 └── README.md       ← este archivo
 ```
 
-## Navegación
-- **Barra de pestañas** (arriba): Hoy · Agenda · Alojamiento · Transporte · **Maleta** · **Idioma** ·
-  **Moneda** · Apps · Reservas · Teléfonos.
-- **Menú hamburguesa** (☰, junto a AstroSeúl, estilo suite AstroTools): abre un *drawer* lateral con
-  **todas** las secciones, **incluida Chuseok** (que ya no ocupa sitio en la barra superior).
+## Navegación (2 grupos)
+- **Barra de pestañas** (arriba) = *"En el viaje"*, lo de uso diario: **Hoy · Agenda · Moneda · Idioma ·
+  Directorio (Teléfonos y direcciones) · Guía**.
+- **Guía** = *hub/índice* (tarjetas) que agrupa lo de *"leer para entender/preparar"*: **Chuseok · Maleta ·
+  Apps · Transporte · Alojamiento · Reservas**. Cada tarjeta abre su sub-página (que sigue existiendo).
+- **Menú hamburguesa** (☰, junto a AstroSeúl, estilo suite AstroTools): *drawer* con **todas** las
+  secciones, etiquetadas en los dos grupos ("En el viaje" / "La guía").
+- `showPage()` resalta la pestaña **Guía** cuando estás en cualquiera de sus sub-páginas (`GUIA_SUB`).
 - **Bienvenida diaria:** al abrir la app **la primera vez de cada día del viaje**, sale un modal con un
   **resumen gracioso** del día (título, ciudad y un texto con humor). Se muestra una vez al día
   (recordado en `localStorage` del propio dispositivo, clave `astroseoul_welcome`). Fuera de fechas no
@@ -43,7 +46,10 @@ HAUS en Seúl + hotel de Abu Dhabi *pendiente*) · **Transporte** (metro/T-money
 taxi/Careem en Abu Dhabi; sin coche de alquiler) · **Apps** (Naver Map, KakaoMap, Papago, Kakao T,
 Subway Korea; Careem, Abu Dhabi Taxi, Louvre AD; con enlaces de descarga) · **Reservas** (✈️ vuelos
 Etihad confirmados, entradas con hora, comidas) · **Teléfonos** (emergencias de Corea y EAU, línea de
-turismo 1330, anfitrión, embajadas + WhatsApp).
+turismo 1330, anfitrión, embajadas + WhatsApp). Ahora es **"Teléfonos y direcciones" (Directorio)**:
+data-driven vía array `CONTACTOS` (emergencias / direcciones / contactos) que pinta filas homogéneas con
+botones-pastilla **📞 Llamar · 📍 Maps · 💬 WhatsApp** según los datos de cada entrada. Incluye alojamiento,
+embajadas (Seúl y Abu Dhabi), aeropuertos (ICN/AUH/BCN) y estación de Seúl, con su Google Maps.
 
 ## Secciones nuevas (v3)
 - **Maleta y clima:** clima típico de septiembre por ciudad, documentos (pasaporte, K-ETA Corea por
