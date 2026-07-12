@@ -53,6 +53,9 @@ embajadas (Seúl y Abu Dhabi), aeropuertos (ICN/AUH/BCN) y estación de Seúl, c
 Cada entrada tiene `loc` (`seul`/`abu`/`both`) y un **conmutador de ciudad** (Seúl / Abu Dhabi, estilo
 Idioma) filtra las tres tarjetas; las que quedan vacías se ocultan. `defaultDirLoc()` abre en la ciudad
 del **día actual** de la agenda (por `code`), y antes del viaje en **Abu Dhabi** (primer destino).
+Las entradas de Seúl llevan campo `ko` = **dirección en coreano** (para enseñar al taxista), destacada en
+`.ko-addr`; también en la tarjeta de Alojamiento. La chuleta de **Idioma** incluye frases de taxi
+("lléveme a esta dirección" / "pare aquí") en coreano y árabe.
 
 ## Secciones nuevas (v3)
 - **Maleta y clima:** clima típico de septiembre por ciudad, documentos (pasaporte, K-ETA Corea por

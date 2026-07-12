@@ -137,6 +137,10 @@
 
   /* ----- directorio (filas homogéneas con botones-pastilla) ----- */
   .dir .row .acts{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
+  /* dirección en coreano para enseñar al taxista */
+  .ko-addr{margin-top:.4rem;background:#eef4fc;border:1px dashed var(--secondary);border-radius:8px;
+    padding:.4rem .6rem;font-size:1rem;font-weight:800;color:var(--primary);line-height:1.35}
+  .ko-addr small{display:block;font-weight:700;color:var(--text-muted);font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
   .logo{width:42px;height:42px;flex-shrink:0;filter:drop-shadow(0 1px 2px rgba(0,0,0,.3))}
   .brand{display:flex;flex-direction:column;line-height:1.05;min-width:0}
   .brand .name{font-weight:800;font-size:1.3rem;letter-spacing:.01em}
@@ -570,6 +574,7 @@
         <a class="lk map" id="aloSeoulMaps" href="#" target="_blank" rel="noopener">📍 Google Maps</a>
         <a class="lk call" href="tel:+821063464090">📞 Anfitrión</a>
       </div>
+      <div class="ko-addr" style="margin-top:.7rem"><small>🇰🇷 Enséñalo al taxista</small>서울 종로구 창신동 404-4 (동묘앞역 근처)</div>
       <dl class="kv" style="margin-top:.9rem">
         <dt>Dirección</dt><dd>404-4 Changsin-dong, Jongno-gu, Seúl</dd>
         <dt>Entrada</dt><dd>Lunes 21 sep · a partir de las 15:00</dd>
@@ -948,6 +953,8 @@
         <div class="phrase"><div class="es">Agua</div><div class="fo"><div class="nat">물</div><div class="rom">mul</div></div></div>
         <div class="phrase"><div class="es">¿Dónde está el baño?</div><div class="fo"><div class="nat">화장실 어디예요?</div><div class="rom">hwajangsil eodi-yeyo?</div></div></div>
         <div class="phrase"><div class="es">Una cerveza, por favor</div><div class="fo"><div class="nat">맥주 하나 주세요</div><div class="rom">maekju hana juseyo</div></div></div>
+        <div class="phrase"><div class="es">Taxi: lléveme a esta dirección</div><div class="fo"><div class="nat">이 주소로 가주세요</div><div class="rom">i juso-ro ga-juseyo</div></div></div>
+        <div class="phrase"><div class="es">Taxi: pare aquí, por favor</div><div class="fo"><div class="nat">여기서 세워주세요</div><div class="rom">yeogi-seo sewo-juseyo</div></div></div>
         <div class="phrase"><div class="es">¡Ayuda!</div><div class="fo"><div class="nat">도와주세요</div><div class="rom">dowa-juseyo</div></div></div>
         <div class="phrase"><div class="es">Adiós (al que se queda)</div><div class="fo"><div class="nat">안녕히 계세요</div><div class="rom">annyeonghi gyeseyo</div></div></div>
       </div>
@@ -967,6 +974,8 @@
         <div class="phrase"><div class="es">Está buenísimo</div><div class="fo"><div class="nat">لذيذ</div><div class="rom">ladhidh</div></div></div>
         <div class="phrase"><div class="es">Agua</div><div class="fo"><div class="nat">ماء</div><div class="rom">maa'</div></div></div>
         <div class="phrase"><div class="es">¿Dónde está el baño?</div><div class="fo"><div class="nat">أين الحمام؟</div><div class="rom">ayna al-hammam?</div></div></div>
+        <div class="phrase"><div class="es">Taxi: al aeropuerto, por favor</div><div class="fo"><div class="nat">إلى المطار من فضلك</div><div class="rom">ila al-matar min fadlak</div></div></div>
+        <div class="phrase"><div class="es">Taxi: pare aquí, por favor</div><div class="fo"><div class="nat">قف هنا من فضلك</div><div class="rom">qif huna min fadlak</div></div></div>
         <div class="phrase"><div class="es">No pasa nada / vale</div><div class="fo"><div class="nat">ماشي</div><div class="rom">mashi</div></div></div>
         <div class="phrase"><div class="es">Adiós</div><div class="fo"><div class="nat">مع السلامة</div><div class="rom">ma'a as-salama</div></div></div>
       </div>
@@ -1176,10 +1185,10 @@ var CONTACTOS = {
     { ico:"🆘", loc:"abu", name:"Emergencias · Emiratos (EAU)", sub:"999 policía · 998 ambulancia · 997 bomberos", tel:"999" }
   ],
   direcciones: [
-    { ico:"🏠", loc:"seul", name:"Nuestro alojamiento · LUNA HAUS", sub:"404-4 Changsin-dong, Jongno-gu, Seúl · a 2 min del metro Dongmyo", tel:"+821063464090", maps:"404-4 Changsin-dong, Jongno-gu, Seoul" },
-    { ico:"🇪🇸", loc:"seul", name:"Embajada de España en Seúl", sub:"Emergencias consulares · +82 2-794-3581", tel:"+82227943581", maps:"Embajada de España en Seúl" },
-    { ico:"✈️", loc:"seul", name:"Aeropuerto de Incheon (ICN)", sub:"Seúl · Terminal 1 · llegada (lun 21) y salida (sáb 26)", maps:"Incheon International Airport Terminal 1" },
-    { ico:"🚉", loc:"seul", name:"Estación de Seúl (AREX)", sub:"Tren exprés al/desde el aeropuerto de Incheon", maps:"Seoul Station" },
+    { ico:"🏠", loc:"seul", name:"Nuestro alojamiento · LUNA HAUS", sub:"404-4 Changsin-dong, Jongno-gu, Seúl · a 2 min del metro Dongmyo", ko:"서울 종로구 창신동 404-4 (동묘앞역 근처)", tel:"+821063464090", maps:"404-4 Changsin-dong, Jongno-gu, Seoul" },
+    { ico:"🇪🇸", loc:"seul", name:"Embajada de España en Seúl", sub:"Emergencias consulares · +82 2-794-3581", ko:"주한 스페인 대사관 (용산구 한남동)", tel:"+82227943581", maps:"Embajada de España en Seúl" },
+    { ico:"✈️", loc:"seul", name:"Aeropuerto de Incheon (ICN)", sub:"Seúl · Terminal 1 · llegada (lun 21) y salida (sáb 26)", ko:"인천국제공항 제1여객터미널", maps:"Incheon International Airport Terminal 1" },
+    { ico:"🚉", loc:"seul", name:"Estación de Seúl (AREX)", sub:"Tren exprés al/desde el aeropuerto de Incheon", ko:"서울역", maps:"Seoul Station" },
     { ico:"🏨", loc:"abu", name:"Hotel de Abu Dhabi", sub:"Por confirmar — lo añado con su Maps cuando esté reservado" },
     { ico:"🇪🇸", loc:"abu", name:"Embajada de España en Abu Dhabi", sub:"Emergencias consulares · +971 2-626-9544", tel:"+97126269544", maps:"Embajada de España en Abu Dhabi" },
     { ico:"✈️", loc:"abu", name:"Aeropuerto Zayed (AUH)", sub:"Abu Dhabi · Terminal A", maps:"Zayed International Airport Abu Dhabi" }
@@ -1381,6 +1390,7 @@ function contactRow(c){
   if(c.wa)   acts.push('<a class="lk wa" href="https://wa.me/'+c.wa+'" target="_blank" rel="noopener">💬 WhatsApp</a>');
   return '<div class="row"><span class="ic">'+(c.ico||"•")+'</span>'+
     '<div class="t"><b>'+esc(c.name)+'</b>'+(c.sub?'<span>'+esc(c.sub)+'</span>':'')+
+    (c.ko?'<div class="ko-addr"><small>🇰🇷 Enséñalo al taxista</small>'+esc(c.ko)+'</div>':'')+
     (acts.length?'<div class="acts">'+acts.join("")+'</div>':'')+'</div></div>';
 }
 function renderDirectorio(loc){
