@@ -427,6 +427,7 @@
     <button data-page="guia"><span class="ic">📖</span>Guía (índice)</button>
     <button data-page="chuseok"><span class="ic">🎑</span>Chuseok</button>
     <button data-page="maleta"><span class="ic">🧳</span>Maleta y clima</button>
+    <button data-page="costumbres"><span class="ic">🕰️</span>Costumbres y horarios</button>
     <button data-page="apps"><span class="ic">📱</span>Apps útiles</button>
     <button data-page="transporte"><span class="ic">🚇</span>Transporte</button>
     <button data-page="alojamiento"><span class="ic">🏠</span>Alojamiento</button>
@@ -558,6 +559,7 @@
       <button class="hubcard" data-go="transporte"><span class="hi">🚇</span><span class="ht">Transporte</span><span class="hs">Cómo moverse: metro y T-money en Seúl, taxi/Careem en Abu Dhabi.</span></button>
       <button class="hubcard" data-go="alojamiento"><span class="hi">🏠</span><span class="ht">Alojamiento</span><span class="hs">Airbnb LUNA HAUS en Seúl y hotel de Abu Dhabi.</span></button>
       <button class="hubcard" data-go="reservas"><span class="hi">🎟️</span><span class="ht">Reservas y vuelos</span><span class="hs">Los vuelos de Etihad y las entradas con hora.</span></button>
+      <button class="hubcard" data-go="costumbres"><span class="hi">🕰️</span><span class="ht">Costumbres y horarios</span><span class="hs">A qué hora se come y se cena, cuándo cierra todo y detalles de etiqueta.</span></button>
     </div>
   </section>
 
@@ -851,6 +853,71 @@
         ¿Quieres un botón directo al chat del grupo? Pásame el número y lo añado aquí.
       </p>
     </div>
+  </section>
+
+  <!-- ============ COSTUMBRES Y HORARIOS ============ -->
+  <section class="page" id="page-costumbres">
+    <h2 class="sec">🕰️ Costumbres y horarios</h2>
+    <div class="notice warn">
+      Regla de oro para no quedaros sin cenar: en <b>Corea se cena PRONTO</b> (18:00–20:30 y las cocinas
+      cierran ~21:30), y en <b>Abu Dhabi se cena TARDE</b> (20:00–23:00; a las 18:00 no hay ni ambiente).
+    </div>
+
+    <!-- Corea -->
+    <div class="card">
+      <div class="pill">🇰🇷 Corea del Sur (Seúl)</div>
+      <h3 style="margin:.2rem 0 .3rem;color:var(--primary);font-size:1.05rem">🍽️ Horarios de comida</h3>
+      <dl class="kv">
+        <dt>Desayuno</dt><dd>07:00–09:00 · poca cultura de salir (cafés desde ~08:00)</dd>
+        <dt>Almuerzo</dt><dd>11:30–13:30 · a las 12:00 está petado</dd>
+        <dt>Cena</dt><dd>18:00–20:30 · se cena pronto</dd>
+        <dt>Última comanda</dt><dd>muchas cocinas cierran ~21:00–21:30</dd>
+      </dl>
+      <h3 style="margin:.9rem 0 .3rem;color:var(--primary);font-size:1.05rem">🕰️ Cierres</h3>
+      <dl class="kv">
+        <dt>Tiendas</dt><dd>~10:30–22:00 · grandes almacenes cierran ~20:00 (y 1 lunes al mes)</dd>
+        <dt>Museos / palacios</dt><dd>hasta ~18:00 (última entrada 1 h antes) · muchos cierran <b>lunes</b></dd>
+        <dt>Break time</dt><dd>muchos restaurantes cierran <b>15:00–17:00</b> entre comida y cena</dd>
+        <dt>Metro</dt><dd>último tren ~medianoche · después, taxi con Kakao T</dd>
+        <dt>24 horas</dt><dd>convenience stores (GS25, CU, 7-Eleven): para todo</dd>
+      </dl>
+      <h3 style="margin:.9rem 0 .3rem;color:var(--primary);font-size:1.05rem">💡 Para no llevaros sorpresas</h3>
+      <ul class="checklist">
+        <li>No vayáis a comer a las 16:00: pillaréis el <b>break time</b>. Comed 12–13:30 o cenad 18–20:30.</li>
+        <li><b>No hay propina</b> (no se espera). Se suele pagar en caja al salir, no en la mesa.</li>
+        <li>Se llama al camarero con el <b>botón</b> de la mesa o diciendo “여기요” (yeogiyo). Agua y guarniciones (banchan) gratis y rellenables.</li>
+        <li>Si salís de noche por Hongdae, ojo al <b>último metro</b> (o taxi).</li>
+      </ul>
+    </div>
+
+    <!-- EAU -->
+    <div class="card">
+      <div class="pill red">🇦🇪 Emiratos (Abu Dhabi)</div>
+      <h3 style="margin:.2rem 0 .3rem;color:var(--primary);font-size:1.05rem">🍽️ Horarios de comida</h3>
+      <dl class="kv">
+        <dt>Desayuno</dt><dd>hoteles 07:00–10:30</dd>
+        <dt>Almuerzo</dt><dd>13:00–15:00</dd>
+        <dt>Cena</dt><dd>20:00–23:00 · se cena <b>tarde</b> (a las 18:00 no hay ambiente)</dd>
+      </dl>
+      <h3 style="margin:.9rem 0 .3rem;color:var(--primary);font-size:1.05rem">🕰️ Cierres</h3>
+      <dl class="kv">
+        <dt>Malls</dt><dd>~10:00–22:00 (findes hasta medianoche) · la vida social por el calor</dd>
+        <dt>Souks / calle</dt><dd>a veces cierran a mediodía y reabren por la tarde-noche</dd>
+        <dt>Louvre AD</dt><dd>cierra <b>lunes</b> · Mezquita: <b>viernes</b> cerrada por la mañana</dd>
+        <dt>Fin de semana</dt><dd>sábado y domingo (el viernes es laborable, con rezo del mediodía)</dd>
+      </dl>
+      <h3 style="margin:.9rem 0 .3rem;color:var(--primary);font-size:1.05rem">💡 Para no llevaros sorpresas</h3>
+      <ul class="checklist">
+        <li>Cenad tarde; de día, planes con <b>aire acondicionado</b> (calor de 38–40°).</li>
+        <li><b>Alcohol</b> solo en hoteles/restaurantes con licencia; nada en la calle.</li>
+        <li>Vestimenta <b>recatada</b> en público y malls (hombros y rodillas cubiertos); mezquita, estricta.</li>
+        <li>Propina ~10% habitual (a veces ya incluida como “service charge”).</li>
+      </ul>
+    </div>
+
+    <p class="muted" style="font-size:.8rem;line-height:1.45;text-align:center;margin-top:.2rem">
+      Orientativo: los horarios concretos de cada sitio, confírmalos en Naver/KakaoMap (Corea) o Google Maps.
+    </p>
   </section>
 
   <!-- ============ MALETA / CLIMA ============ -->
@@ -1441,7 +1508,7 @@ function setupWhatsApp(){
 }
 
 /* ====================== Navegación por pestañas ====================== */
-var GUIA_SUB = ["chuseok","maleta","apps","transporte","alojamiento","reservas"];
+var GUIA_SUB = ["chuseok","maleta","costumbres","apps","transporte","alojamiento","reservas"];
 function showPage(p){
   document.querySelectorAll(".page").forEach(function(s){ s.classList.toggle("active", s.id==="page-"+p); });
   /* en la barra superior, las sub-secciones de la Guía resaltan la pestaña "Guía" */
