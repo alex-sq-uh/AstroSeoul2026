@@ -322,6 +322,15 @@
   .checklist li{position:relative;padding:.25rem 0 .25rem 1.5rem;font-size:.88rem;color:var(--text);line-height:1.4}
   .checklist li::before{content:"✓";position:absolute;left:0;top:.25rem;color:var(--success);font-weight:800}
   .todo li::before{content:"○";color:var(--warning)}
+  /* checklist marcable (maleta) */
+  .checkitem{display:flex;align-items:flex-start;gap:.6rem;width:100%;text-align:left;background:none;border:none;
+    font:inherit;cursor:pointer;padding:.45rem .2rem;border-bottom:1px solid var(--border);color:var(--text);font-size:.9rem;line-height:1.4}
+  .checkitem:last-child{border-bottom:none}
+  .checkitem .box{flex:0 0 auto;width:20px;height:20px;border:2px solid var(--border);border-radius:6px;display:flex;
+    align-items:center;justify-content:center;font-size:.8rem;font-weight:800;color:#fff;margin-top:1px}
+  .checkitem.done .box{background:var(--success);border-color:var(--success)}
+  .checkitem.done .box::after{content:"✓"}
+  .checkitem.done .lbl{color:var(--text-muted);text-decoration:line-through}
 
   /* ----- chuleta de idioma ----- */
   .phrase{display:flex;align-items:flex-start;gap:.7rem;padding:.6rem 0;border-bottom:1px solid var(--border)}
@@ -397,7 +406,7 @@
     </svg>
     <div class="brand">
       <span class="name">Astro<span class="accent">Seúl</span></span>
-      <span class="sub">Laura · Maggie · Alex &nbsp;·&nbsp; 18–27 sep 2026</span>
+      <span class="sub">Laura · Maggie · Alex (+Fran en Seúl) &nbsp;·&nbsp; 18–27 sep</span>
     </div>
     <span class="ver">10 días</span>
   </div>
@@ -428,12 +437,14 @@
     <button data-page="chuseok"><span class="ic">🎑</span>Chuseok</button>
     <button data-page="maleta"><span class="ic">🧳</span>Maleta y clima</button>
     <button data-page="costumbres"><span class="ic">🕰️</span>Costumbres y horarios</button>
+    <button data-page="comer"><span class="ic">🍜</span>Qué comer</button>
+    <button data-page="presupuesto"><span class="ic">💶</span>Presupuesto</button>
     <button data-page="apps"><span class="ic">📱</span>Apps útiles</button>
     <button data-page="transporte"><span class="ic">🚇</span>Transporte</button>
     <button data-page="alojamiento"><span class="ic">🏠</span>Alojamiento</button>
     <button data-page="reservas"><span class="ic">🎟️</span>Reservas y vuelos</button>
   </nav>
-  <div class="df">Laura · Maggie · Alex<br>18–27 sep 2026 · Abu Dhabi &amp; Seúl</div>
+  <div class="df">Laura · Maggie · Alex · +Fran (Seúl)<br>18–27 sep 2026 · Abu Dhabi &amp; Seúl</div>
 </aside>
 
 <nav class="tabs" aria-label="Secciones">
@@ -560,6 +571,8 @@
       <button class="hubcard" data-go="alojamiento"><span class="hi">🏠</span><span class="ht">Alojamiento</span><span class="hs">Airbnb LUNA HAUS en Seúl y hotel de Abu Dhabi.</span></button>
       <button class="hubcard" data-go="reservas"><span class="hi">🎟️</span><span class="ht">Reservas y vuelos</span><span class="hs">Los vuelos de Etihad y las entradas con hora.</span></button>
       <button class="hubcard" data-go="costumbres"><span class="hi">🕰️</span><span class="ht">Costumbres y horarios</span><span class="hs">A qué hora se come y se cena, cuándo cierra todo y detalles de etiqueta.</span></button>
+      <button class="hubcard" data-go="comer"><span class="hi">🍜</span><span class="ht">Qué comer</span><span class="hs">Platos típicos que no os podéis perder en Corea y en Abu Dhabi.</span></button>
+      <button class="hubcard" data-go="presupuesto"><span class="hi">💶</span><span class="ht">Presupuesto</span><span class="hs">Cuánto gastaréis en destino en Abu Dhabi y en Seúl (estimación).</span></button>
     </div>
   </section>
 
@@ -682,51 +695,13 @@
     <!-- Corea -->
     <div class="card">
       <div class="pill">Corea · imprescindibles</div>
-      <div class="row">
-        <span class="ic">🗺️</span>
-        <div class="t"><b>Naver Map</b><span>El mejor mapa para Corea: rutas a pie, metro y bus en tiempo real, en inglés.</span></div>
-        <a class="btn btn-ghost" href="https://play.google.com/store/search?q=naver%20map&c=apps" target="_blank" rel="noopener">Descargar</a>
-      </div>
-      <div class="row">
-        <span class="ic">🧭</span>
-        <div class="t"><b>KakaoMap</b><span>Alternativa igual de buena; sincroniza último tren/transbordos y se integra con Kakao T.</span></div>
-        <a class="btn btn-ghost" href="https://play.google.com/store/search?q=kakaomap&c=apps" target="_blank" rel="noopener">Descargar</a>
-      </div>
-      <div class="row">
-        <span class="ic">💬</span>
-        <div class="t"><b>Papago</b><span>Traductor (Naver) especializado en coreano. La cámara traduce menús y carteles al vuelo.</span></div>
-        <a class="btn btn-ghost" href="https://play.google.com/store/search?q=papago%20translate&c=apps" target="_blank" rel="noopener">Descargar</a>
-      </div>
-      <div class="row">
-        <span class="ic">🚕</span>
-        <div class="t"><b>Kakao T</b><span>Pedir taxi (y más) sin hablar coreano, con interfaz en inglés.</span></div>
-        <a class="btn btn-ghost" href="https://play.google.com/store/search?q=kakao%20t&c=apps" target="_blank" rel="noopener">Descargar</a>
-      </div>
-      <div class="row">
-        <span class="ic">🚈</span>
-        <div class="t"><b>Subway Korea / Kakao Metro</b><span>Horarios del metro y en qué vagón subir para salir junto a tu salida.</span></div>
-        <a class="btn btn-ghost" href="https://play.google.com/store/search?q=subway%20korea&c=apps" target="_blank" rel="noopener">Descargar</a>
-      </div>
+      <div id="appsKorea"></div>
     </div>
 
     <!-- Abu Dhabi / EAU -->
     <div class="card">
       <div class="pill red">Abu Dhabi · EAU</div>
-      <div class="row">
-        <span class="ic">🚗</span>
-        <div class="t"><b>Careem</b><span>La app de taxi/VTC más usada del Golfo. También Uber funciona.</span></div>
-        <a class="btn btn-ghost" href="https://play.google.com/store/search?q=careem&c=apps" target="_blank" rel="noopener">Descargar</a>
-      </div>
-      <div class="row">
-        <span class="ic">🚖</span>
-        <div class="t"><b>Abu Dhabi Taxi</b><span>App oficial para pedir el taxi plateado del emirato.</span></div>
-        <a class="btn btn-ghost" href="https://play.google.com/store/search?q=abu%20dhabi%20taxi&c=apps" target="_blank" rel="noopener">Descargar</a>
-      </div>
-      <div class="row">
-        <span class="ic">🖼️</span>
-        <div class="t"><b>Louvre Abu Dhabi</b><span>Mapa del museo y audioguía de las obras.</span></div>
-        <a class="btn btn-ghost" href="https://play.google.com/store/search?q=louvre%20abu%20dhabi&c=apps" target="_blank" rel="noopener">Descargar</a>
-      </div>
+      <div id="appsUAE"></div>
     </div>
 
     <div class="card">
@@ -958,6 +933,82 @@
     </p>
   </section>
 
+  <!-- ============ QUÉ COMER ============ -->
+  <section class="page" id="page-comer">
+    <h2 class="sec">🍜 Qué comer</h2>
+    <div class="notice">
+      Lista para no volver sin haberlo probado. En Corea, tirad de <b>Naver</b> para elegir sitio
+      (las reseñas mandan); en Abu Dhabi, mucho de esto es <b>comida callejera</b> o de zoco.
+    </div>
+
+    <div class="card">
+      <div class="pill">🇰🇷 Corea — imprescindibles</div>
+      <div class="row"><span class="ic">🥩</span><div class="t"><b>Samgyeopsal</b><span>Panceta a la brasa en tu propia mesa, envuelta en lechuga con ajo y ssamjang. La barbacoa reina.</span></div></div>
+      <div class="row"><span class="ic">🍲</span><div class="t"><b>Bibimbap</b><span>Cuenco de arroz con verduras, huevo y gochujang; se mezcla todo antes de comer.</span></div></div>
+      <div class="row"><span class="ic">🌶️</span><div class="t"><b>Tteokbokki</b><span>Cilindros de pasta de arroz en salsa picante-dulce. La estrella del street food.</span></div></div>
+      <div class="row"><span class="ic">🍗</span><div class="t"><b>Chimaek</b><span>Pollo frito coreano + cerveza (chikin + maekju). Plan de noche perfecto.</span></div></div>
+      <div class="row"><span class="ic">🍜</span><div class="t"><b>Kalguksu / Naengmyeon</b><span>Fideos en caldo caliente / fideos fríos: los dos extremos, los dos buenísimos.</span></div></div>
+      <div class="row"><span class="ic">🍙</span><div class="t"><b>Gimbap &amp; mandu</b><span>Rollito de arroz relleno (tipo sushi coreano) y empanadillas al vapor o fritas.</span></div></div>
+      <div class="row"><span class="ic">🥞</span><div class="t"><b>Hotteok</b><span>Tortita dulce rellena de azúcar moreno y frutos secos; street food de otoño.</span></div></div>
+      <div class="row"><span class="ic">🍶</span><div class="t"><b>Soju &amp; makgeolli</b><span>El licor nacional y el vino de arroz turbio. Con la barbacoa, obligatorio.</span></div></div>
+      <p class="muted" style="margin:.5rem 0 0;font-size:.85rem"><b>No os vayáis sin:</b> una noche de <b>samgyeopsal + soju</b> y un <b>tteokbokki</b> callejero.</p>
+    </div>
+
+    <div class="card">
+      <div class="pill red">🇦🇪 Abu Dhabi — imprescindibles</div>
+      <div class="row"><span class="ic">🥙</span><div class="t"><b>Shawarma</b><span>El bocadillo callejero rey: carne especiada, salsa y pan. Barato y espectacular.</span></div></div>
+      <div class="row"><span class="ic">🍛</span><div class="t"><b>Machboos / Kabsa</b><span>Arroz especiado con carne o pescado, el plato emiratí de fiesta.</span></div></div>
+      <div class="row"><span class="ic">🧆</span><div class="t"><b>Mezze</b><span>Hummus, falafel, moutabal, tabulé… los entrantes árabes para compartir.</span></div></div>
+      <div class="row"><span class="ic">🍮</span><div class="t"><b>Luqaimat</b><span>Buñuelos crujientes bañados en sirope de dátil. El postre emiratí.</span></div></div>
+      <div class="row"><span class="ic">🫖</span><div class="t"><b>Karak chai</b><span>Té con leche muy especiado y dulce; baratísimo y en todas partes.</span></div></div>
+      <div class="row"><span class="ic">🌴</span><div class="t"><b>Dátiles &amp; café árabe (gahwa)</b><span>Gesto de bienvenida típico; el café va con cardamomo.</span></div></div>
+      <p class="muted" style="margin:.5rem 0 0;font-size:.85rem"><b>No os vayáis sin:</b> <b>luqaimat + karak</b>, y un buen <b>shawarma</b> de puesto.</p>
+    </div>
+  </section>
+
+  <!-- ============ PRESUPUESTO ============ -->
+  <section class="page" id="page-presupuesto">
+    <h2 class="sec">💶 Presupuesto</h2>
+    <div class="notice">
+      Esto es solo el <b>gasto en destino</b> (comida, taxis, entradas sueltas, compras). Los <b>vuelos</b>
+      y los <b>alojamientos</b> ya están pagados aparte, y el hotel de Abu Dhabi es <b>gratis</b> (Etihad).
+    </div>
+
+    <div class="card">
+      <div class="pill">🏜️ Abu Dhabi (2 días)</div>
+      <dl class="kv">
+        <dt>Hotel</dt><dd>Gratis (stopover Etihad) 🎉</dd>
+        <dt>Louvre + Mezquita</dt><dd>Ya pagados (~80 AED/pers)</dd>
+        <dt>Comida + taxis + extras</dt><dd>~€120–160 por persona</dd>
+      </dl>
+      <p class="muted" style="margin:.5rem 0 0;font-size:.86rem">En destino: <b>~€350–480 el grupo</b> (unos €120–160/persona). El Stopover Pass da descuentos en atracciones.</p>
+    </div>
+
+    <div class="card">
+      <div class="pill blue">🇰🇷 Seúl (6 días)</div>
+      <dl class="kv">
+        <dt>Comida</dt><dd>~€22–35/día · barbacoa ~€16+</dd>
+        <dt>Transporte</dt><dd>metro barato + AREX + algún taxi</dd>
+        <dt>Entradas</dt><dd>casi todo barato/gratis (Arario ~€10)</dd>
+        <dt>Compras / noche</dt><dd>lo más variable</dd>
+      </dl>
+      <p class="muted" style="margin:.5rem 0 0;font-size:.86rem">En destino: <b>~€1.000–1.250 el grupo</b> (unos €330–420/persona).</p>
+    </div>
+
+    <div class="card" style="background:var(--surface2)">
+      <h3 style="margin:0 0 .3rem;color:var(--primary);font-size:1.05rem">🧮 Total orientativo en destino</h3>
+      <dl class="kv">
+        <dt>Abu Dhabi</dt><dd>~€350–480 grupo</dd>
+        <dt>Seúl</dt><dd>~€1.000–1.250 grupo</dd>
+        <dt><b>Total</b></dt><dd><b>~€1.350–1.700 grupo · ~€450–570/persona</b></dd>
+      </dl>
+      <p class="muted" style="margin:.6rem 0 0;font-size:.8rem;line-height:1.45">
+        Estimación a ojo (sep 2026), sin vuelos ni alojamiento. Por persona sobre 3; Fran se suma en
+        Seúl desde el martes, así que su parte de Seúl sería algo menor. Truco de cambio en la pestaña Moneda.
+      </p>
+    </div>
+  </section>
+
   <!-- ============ MALETA / CLIMA ============ -->
   <section class="page" id="page-maleta">
     <h2 class="sec">🧳 Maleta, clima y documentos</h2>
@@ -1009,16 +1060,11 @@
     <!-- Qué meter -->
     <div class="card">
       <h3 style="margin:0 0 .4rem;color:var(--primary);font-size:1.05rem">✅ Qué meter en la maleta</h3>
-      <ul class="checklist">
-        <li>Ropa ligera y transpirable (Abu Dhabi aprieta).</li>
-        <li><b>Para la mezquita:</b> ropa que cubra brazos y piernas; mujeres, un <b>pañuelo</b> para la cabeza.</li>
-        <li>Chaqueta fina + chubasquero plegable (Seúl fresco de noche).</li>
-        <li>Calzado <b>muy</b> cómodo: Seúl se anda muchísimo y hay cuestas (Bukchon).</li>
-        <li>Gafas de sol, gorra y protección solar alta.</li>
-        <li>Adaptador de enchufe (para EAU), cargador y <b>power bank</b>.</li>
-        <li>Medicación personal + botiquín básico.</li>
-        <li>Botella de agua reutilizable.</li>
-      </ul>
+      <div id="packing"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.5rem">
+        <span class="muted" style="font-size:.76rem">Se marca en tu propio móvil (cada uno la suya).</span>
+        <button type="button" id="packingReset" class="lk">↺ Reiniciar</button>
+      </div>
     </div>
 
     <!-- Mapas guardados -->
@@ -1230,7 +1276,8 @@ var DIAS = [
     { per:"noc", t:"20:00", name:"Euljiro (을지로) de noche", place:"Callejones retro, imprentas, bares escondidos", maps:"Euljiro, Jung-gu, Seoul", ico:"🌆", key:true, info:"Euljiro es un antiguo barrio de talleres, ferreterías e imprentas que se ha puesto de moda: entre persianas metálicas y almacenes se esconden bares y cafés modernísimos (lo llaman “Hip-jiro”). El plan es callejear de noche, cenar en algún sitio con encanto retro y buscar los bares ocultos en pisos altos.\n\nIdea de Claudia: cena con foto estilosa por aquí. Muchos sitios son pequeños y familiares: en Chuseok (24–27) confirmad que abren." }
   ]},
   { id:"mar22", d:[2026,9,22], dow:"Martes", dnum:"22", code:"SEU", loc:"Seúl", titulo:"Leeum, Hannam y galerías",
-    resumen:"Día de arte fino y barrio pijo: el Leeum (con nada menos que tres arquitectos estrella) y Hannam-dong, donde viven ídolos del K-pop y actores. Fingid que vosotros también, que nadie lo va a comprobar. 🎨🕶️", items:[
+    resumen:"¡Hoy se suma Fran al equipo! 🎉 Y con él, día de arte fino y barrio pijo: el Leeum (con tres arquitectos estrella) y Hannam-dong, donde viven ídolos del K-pop y actores. Fingid que vosotros también, que nadie lo va a comprobar. 🎨🕶️", items:[
+    { per:"man", name:"¡Se une Fran!", place:"Fran se suma al grupo en Seúl a partir de hoy", ico:"🎉" },
     { per:"man", t:"10:00", end:"12:30", name:"Leeum Museum of Art", place:"Yongsan · mar–dom 10:00–18:00 · con reserva", maps:"Leeum Museum of Art, Yongsan-gu, Seoul", ico:"🖼️", key:true, tag:"book", info:"El mejor museo de arte privado de Seúl, de la familia Samsung (Lee). Reúne dos mundos: arte tradicional coreano (cerámica celadón, pintura, budismo) y arte moderno y contemporáneo internacional (Rothko, Giacometti, Hirst, Louise Bourgeois…).\n\nArquitectura: son tres edificios de tres arquitectos de primerísima fila. El Museo 1 (arte antiguo), de Mario Botta (suizo), en ladrillo terracota con una rampa cónica invertida como una torre. El Museo 2 (arte contemporáneo), de Jean Nouvel (francés, Pritzker 2008), en acero corten oxidado y cajas de cristal. Y el centro educativo de Rem Koolhaas (holandés, Pritzker 2000), en hormigón negro y vidrio “flotante”. Tres estilos opuestos que conviven en la misma colina.\n\nFunciona con reserva online (hasta 14 días antes, máx. 4 personas). Cierra los lunes y en festivo de Chuseok: por eso lo hacéis hoy, martes 22, a salvo del festivo." },
     { per:"med", t:"12:30", end:"13:00", name:"Hannam-dong (한남동)", place:"Barrio chic: cafés, tiendas de diseño, galerías", maps:"Hannam-dong, Yongsan-gu, Seoul", ico:"🛍️", key:true, info:"Uno de los barrios más elegantes y caros de Seúl, junto a Itaewon, donde viven ídolos del K-pop y actores. Está lleno de concept stores, cafés de diseño, boutiques y galerías de arte. Aquí también está el flagship de Amorepacific… y su sede (de David Chipperfield, Pritzker 2023) queda cerca, en Yongsan. Ideal para comer bien y curiosear tiendas bonitas." },
     { per:"med", t:"13:00", end:"14:15", name:"Almuerzo en Hannam", place:"Elegir sitio en el barrio", ico:"🍽️" },
@@ -1312,6 +1359,22 @@ var CONTACTOS = {
     { ico:"🏠", loc:"seul", name:"Anfitrión del Airbnb (Cannes)", sub:"Check-in y cualquier tema del piso", tel:"+821063464090" },
     { ico:"🖼️", loc:"abu", name:"Louvre Abu Dhabi", sub:"Info y entradas · +971 600 56 55 66", tel:"+971600565566", maps:"Louvre Abu Dhabi, Saadiyat Island" },
     { ico:"🎫", loc:"abu", name:"Etihad Holidays · Abu Dhabi Stopover", sub:"Dudas del hotel/stopover · +971 2 406 3400 (urgente +971 50 642 4022)", tel:"+97124063400" }
+  ]
+};
+
+/* Apps: cada una con enlace a App Store (iPhone) y Google Play (Android). */
+var APPS = {
+  korea: [
+    { ico:"🗺️", name:"Naver Map", desc:"El mejor mapa para Corea: rutas a pie, metro y bus en tiempo real, en inglés.", q:"naver map" },
+    { ico:"🧭", name:"KakaoMap", desc:"Alternativa igual de buena; sincroniza último tren/transbordos y se integra con Kakao T.", q:"kakaomap" },
+    { ico:"💬", name:"Papago", desc:"Traductor (Naver) especializado en coreano. La cámara traduce menús y carteles al vuelo.", q:"papago translate" },
+    { ico:"🚕", name:"Kakao T", desc:"Pedir taxi (y más) sin hablar coreano, con interfaz en inglés.", q:"kakao t" },
+    { ico:"🚈", name:"Subway Korea / Kakao Metro", desc:"Horarios del metro y en qué vagón subir para salir junto a tu salida.", q:"subway korea" }
+  ],
+  uae: [
+    { ico:"🚗", name:"Careem", desc:"La app de taxi/VTC más usada del Golfo. También Uber funciona.", q:"careem" },
+    { ico:"🚖", name:"Abu Dhabi Taxi", desc:"App oficial para pedir el taxi plateado del emirato.", q:"abu dhabi taxi" },
+    { ico:"🖼️", name:"Louvre Abu Dhabi", desc:"Mapa del museo y audioguía de las obras.", q:"louvre abu dhabi" }
   ]
 };
 
@@ -1499,6 +1562,54 @@ function setupSectionLinks(){
   Object.keys(m).forEach(function(id){ var a=document.getElementById(id); if(a) a.href = mapsUrl(m[id]); });
 }
 
+/* ====================== Checklist de maleta (marcable, por dispositivo) ====================== */
+var PACKING = [
+  "Ropa ligera y transpirable (Abu Dhabi aprieta)",
+  "<b>Para la mezquita:</b> ropa que cubra brazos y piernas; mujeres, un <b>pañuelo</b> para la cabeza",
+  "Chaqueta fina + chubasquero plegable (Seúl fresco de noche)",
+  "Calzado <b>muy</b> cómodo: Seúl se anda muchísimo y hay cuestas (Bukchon)",
+  "Gafas de sol, gorra y protección solar alta",
+  "Adaptador de enchufe (para EAU), cargador y <b>power bank</b>",
+  "Medicación personal + botiquín básico",
+  "Botella de agua reutilizable",
+  "Pasaporte y copia de reservas (+ e-Arrival Card de Corea)"
+];
+function setupPacking(){
+  var box = document.getElementById("packing"); if(!box) return;
+  var saved = {};
+  try{ saved = JSON.parse(localStorage.getItem("astroseoul_packing") || "{}"); }catch(e){}
+  function render(){
+    box.innerHTML = PACKING.map(function(t,i){
+      return '<button type="button" class="checkitem'+(saved[i]?" done":"")+'" data-i="'+i+'"><span class="box"></span><span class="lbl">'+t+'</span></button>';
+    }).join("");
+  }
+  render();
+  box.addEventListener("click", function(e){
+    var b = e.target.closest(".checkitem"); if(!b) return;
+    var i = b.getAttribute("data-i");
+    saved[i] = !saved[i];
+    b.classList.toggle("done", !!saved[i]);
+    try{ localStorage.setItem("astroseoul_packing", JSON.stringify(saved)); }catch(e){}
+  });
+  var rst = document.getElementById("packingReset");
+  if(rst) rst.addEventListener("click", function(){ saved = {}; try{ localStorage.removeItem("astroseoul_packing"); }catch(e){} render(); });
+}
+
+/* ====================== Apps (iOS + Android) ====================== */
+function appRow(a){
+  var q = encodeURIComponent(a.q);
+  return '<div class="row"><span class="ic">'+(a.ico||"•")+'</span>'+
+    '<div class="t"><b>'+esc(a.name)+'</b><span>'+esc(a.desc)+'</span>'+
+    '<div class="links">'+
+      '<a class="lk" href="https://apps.apple.com/us/search?term='+q+'" target="_blank" rel="noopener">🍎 iPhone</a>'+
+      '<a class="lk" href="https://play.google.com/store/search?q='+q+'&c=apps" target="_blank" rel="noopener">🤖 Android</a>'+
+    '</div></div></div>';
+}
+function renderApps(){
+  var k=document.getElementById("appsKorea"); if(k) k.innerHTML = APPS.korea.map(appRow).join("");
+  var u=document.getElementById("appsUAE");   if(u) u.innerHTML = APPS.uae.map(appRow).join("");
+}
+
 /* ====================== Directorio (teléfonos y direcciones) ====================== */
 function contactRow(c){
   var acts = [];
@@ -1548,7 +1659,7 @@ function setupWhatsApp(){
 }
 
 /* ====================== Navegación por pestañas ====================== */
-var GUIA_SUB = ["chuseok","maleta","costumbres","apps","transporte","alojamiento","reservas"];
+var GUIA_SUB = ["chuseok","maleta","costumbres","comer","presupuesto","apps","transporte","alojamiento","reservas"];
 function showPage(p){
   document.querySelectorAll(".page").forEach(function(s){ s.classList.toggle("active", s.id==="page-"+p); });
   /* en la barra superior, las sub-secciones de la Guía resaltan la pestaña "Guía" */
@@ -1715,7 +1826,9 @@ function setupConverter(){
   renderHoy();
   updateStatus();
   setupSectionLinks();
+  renderApps();
   setupDirectorio();
+  setupPacking();
   setupWhatsApp();
   setupInfo();
   setupDrawer();
