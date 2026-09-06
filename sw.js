@@ -1,6 +1,6 @@
 /* Service worker de AstroSeoul2026 — cachea la app para uso sin conexión.
    Sube CACHE_VERSION cuando cambies index.html para forzar la actualización. */
-var CACHE = "astroseoul-v16";
+var CACHE = "astroseoul-v17";
 var ASSETS = [
   "./",
   "./index.html",
