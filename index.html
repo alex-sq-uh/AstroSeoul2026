@@ -254,6 +254,7 @@
     border-radius:8px;padding:.32rem .6rem;border:1.5px solid var(--border);background:var(--surface2);color:var(--secondary);white-space:nowrap}
   .lk:hover{border-color:var(--secondary)}
   .lk.map{color:#1f7a45}.lk.map:hover{border-color:#27ae60}
+  .lk.nvr{color:#03c75a}.lk.nvr:hover{border-color:#03c75a}
   .lk.call{color:#1f7a45}.lk.call:hover{border-color:#27ae60}
   .lk.wa{color:#128c3e}.lk.wa:hover{border-color:#25d366}
   .lk.info{cursor:pointer;font-family:inherit;color:var(--primary)}
@@ -591,6 +592,7 @@
       </p>
       <div class="links">
         <a class="lk map" id="aloSeoulMaps" href="#" target="_blank" rel="noopener">📍 Google Maps</a>
+        <a class="lk nvr" href="https://map.naver.com/p/search/88-1%20Changsin-gil%2C%20Jongno-gu%2C%20Seoul" target="_blank" rel="noopener">📗 Naver</a>
       </div>
       <div class="ko-addr" style="margin-top:.7rem"><small>🇰🇷 Enséñalo al taxista</small>서울 종로구 창신길 88-1 (동묘앞역 근처)</div>
       <dl class="kv" style="margin-top:.9rem">
@@ -1419,6 +1421,7 @@ function actCard(day, it, di, ii){
   else if(it.key)     tag = '<span class="tag tag-key">Top</span>';
   var links = [];
   if(it.maps) links.push('<a class="lk map" href="'+mapsUrl(it.maps)+'" target="_blank" rel="noopener">📍 Maps</a>');
+  if(it.maps && day.code==="SEU" && !/^https?:\/\//.test(it.maps)) links.push('<a class="lk nvr" href="https://map.naver.com/p/search/'+encodeURIComponent(it.maps)+'" target="_blank" rel="noopener">📗 Naver</a>');
   if(it.info) links.push('<button type="button" class="lk info" data-di="'+di+'" data-ii="'+ii+'">ℹ️ Info</button>');
   if(it.trap) links.push('<button type="button" class="lk trap" data-di="'+di+'" data-ii="'+ii+'">⚠️ Turist-trap</button>');
   if(it.tel)  links.push('<a class="lk call" href="tel:'+it.tel+'">📞 Llamar</a>');
@@ -1617,6 +1620,7 @@ function contactRow(c){
   var acts = [];
   if(c.tel)  acts.push('<a class="lk call" href="tel:'+c.tel+'">📞 Llamar</a>');
   if(c.maps) acts.push('<a class="lk map" href="'+mapsUrl(c.maps)+'" target="_blank" rel="noopener">📍 Maps</a>');
+  if(c.maps && c.loc==="seul" && !/^https?:\/\//.test(c.maps)) acts.push('<a class="lk nvr" href="https://map.naver.com/p/search/'+encodeURIComponent(c.maps)+'" target="_blank" rel="noopener">📗 Naver</a>');
   if(c.wa)   acts.push('<a class="lk wa" href="https://wa.me/'+c.wa+'" target="_blank" rel="noopener">💬 WhatsApp</a>');
   return '<div class="row"><span class="ic">'+(c.ico||"•")+'</span>'+
     '<div class="t"><b>'+esc(c.name)+'</b>'+(c.sub?'<span>'+esc(c.sub)+'</span>':'')+
